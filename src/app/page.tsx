@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
-import { CheckCircle, Phone, Mail, MapPin, Star, Users, BookOpen, Brain, Clock, Award, Menu, X, Target, Lightbulb, Smile } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { CheckCircle, Phone, Mail, MapPin, Star, Users, BookOpen, Brain, Clock, Award, Menu, X, Target, Zap, TrendingUp, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
 // Modal Component for Calendly
@@ -18,7 +18,7 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           <X className="w-6 h-6 text-gray-700" />
         </button>
         <div className="p-8">
-          <h3 className="text-3xl font-bold text-[#8B6F47] mb-4 text-center">Book Your Free Demo Class</h3>
+          <h3 className="text-3xl font-bold text-[#8B6F47] mb-4 text-center">Book Your Free 45-Minute Demo Class</h3>
           <p className="text-center text-gray-700 mb-6">Choose a time that works best for you</p>
           <div className="aspect-video bg-gradient-to-br from-[#E8B4A0] to-[#D4A89C] rounded-xl flex items-center justify-center">
             <div className="text-center text-white">
@@ -38,34 +38,117 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
   );
 }
 
-// Abacus Animation SVG Component
-function AbacusAnimation() {
+// Carousel Component
+function WhyScholarsCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const benefits = [
+    {
+      image: "/images/class.jpeg",
+      title: "Expert Instruction",
+      description: "Learn from Mrs. Nidhi, a certified and passionate abacus educator with years of experience in transforming young minds."
+    },
+    {
+      icon: Users,
+      title: "Small Class Sizes",
+      description: "We maintain small class sizes to ensure every child receives personalized attention and guidance tailored to their learning pace."
+    },
+    {
+      image: "/images/student.jpeg",
+      title: "Flexible Online Classes",
+      description: "Learn from the comfort of home with our interactive online sessions. Schedule classes at times that work for your family."
+    },
+    {
+      icon: BookOpen,
+      title: "Level-Based Learning",
+      description: "Our structured, level-based curriculum ensures steady progress from foundational concepts to advanced mental calculation techniques."
+    },
+    {
+      icon: Target,
+      title: "Regular Progress Updates",
+      description: "Parents receive regular updates on their child's progress, with detailed feedback and milestone achievements."
+    },
+    {
+      icon: Sparkles,
+      title: "Fun & Engaging",
+      description: "We make learning enjoyable with interactive activities, games, and challenges that keep children motivated and excited."
+    }
+  ];
+
+  const cardsToShow = 3;
+  const maxIndex = benefits.length - cardsToShow;
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  }, [maxIndex]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  }, [maxIndex]);
+
   return (
-    <svg className="w-full h-48" viewBox="0 0 400 200">
-      <g>
-        {[0, 1, 2, 3, 4].map((row) => (
-          <g key={row}>
-            <line x1="50" y1={40 + row * 30} x2="350" y2={40 + row * 30} stroke="#A89F91" strokeWidth="4" />
-            {[0, 1, 2, 3, 4, 5].map((col) => (
-              <circle
-                key={`${row}-${col}`}
-                cx={75 + col * 50}
-                cy={40 + row * 30}
-                r="15"
-                fill="#E8B4A0"
-                stroke="#8B6F47"
-                strokeWidth="2"
-                className="animate-pulse"
-                style={{
-                  animationDelay: `${(row + col) * 0.1}s`,
-                  animationDuration: '3s'
-                }}
-              />
-            ))}
-          </g>
+    <div className="relative">
+      <div className="overflow-hidden">
+        <div 
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)` }}
+        >
+          {benefits.map((benefit, idx) => (
+            <div key={idx} className="w-full md:w-1/3 flex-shrink-0 px-4">
+              <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition h-full">
+                {benefit.image ? (
+                  <div className="mb-6 rounded-2xl overflow-hidden">
+                    <Image 
+                      src={benefit.image}
+                      alt={benefit.title}
+                      width={300} 
+                      height={200}
+                      className="w-full h-48 object-cover"
+                    />
+                  </div>
+                ) : benefit.icon && (
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#E8B4A0] to-[#D4A89C] rounded-2xl flex items-center justify-center mb-6">
+                    <benefit.icon className="w-8 h-8 text-white" />
+                  </div>
+                )}
+                <h3 className="text-2xl font-bold text-[#8B6F47] mb-4">{benefit.title}</h3>
+                <p className="text-gray-700 leading-relaxed">{benefit.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center hover:bg-[#FFD7BA] transition z-10"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6 text-[#8B6F47]" />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center hover:bg-[#FFD7BA] transition z-10"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6 text-[#8B6F47]" />
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center gap-2 mt-8">
+        {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`w-3 h-3 rounded-full transition ${
+              idx === currentIndex ? 'bg-[#8B6F47] w-8' : 'bg-[#E8B4A0]'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
         ))}
-      </g>
-    </svg>
+      </div>
+    </div>
   );
 }
 
@@ -80,7 +163,7 @@ export default function SpeedyScholarsLanding() {
   }, []);
 
   const navLinks = [
-    { href: "#about", label: "About" },
+    { href: "#benefits", label: "Why Abacus" },
     { href: "#pricing", label: "Pricing" },
     { href: "#testimonials", label: "Testimonials" },
     { href: "#contact", label: "Contact" },
@@ -92,9 +175,9 @@ export default function SpeedyScholarsLanding() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <a href="#" className="flex items-center space-x-2">
-              <Image src="/images/logo.png" alt="Speedy Scholars Logo" width={64} height={64} className="h-16 w-16" />
-              <span className="text-xl font-bold text-white">Speedy Scholars</span>
+            <a href="#" className="flex items-center space-x-3">
+              <Image src="/images/logo.png" alt="Speedy Scholars Logo" width={80} height={80} className="h-20 w-20" />
+              <span className="text-xl font-bold text-white hidden sm:block">Speedy Scholars</span>
             </a>
             
             <div className="hidden md:flex items-center space-x-6">
@@ -169,7 +252,7 @@ export default function SpeedyScholarsLanding() {
 
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white px-4 text-center">
           <div className="inline-block bg-gradient-to-r from-[#FFD7BA] to-[#E8B4A0] text-[#8B6F47] px-6 py-3 rounded-full text-sm font-semibold mb-6">
-            ✨ New Classes Available Now
+            🎁 First 45-Minute Demo Class FREE!
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-lg">
@@ -187,7 +270,7 @@ export default function SpeedyScholarsLanding() {
               onClick={() => setIsCalendlyOpen(true)}
               className="bg-gradient-to-r from-[#FFD7BA] to-[#E8B4A0] text-[#8B6F47] px-8 py-4 rounded-full font-semibold hover:shadow-xl transition transform hover:scale-105"
             >
-              Book Free Demo Class
+              Claim Your Free Demo Class
             </button>
             <a
               href="#pricing"
@@ -199,7 +282,7 @@ export default function SpeedyScholarsLanding() {
         </div>
 
         {/* Animated Abacus Beads at Bottom */}
-        <div className="absolute bottom-0 left-0 w-full h-16 flex justify-around items-end overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-full h-16 flex justify-around items-end overflow-hidden z-20">
           {[...Array(10)].map((_, index) => (
             <div
               key={index}
@@ -213,48 +296,130 @@ export default function SpeedyScholarsLanding() {
         </div>
       </section>
 
-      {/* About Section with Real Abacus Image and Badge */}
-      <section id="about" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white to-[#FFF8E7] relative">
-        <div className="absolute top-10 right-10 bg-white px-6 py-3 rounded-full shadow-lg hidden md:block">
-          <div className="flex items-center space-x-2">
-            <Star className="w-5 h-5 text-yellow-500 fill-current" />
-            <span className="font-bold text-[#8B6F47]">4.9/5</span>
-            <span className="text-gray-600 text-sm">from parents</span>
-          </div>
-        </div>
-
+      {/* Why Abacus - Benefits Section */}
+      <section id="benefits" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white to-[#FFF8E7]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#8B6F47]">
-                We Are SPEEDY SCHOLARS
-              </h2>
-              <h3 className="text-3xl md:text-5xl font-bold mb-6 text-[#A89F91]">
-                UNLOCK THE POWER OF YOUR MIND
-              </h3>
-              <p className="text-xl text-gray-700 mb-4">
-                Precision, Speed, and Fun with Abacus
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                At Speedy Scholars, we boost your child's mental arithmetic skills, turning
-                math into a fun and engaging activity. We enhance concentration and memory,
-                increasing confidence and paving the way to academic success.
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#8B6F47] mb-4">Why Abacus?</h2>
+            <p className="text-xl text-gray-700">The Ancient Tool for Modern Minds</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Lightning-Fast Mental Math */}
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#E8B4A0] to-[#D4A89C] rounded-2xl flex items-center justify-center mb-6">
+                <Zap className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#8B6F47] mb-4">Lightning-Fast Mental Math</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Students learn to perform complex calculations mentally in seconds. Research shows abacus learners can calculate 3-4 times faster than traditional methods.
               </p>
             </div>
-            <div className="relative">
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
+
+            {/* Enhanced Brain Development */}
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+              <div className="mb-6 rounded-2xl overflow-hidden">
                 <Image 
-                  src="/images/abacus.jpeg" 
-                  alt="Traditional Abacus" 
-                  width={600} 
-                  height={400}
-                  className="w-full h-auto"
+                  src="/images/brain2.jpeg" 
+                  alt="Brain Development" 
+                  width={300} 
+                  height={200}
+                  className="w-full h-48 object-cover"
                 />
               </div>
+              <h3 className="text-2xl font-bold text-[#8B6F47] mb-4">Enhanced Brain Development</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Activates both left and right hemispheres of the brain, improving overall cognitive function, memory, and concentration.
+              </p>
+            </div>
+
+            {/* Improved Concentration */}
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+              <div className="mb-6 rounded-2xl overflow-hidden">
+                <Image 
+                  src="/images/study.jpeg" 
+                  alt="Focused Learning" 
+                  width={300} 
+                  height={200}
+                  className="w-full h-48 object-cover"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-[#8B6F47] mb-4">Improved Concentration</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Regular abacus practice significantly enhances focus and attention span, benefiting all areas of academic performance.
+              </p>
+            </div>
+
+            {/* Visualization Skills */}
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+              <div className="mb-6 rounded-2xl overflow-hidden">
+                <Image 
+                  src="/images/imagination.jpeg" 
+                  alt="Creative Thinking" 
+                  width={300} 
+                  height={200}
+                  className="w-full h-48 object-cover"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-[#8B6F47] mb-4">Visualization Skills</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Children develop strong mental imagery and visualization abilities, essential for problem-solving in all subjects.
+              </p>
+            </div>
+
+            {/* Confidence Booster */}
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+              <div className="mb-6 rounded-2xl overflow-hidden">
+                <Image 
+                  src="/images/goal.jpeg" 
+                  alt="Achievement" 
+                  width={300} 
+                  height={200}
+                  className="w-full h-48 object-cover"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-[#8B6F47] mb-4">Confidence Booster</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Mastering mental math builds self-confidence and reduces math anxiety, creating a positive attitude towards learning.
+              </p>
+            </div>
+
+            {/* Academic Excellence */}
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#E8B4A0] to-[#D4A89C] rounded-2xl flex items-center justify-center mb-6">
+                <TrendingUp className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#8B6F47] mb-4">Academic Excellence</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Students who learn abacus show improved performance across all subjects, with better memory retention and analytical thinking.
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Scrabble Learning Image Section */}
+      {/* Why Speedy Scholars Section - Carousel */}
+      <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-[#FAF3E0] to-[#FFD7BA]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-block bg-white px-6 py-3 rounded-full shadow-lg mb-6">
+              <div className="flex items-center space-x-2">
+                <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                <span className="font-bold text-[#8B6F47]">4.9/5</span>
+                <span className="text-gray-600 text-sm">from parents</span>
+              </div>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#8B6F47] mb-4">Why Choose Speedy Scholars?</h2>
+            <p className="text-xl text-gray-700">Excellence in Every Aspect of Learning</p>
+          </div>
+          
+          <WhyScholarsCarousel />
+        </div>
+      </section>
+
+      {/* Begin Your Learning Journey - CTA Section */}
+      <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white to-[#FFF8E7]">
+        <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative order-2 md:order-1">
               <div className="rounded-3xl overflow-hidden shadow-2xl">
@@ -268,127 +433,32 @@ export default function SpeedyScholarsLanding() {
               </div>
             </div>
             <div className="order-1 md:order-2">
-              <h3 className="text-3xl font-bold mb-6 text-[#8B6F47]">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#8B6F47] mb-6">
                 Begin Your Learning Journey
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Every child learns at their own pace. Our personalized approach ensures that each student receives the attention and guidance they need to excel. From foundational concepts to advanced techniques, we're with you every step of the way.
+              </h2>
+              <p className="text-xl text-gray-700 leading-relaxed mb-6">
+                Every child learns at their own pace. Our personalized approach ensures that each student receives the attention and guidance they need to excel.
+              </p>
+              <div className="bg-gradient-to-r from-[#FFD7BA] to-[#E8B4A0] p-6 rounded-2xl mb-6">
+                <p className="text-[#8B6F47] font-bold text-lg mb-2">🎁 Special Offer</p>
+                <p className="text-[#8B6F47] text-2xl font-bold">Your First 45-Minute Demo Class is FREE!</p>
+              </div>
+              <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                Experience our teaching methodology firsthand. See how your child responds to abacus learning with zero commitment. Book your free demo class today!
               </p>
               <button
                 onClick={() => setIsCalendlyOpen(true)}
-                className="bg-gradient-to-r from-[#E8B4A0] to-[#D4A89C] text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition transform hover:scale-105"
+                className="bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white px-10 py-5 rounded-full font-bold text-lg hover:shadow-2xl transition transform hover:scale-105"
               >
-                Start Learning Today
+                Book Your FREE 45-Minute Demo Class
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section with Images */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-[#FAF3E0] to-[#FFD7BA]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#8B6F47] mb-4">Why Choose Speedy Scholars?</h2>
-            <p className="text-xl text-gray-700">Excellence in Every Aspect</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Enhanced Mental Arithmetic */}
-            <div className="bg-white p-8 rounded-2xl hover:shadow-xl transition transform hover:-translate-y-2">
-              <div className="mb-4 rounded-xl overflow-hidden">
-                <Image 
-                  src="/images/brain2.jpeg" 
-                  alt="Brain Development" 
-                  width={300} 
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#8B6F47] mb-3">Enhanced Mental Arithmetic</h3>
-              <p className="text-gray-700">Develop lightning-fast calculation skills that last a lifetime through proven abacus methods.</p>
-            </div>
-
-            {/* Expert Instruction with Image */}
-            <div className="bg-white p-8 rounded-2xl hover:shadow-xl transition transform hover:-translate-y-2">
-              <div className="mb-4 rounded-xl overflow-hidden">
-                <Image 
-                  src="/images/class.jpeg" 
-                  alt="Expert Teaching" 
-                  width={300} 
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#8B6F47] mb-3">Expert Instruction</h3>
-              <p className="text-gray-700">Learn from Mrs. Nidhi, a passionate and experienced abacus educator dedicated to your child's success.</p>
-            </div>
-
-            {/* Proven Results */}
-            <div className="bg-white p-8 rounded-2xl hover:shadow-xl transition transform hover:-translate-y-2">
-              <div className="mb-4 rounded-xl overflow-hidden">
-                <Image 
-                  src="/images/goal.jpeg" 
-                  alt="Achievement Goals" 
-                  width={300} 
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#8B6F47] mb-3">Proven Results</h3>
-              <p className="text-gray-700">Watch confidence soar as academic success becomes the norm with measurable improvements.</p>
-            </div>
-
-            {/* Engaging Curriculum */}
-            <div className="bg-white p-8 rounded-2xl hover:shadow-xl transition transform hover:-translate-y-2">
-              <div className="mb-4 rounded-xl overflow-hidden">
-                <Image 
-                  src="/images/imagination.jpeg" 
-                  alt="Engaging Learning" 
-                  width={300} 
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#8B6F47] mb-3">Engaging Curriculum</h3>
-              <p className="text-gray-700">Fun, interactive lessons that keep children excited to learn and explore mathematics.</p>
-            </div>
-
-            {/* Flexible Online Learning */}
-            <div className="bg-white p-8 rounded-2xl hover:shadow-xl transition transform hover:-translate-y-2">
-              <div className="mb-4 rounded-xl overflow-hidden">
-                <Image 
-                  src="/images/student.jpeg" 
-                  alt="Online Learning" 
-                  width={300} 
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#8B6F47] mb-3">Flexible Scheduling</h3>
-              <p className="text-gray-700">Join classes anytime, anywhere with our convenient online sessions tailored to your schedule.</p>
-            </div>
-
-            {/* Holistic Development */}
-            <div className="bg-white p-8 rounded-2xl hover:shadow-xl transition transform hover:-translate-y-2">
-              <div className="mb-4 rounded-xl overflow-hidden">
-                <Image 
-                  src="/images/study.jpeg" 
-                  alt="Student Progress" 
-                  width={300} 
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#8B6F47] mb-3">Holistic Development</h3>
-              <p className="text-gray-700">Boost memory, concentration, and problem-solving abilities beyond just mathematics.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white to-[#FFF8E7]">
+      <section id="pricing" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-[#FAF3E0] to-[#FFD7BA]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#8B6F47] mb-4">Simple, Transparent Pricing</h2>
@@ -462,7 +532,7 @@ export default function SpeedyScholarsLanding() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-[#FAF3E0] to-[#FFD7BA]">
+      <section id="testimonials" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white to-[#FFF8E7]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#8B6F47] mb-4">What Parents Are Saying</h2>
@@ -543,7 +613,7 @@ export default function SpeedyScholarsLanding() {
             <div>
               <h3 className="text-lg font-semibold mb-4">The Studio</h3>
               <ul className="space-y-2 text-xl font-bold">
-                <li><a href="#about" className="hover:text-[#E8B4A0] transition">ABOUT</a></li>
+                <li><a href="#benefits" className="hover:text-[#E8B4A0] transition">WHY ABACUS</a></li>
                 <li><a href="#pricing" className="hover:text-[#E8B4A0] transition">PRICING</a></li>
                 <li><a href="#contact" className="hover:text-[#E8B4A0] transition">CONTACT</a></li>
               </ul>
