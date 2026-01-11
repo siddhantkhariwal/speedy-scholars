@@ -3,7 +3,6 @@
 import { motion, useAnimation } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
-import Image from 'next/image'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
@@ -80,29 +79,6 @@ export default function AboutSection() {
     visible: { opacity: 1, y: 0 },
   }
 
-  const infoBoxes = [
-    {
-      title: "Engaging Learning",
-      description: "Our interactive methods make learning math a joyful experience, keeping students motivated and excited.",
-      image: "/images/class.jpeg",
-    },
-    {
-      title: "Cognitive Development",
-      description: "Abacus training sharpens mental calculation skills and boosts overall cognitive abilities.",
-      image: "/images/brain2.jpeg",
-    },
-    {
-      title: "Confidence Building",
-      description: "As students master abacus skills, they gain confidence in their mathematical abilities and problem-solving skills.",
-      image: "/images/imagination.jpeg",
-    },
-    {
-      title: "Holistic Growth",
-      description: "Our program not only improves math skills but also enhances focus, memory, and creativity.",
-      image: "/images/study.jpeg",
-    },
-  ]
-
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white to-[#F5F5DC]">
       <motion.div
@@ -130,7 +106,7 @@ export default function AboutSection() {
         </motion.div>
         
         <motion.p variants={itemVariants} className="text-lg text-center max-w-3xl mx-auto mb-8">
-          At Speedy Scholars, we boost your child's mental arithmetic skills, turning
+          At Speedy Scholars, we boost your child&apos;s mental arithmetic skills, turning
           math into a fun and engaging activity. We enhance concentration and memory,
           increasing confidence and paving the way to academic success.
         </motion.p>

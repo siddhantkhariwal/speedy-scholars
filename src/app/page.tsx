@@ -1,8 +1,9 @@
 "use client"
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { CheckCircle, Phone, Mail, MapPin, Star, Users, BookOpen, Brain, Clock, Award, Menu, X, Target, Zap, TrendingUp, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CheckCircle, Phone, Mail, MapPin, Star, Users, BookOpen, Clock, Menu, X, Target, Zap, TrendingUp, Sparkles, ChevronLeft, ChevronRight, Globe } from 'lucide-react';
 import Image from 'next/image';
+import { useCurrency, CurrencySelector } from '@/contexts/CurrencyContext';
 
 // Modal Component for Calendly
 function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -152,9 +153,98 @@ function WhyScholarsCarousel() {
   );
 }
 
+// Pricing Section Component with Currency Support
+function PricingSection({ onBookDemo }: { onBookDemo: () => void }) {
+  const { formatPrice } = useCurrency();
+
+  return (
+    <section id="pricing" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white to-[#FFF8E7]">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-[#8B6F47] mb-4">Simple, Transparent Pricing</h2>
+          <p className="text-xl text-gray-700 mb-6">Choose the plan that works best for your family</p>
+
+          {/* Currency Selector */}
+          <div className="flex items-center justify-center gap-3">
+            <Globe className="w-5 h-5 text-[#8B6F47]" />
+            <span className="text-gray-600 text-sm">Showing prices in:</span>
+            <CurrencySelector className="text-sm" />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Demo Class */}
+          <div className="bg-gradient-to-br from-[#C9B8A8] to-[#A89F91] border-2 border-[#8B6F47] p-8 rounded-2xl text-white shadow-xl">
+            <h3 className="text-2xl font-semibold mb-2">Demo Class</h3>
+            <div className="text-5xl font-bold mb-4">FREE</div>
+            <p className="mb-6 opacity-90">First 45 Mins Abacus Class is on us.</p>
+            <button
+              onClick={onBookDemo}
+              className="w-full bg-white text-[#8B6F47] py-3 rounded-full font-semibold hover:bg-[#FFD7BA] transition transform hover:scale-105"
+            >
+              Book Now
+            </button>
+          </div>
+
+          {/* Pay-As-You-Go */}
+          <div className="bg-gradient-to-br from-[#E8B4A0] to-[#D4A89C] border-2 border-[#8B6F47] p-8 rounded-2xl text-white shadow-xl">
+            <h3 className="text-2xl font-semibold mb-2">Pay-As-You-Go</h3>
+            <div className="text-5xl font-bold mb-2">{formatPrice(1600)}</div>
+            <p className="text-sm opacity-75 mb-4">per class</p>
+            <p className="mb-6 opacity-90">Experience flexible learning with our Single Session Pass.</p>
+            <button
+              onClick={onBookDemo}
+              className="w-full bg-white text-[#8B6F47] py-3 rounded-full font-semibold hover:bg-[#FFD7BA] transition transform hover:scale-105"
+            >
+              Select
+            </button>
+            <ul className="mt-6 space-y-2 text-sm">
+              <li className="flex items-start opacity-90">
+                <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+                <span>Get familiarised with basic concepts of abacus</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* 10-Class Pack */}
+          <div className="bg-gradient-to-br from-[#8B6F47] to-[#6B5335] border-4 border-[#FFD7BA] p-8 rounded-2xl text-white relative shadow-xl">
+            <div className="absolute top-0 right-0 bg-[#FFD7BA] text-[#8B6F47] px-4 py-2 text-sm font-bold rounded-bl-2xl">
+              BEST VALUE
+            </div>
+            <h3 className="text-2xl font-semibold mb-2">10-Class Value Pack</h3>
+            <div className="text-5xl font-bold mb-2">{formatPrice(12500)}</div>
+            <p className="text-sm opacity-75 mb-4">{formatPrice(1250)}/class • Save 22%</p>
+            <p className="mb-6 opacity-90">Embark on a transformative journey with our Abacus Mastery Package.</p>
+            <button
+              onClick={onBookDemo}
+              className="w-full bg-[#FFD7BA] text-[#8B6F47] py-3 rounded-full font-semibold hover:bg-white transition transform hover:scale-105"
+            >
+              Get Started
+            </button>
+            <ul className="mt-6 space-y-2 text-sm">
+              {[
+                "Structured Learning Path: Levels-based program",
+                "Consistent Progress: Ensuring steady improvement",
+                "Weekly classes for 3 months",
+                "Exclusive access to books and worksheets",
+                "Priority assistance from instructors"
+              ].map((benefit, index) => (
+                <li key={index} className="flex items-start opacity-90">
+                  <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function SpeedyScholarsLanding() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [, setIsVisible] = useState(false);
+  const [, setIsVideoLoaded] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
@@ -256,7 +346,7 @@ export default function SpeedyScholarsLanding() {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-lg">
-            Unlock Your Child's
+            Unlock Your Child&apos;s
             <br />
             <span className="text-[#FFD7BA]">Mathematical Genius</span>
           </h1>
@@ -457,79 +547,71 @@ export default function SpeedyScholarsLanding() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-[#FAF3E0] to-[#FFD7BA]">
+      {/* Meet Your Instructor Section */}
+      <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-[#FAF3E0] to-[#FFD7BA]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#8B6F47] mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-xl text-gray-700">Choose the plan that works best for your family</p>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#8B6F47] mb-4">Meet Your Instructor</h2>
+            <p className="text-xl text-gray-700">Learn from an expert with decades of experience</p>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Demo Class */}
-            <div className="bg-gradient-to-br from-[#C9B8A8] to-[#A89F91] border-2 border-[#8B6F47] p-8 rounded-2xl text-white shadow-xl">
-              <h3 className="text-2xl font-semibold mb-2">Demo Class</h3>
-              <div className="text-6xl font-bold mb-4">₹0</div>
-              <p className="mb-6 opacity-90">First 45 Mins Abacus Class is on us.</p>
-              <button
-                onClick={() => setIsCalendlyOpen(true)}
-                className="w-full bg-white text-[#8B6F47] py-3 rounded-full font-semibold hover:bg-[#FFD7BA] transition transform hover:scale-105"
-              >
-                Book Now
-              </button>
-            </div>
 
-            {/* Pay-As-You-Go */}
-            <div className="bg-gradient-to-br from-[#E8B4A0] to-[#D4A89C] border-2 border-[#8B6F47] p-8 rounded-2xl text-white shadow-xl">
-              <h3 className="text-2xl font-semibold mb-2">Pay-As-You-Go</h3>
-              <div className="text-6xl font-bold mb-4">₹1,600</div>
-              <p className="mb-6 opacity-90">Experience flexible learning with our Single Session Pass.</p>
-              <button
-                onClick={() => setIsCalendlyOpen(true)}
-                className="w-full bg-white text-[#8B6F47] py-3 rounded-full font-semibold hover:bg-[#FFD7BA] transition transform hover:scale-105"
-              >
-                Select
-              </button>
-              <ul className="mt-6 space-y-2 text-sm">
-                <li className="flex items-start opacity-90">
-                  <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0" />
-                  <span>Get familiarised with basic concepts of abacus</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* 10-Class Pack */}
-            <div className="bg-gradient-to-br from-[#8B6F47] to-[#6B5335] border-4 border-[#FFD7BA] p-8 rounded-2xl text-white relative shadow-xl">
-              <div className="absolute top-0 right-0 bg-[#FFD7BA] text-[#8B6F47] px-4 py-2 text-sm font-bold rounded-bl-2xl">
-                BEST VALUE
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                <Image
+                  src="/images/founder.jpeg"
+                  alt="Nidhi Khariwal - Founder of Speedy Scholars"
+                  width={500}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                />
               </div>
-              <h3 className="text-2xl font-semibold mb-2">10-Class Value Pack</h3>
-              <div className="text-6xl font-bold mb-4">₹12,500</div>
-              <p className="mb-6 opacity-90">Embark on a transformative journey with our Abacus Mastery Package.</p>
-              <button
-                onClick={() => setIsCalendlyOpen(true)}
-                className="w-full bg-[#FFD7BA] text-[#8B6F47] py-3 rounded-full font-semibold hover:bg-white transition transform hover:scale-105"
-              >
-                Get Started
-              </button>
-              <ul className="mt-6 space-y-2 text-sm">
-                {[
-                  "Structured Learning Path: Levels-based program",
-                  "Consistent Progress: Ensuring steady improvement",
-                  "Weekly classes for 3 months",
-                  "Exclusive access to books and worksheets",
-                  "Priority assistance from instructors"
-                ].map((benefit, index) => (
-                  <li key={index} className="flex items-start opacity-90">
-                    <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0" />
-                    <span>{benefit}</span>
-                  </li>
-                ))}
-              </ul>
+              {/* Decorative badge */}
+              <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white px-6 py-3 rounded-2xl shadow-xl">
+                <p className="font-bold text-lg">20+ Years</p>
+                <p className="text-sm opacity-90">of Excellence</p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-3xl font-bold text-[#8B6F47] mb-2">Nidhi Khariwal</h3>
+              <p className="text-[#E8B4A0] font-semibold text-lg mb-6">Founder & Lead Instructor</p>
+
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                With over <strong>20 years of dedicated experience</strong> in teaching abacus and mental arithmetic, Mrs. Nidhi has transformed the lives of more than <strong>2,000+ students</strong> worldwide. Her passion for making math enjoyable and her personalized teaching approach have made her one of the most sought-after abacus educators.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="bg-white p-4 rounded-2xl shadow-lg text-center">
+                  <div className="text-3xl font-bold text-[#8B6F47]">20+</div>
+                  <div className="text-gray-600 text-sm">Years Teaching</div>
+                </div>
+                <div className="bg-white p-4 rounded-2xl shadow-lg text-center">
+                  <div className="text-3xl font-bold text-[#8B6F47]">2000+</div>
+                  <div className="text-gray-600 text-sm">Students Trained</div>
+                </div>
+                <div className="bg-white p-4 rounded-2xl shadow-lg text-center">
+                  <div className="text-3xl font-bold text-[#8B6F47]">50+</div>
+                  <div className="text-gray-600 text-sm">Competition Winners</div>
+                </div>
+                <div className="bg-white p-4 rounded-2xl shadow-lg text-center">
+                  <div className="text-3xl font-bold text-[#8B6F47]">15+</div>
+                  <div className="text-gray-600 text-sm">Awards Received</div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <span className="bg-[#8B6F47] text-white px-4 py-2 rounded-full text-sm font-medium">Award-Winning Educator</span>
+                <span className="bg-[#8B6F47] text-white px-4 py-2 rounded-full text-sm font-medium">Certified Trainer</span>
+                <span className="bg-[#8B6F47] text-white px-4 py-2 rounded-full text-sm font-medium">Competition Coach</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <PricingSection onBookDemo={() => setIsCalendlyOpen(true)} />
 
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white to-[#FFF8E7]">
@@ -552,7 +634,7 @@ export default function SpeedyScholarsLanding() {
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                <p className="text-gray-700 mb-4 italic">&ldquo;{testimonial.text}&rdquo;</p>
                 <div className="font-semibold text-[#8B6F47]">{testimonial.name}, {testimonial.age}</div>
               </div>
             ))}
@@ -565,7 +647,7 @@ export default function SpeedyScholarsLanding() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">Get In Touch</h2>
-            <p className="text-xl text-white opacity-90">We're here to answer any questions</p>
+            <p className="text-xl text-white opacity-90">We&apos;re here to answer any questions</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center p-6 bg-white bg-opacity-90 rounded-2xl">
@@ -573,14 +655,14 @@ export default function SpeedyScholarsLanding() {
                 <Phone className="w-7 h-7 text-white" />
               </div>
               <h3 className="font-bold text-[#8B6F47] mb-2">Call Us</h3>
-              <p className="text-gray-700">+91 XXX XXX XXXX</p>
+              <p className="text-gray-700">+91 9352646671</p>
             </div>
             <div className="text-center p-6 bg-white bg-opacity-90 rounded-2xl">
               <div className="w-14 h-14 bg-gradient-to-br from-[#E8B4A0] to-[#D4A89C] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mail className="w-7 h-7 text-white" />
               </div>
               <h3 className="font-bold text-[#8B6F47] mb-2">Email Us</h3>
-              <p className="text-gray-700">info@speedyscholars.com</p>
+              <p className="text-gray-700">nidhikhariwal2012@gmail.com</p>
             </div>
             <div className="text-center p-6 bg-white bg-opacity-90 rounded-2xl">
               <div className="w-14 h-14 bg-gradient-to-br from-[#E8B4A0] to-[#D4A89C] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -641,6 +723,27 @@ export default function SpeedyScholarsLanding() {
 
       {/* Calendly Modal */}
       <CalendlyModal isOpen={isCalendlyOpen} onClose={() => setIsCalendlyOpen(false)} />
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://wa.me/919352646671?text=Hi%2C%20I'm%20interested%20in%20abacus%20classes%20for%20my%20child."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 group"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg
+          className="w-7 h-7"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          Chat with us!
+        </span>
+      </a>
     </div>
   );
 }

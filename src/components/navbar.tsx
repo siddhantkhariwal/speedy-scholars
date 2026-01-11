@@ -4,7 +4,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { UserCircle, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,7 +23,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <img src="/images/logo.png" alt="Speedy Scholars Logo" className="h-20 w-20" />
+            <Image src="/images/logo.png" alt="Speedy Scholars Logo" width={80} height={80} className="h-20 w-20" />
           </Link>
           <div className="hidden md:flex items-center space-x-6 ml-24">
               {navLinks.map((link) => (

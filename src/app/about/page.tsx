@@ -32,10 +32,10 @@ export default function AboutPage() {
           <motion.section className="mb-16" {...fadeInUp}>
             <h2 className="text-3xl font-bold mb-6 text-[#556B2F]">Our Story</h2>
             <p className="mb-4">
-              Speedy Scholars was born out of a passion for nurturing young minds and a belief in the transformative power of mental math. Founded by Mrs. Nidhi, an accomplished educator with over a decade of experience in abacus training, our journey began with a simple yet powerful vision: to make learning math an engaging, fun, and rewarding experience for children.
+              Speedy Scholars was born out of a passion for nurturing young minds and a belief in the transformative power of mental math. Founded by Mrs. Nidhi Khariwal, an accomplished educator with over <strong>20 years of experience</strong> in abacus training, our journey began with a simple yet powerful vision: to make learning math an engaging, fun, and rewarding experience for children.
             </p>
             <p>
-              What started as a small, local initiative has now blossomed into a thriving community of learners, parents, and educators, all united by the goal of fostering academic excellence and cognitive development through the ancient art of abacus.
+              What started as a small, local initiative has now blossomed into a thriving global community of learners, with <strong>2,000+ students</strong> trained across multiple countries. Parents and educators alike are united by the goal of fostering academic excellence and cognitive development through the ancient art of abacus.
             </p>
           </motion.section>
 
@@ -77,21 +77,40 @@ export default function AboutPage() {
           <motion.section className="mb-16" {...fadeInUp}>
             <div className="bg-[#556B2F] text-white p-8 rounded-lg grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="text-3xl font-bold mb-4">Nidhi Khariwal</h2>
+                <h2 className="text-3xl font-bold mb-2">Nidhi Khariwal</h2>
+                <p className="text-[#c5d4a0] font-semibold mb-4">Founder & Lead Instructor</p>
                 <p className="mb-4">
-                  This is a space to share more about the business: who's behind it, what it does and what this site has to offer. It's an opportunity to tell the story behind the business or describe a special service or product it offers. You can use this section to share the company history or highlight a particular feature that sets it apart from competitors.
+                  With over <strong>20+ years of dedicated experience</strong> in teaching abacus and mental arithmetic, Mrs. Nidhi Khariwal has transformed the lives of more than <strong>2,000+ students</strong> across the globe. Her passion for nurturing young minds and making math enjoyable has been the driving force behind Speedy Scholars.
                 </p>
-                <p>
-                  Let the writing speak for itself. Keep a consistent tone and voice throughout the website to stay true to the brand image and give visitors a taste of the company's values and personality.
+                <p className="mb-4">
+                  Under her expert guidance, students have won <strong>numerous competitions</strong> at state, national, and international levels. Her innovative teaching methods and personalized approach have earned her <strong>multiple awards and recognitions</strong> in the field of abacus education.
                 </p>
+                <ul className="space-y-2 mt-4">
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-[#c5d4a0] rounded-full mr-3"></span>
+                    20+ Years of Teaching Excellence
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-[#c5d4a0] rounded-full mr-3"></span>
+                    2,000+ Students Trained
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-[#c5d4a0] rounded-full mr-3"></span>
+                    Award-Winning Educator
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-[#c5d4a0] rounded-full mr-3"></span>
+                    Students Won Multiple Competitions
+                  </li>
+                </ul>
               </div>
-              <div className="relative h-64 lg:h-full">
+              <div className="relative h-80 lg:h-96">
                 <Image
-                  src="/placeholder.svg?height=400&width=400"
-                  alt="People in yoga pose"
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-full"
+                  src="/images/founder.jpeg"
+                  alt="Nidhi Khariwal - Founder of Speedy Scholars"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="rounded-2xl shadow-xl"
                 />
               </div>
             </div>
@@ -100,10 +119,10 @@ export default function AboutPage() {
           <motion.section {...fadeInUp}>
             <h2 className="text-3xl font-bold mb-6 text-[#556B2F]">Join the Speedy Scholars Family</h2>
             <p className="mb-4">
-              Whether you're a parent looking to give your child a head start in mathematics or an educator interested in our innovative approach to learning, we invite you to be a part of the Speedy Scholars journey.
+              Whether you&apos;re a parent looking to give your child a head start in mathematics or an educator interested in our innovative approach to learning, we invite you to be a part of the Speedy Scholars journey.
             </p>
             <p className="mb-6">
-              Discover the joy of learning, the thrill of mental math mastery, and the confidence that comes with academic excellence. Let's embark on this exciting educational adventure together!
+              Discover the joy of learning, the thrill of mental math mastery, and the confidence that comes with academic excellence. Let&apos;s embark on this exciting educational adventure together!
             </p>
             <motion.div
               whileHover={{ scale: 1.05 }}

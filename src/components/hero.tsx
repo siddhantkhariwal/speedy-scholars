@@ -51,7 +51,7 @@ export default function HeroSection() {
           animate={isVideoLoaded ? "visible" : "hidden"}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Unlock Your Mind's Potential
+          Unlock Your Mind&apos;s Potential
         </motion.h1>
         <motion.p 
           className="text-xl md:text-2xl lg:text-3xl mb-8 max-w-2xl"
