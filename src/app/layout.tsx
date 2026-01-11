@@ -34,8 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Add Calendly script here when you have your URL */}
-        {/* <script src="https://assets.calendly.com/assets/external/widget.js" async></script> */}
+        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
