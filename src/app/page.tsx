@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import { CheckCircle, Phone, Mail, MapPin, Star, Users, Menu, X, Zap, TrendingUp, Globe, Award, GraduationCap, ArrowRight } from 'lucide-react';
+import { CheckCircle, Phone, Mail, MapPin, Star, Users, Menu, X, Globe, Award, GraduationCap, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCurrency, CurrencySelector } from '@/contexts/CurrencyContext';

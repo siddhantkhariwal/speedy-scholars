@@ -1,0 +1,27 @@
+{
+  "name": "Speedy Scholars - Online Abacus Classes",
+  "short_name": "Speedy Scholars",
+  "description": "Transform your child's math skills with expert online abacus classes. 20+ years experience, 2000+ students worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8B6F47",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "kids"],
+  "lang": "en",
+  "dir": "ltr"
+}
