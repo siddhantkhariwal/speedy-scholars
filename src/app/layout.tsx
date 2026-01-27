@@ -103,11 +103,10 @@ export const metadata: Metadata = {
     creator: "@speedyscholars",
   },
 
-  // Verification (add these when you set up the accounts)
-  // verification: {
-  //   google: "your-google-verification-code",
-  //   yandex: "your-yandex-verification-code",
-  // },
+  // Verification
+  verification: {
+    google: "1ztnwGqkDWvfmm313OU7Tp_8GzfSLztFzczorr5pMeE",
+  },
 
   // Alternate languages (if you add multi-language support later)
   alternates: {
