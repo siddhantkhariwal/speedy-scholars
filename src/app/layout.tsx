@@ -16,8 +16,8 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// Base URL for the site - update when domain is connected
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://speedyscholars.com";
+// Base URL for the site
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.speedyscholars.com";
 
 export const metadata: Metadata = {
   // Basic Meta Tags
