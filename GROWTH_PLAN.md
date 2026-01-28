@@ -46,11 +46,11 @@
 - [x] og-image.jpg created (1200x630)
 
 ### Technical Setup
-- [ ] Deploy to Vercel (free tier)
-- [ ] Connect custom domain (speedyscholars.com) - waiting for transfer
-- [ ] SSL certificate (automatic with Vercel)
-- [x] Set up Google Analytics 4 (component ready, needs Measurement ID)
-- [ ] Set up Google Search Console
+- [x] Deploy to Vercel (free tier) - LIVE at speedyscholars.com
+- [x] Connect custom domain (speedyscholars.com) - Connected via GoDaddy
+- [x] SSL certificate (automatic with Vercel) - Active
+- [x] Set up Google Analytics 4 - Tracking active (G-KYY9RC30T9)
+- [x] Set up Google Search Console - Verified & sitemap submitted
 - [ ] Facebook Pixel installation (for retargeting later)
 
 ---
