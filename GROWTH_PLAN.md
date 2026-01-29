@@ -28,8 +28,9 @@
 - [x] English & Hindi language support mentioned in credentials
 - [ ] About page enhancement (more founder story, certifications, photos)
 - [ ] Contact page with full form (already created, needs review)
-- [ ] Privacy Policy & Terms of Service pages
-- [ ] 404 error page
+- [x] Privacy Policy & Terms of Service pages - Created
+- [x] 404 error page - Professional design with brand colors
+- [x] Favicon - All sizes created and working
 
 ### SEO & Meta Tags
 - [x] Add meta title & description for all pages
@@ -74,6 +75,14 @@
 - [ ] Display any teaching certifications
 - [ ] Add trust badges (secure checkout, verified tutor, etc.)
 - [ ] Show years of experience prominently
+
+### Tutoring Platform Profiles
+- [x] Superprof - Profile created with optimized copy
+- [ ] Wyzant - Math/Abacus category (USA-focused)
+- [ ] TutorOcean - International, has abacus category
+- [ ] Preply - Waiting for abacus/math category (skip English teacher profile)
+- [ ] Care.com - Tutoring section
+- [ ] Thumbtack - Local services marketplace
 
 ---
 
