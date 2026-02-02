@@ -10,6 +10,36 @@
       ],
       "destination": "https://www.speedyscholars.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/refund-policy",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/terms-conditions",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/membership",
+      "destination": "/#pricing",
+      "permanent": true
+    },
+    {
+      "source": "/book-a-class",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/book-online",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/event-details/:slug*",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
