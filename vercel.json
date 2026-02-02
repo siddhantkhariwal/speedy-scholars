@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "speedyscholars.com"
+        }
+      ],
+      "destination": "https://www.speedyscholars.com/:path*",
+      "permanent": true
+    }
+  ]
+}
