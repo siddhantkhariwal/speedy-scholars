@@ -140,15 +140,16 @@ A comprehensive enhancement session was completed covering blog infrastructure, 
 8. **Internal Linking** — Blog posts link to each other and to main pages
 9. **Article Schema** — JSON-LD BlogPosting schema on each blog post
 10. **Breadcrumb Schema** — Added to blog and inner pages
+11. **Google Analytics 4** — Active and tracking (G-KYY9RC30T9)
+12. **Google Search Console** — Verified and sitemap submitted
 
 ### Areas for Improvement 🔧
 
-1. **Google Analytics** — GA4 ID needs to be set in environment variables
-2. **Social Media Links** — Footer social links are placeholders (`href="#"`)
-3. **OG Image** — Static OG image; consider dynamic generation per page
-4. **Core Web Vitals** — Video background on homepage may impact LCP on slow connections
-5. **Image Optimization** — Blog post images reuse existing site images; unique blog images would improve CTR
-6. **Robots.txt** — Not explicitly configured (relies on Next.js defaults)
+1. **Social Media Links** — Footer social links are placeholders (`href="#"`)
+2. **OG Image** — Static OG image; consider dynamic generation per page
+3. **Core Web Vitals** — Video background on homepage may impact LCP on slow connections
+4. **Image Optimization** — Blog post images reuse existing site images; unique blog images would improve CTR
+5. **Robots.txt** — Not explicitly configured (relies on Next.js defaults)
 
 ---
 
@@ -157,7 +158,6 @@ A comprehensive enhancement session was completed covering blog infrastructure, 
 ### High Priority
 1. **Add video poster image** — The hero video (`abacusVideo.mp4`) should have a `poster` attribute to improve LCP while video loads
 2. **Compress images** — `founder.jpeg`, `brain2.jpeg` etc. should be WebP-converted for better performance
-3. **GA4 ID** — Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` environment variable in Vercel dashboard
 
 ### Medium Priority
 4. **Generate unique OG images** — Use Next.js `opengraph-image.tsx` for dynamic per-page OG images
@@ -238,15 +238,15 @@ Based on the overnight session, these items remain for future sessions:
 - [ ] Connect social media accounts (Facebook, YouTube, Instagram) and update footer links
 - [ ] Add metadata to `/privacy` and `/terms` pages
 - [ ] Create `/faq` dedicated FAQ page
-- [ ] Set up Google Analytics with actual GA4 measurement ID
 - [ ] Add `poster` attribute to hero video for improved LCP
 - [ ] Create unique blog article images (currently reusing site images)
 - [ ] Set up email newsletter/lead capture
 - [ ] Add gallery/results page for competition achievements
 - [ ] Consider dynamic OG image generation
 - [ ] Add `public/robots.txt` file
-- [ ] Write local SEO targeted articles (by country)
-- [ ] Add schema markup to /contact and /privacy pages
+- [ ] Write local SEO targeted articles (by country: USA, UK, Australia)
+- [ ] Add schema markup to /contact, /privacy, and /terms pages
+- [ ] Write next batch of blog articles (competition prep, local SEO articles)
 
 ---
 
