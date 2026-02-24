@@ -406,6 +406,22 @@ export default function SpeedyScholarsLanding() {
                   {link.label}
                 </a>
               ))}
+              <Link
+                href="/blog"
+                className={`font-medium transition-colors ${
+                  isScrolled ? 'text-gray-700 hover:text-[#8B6F47]' : 'text-white/90 hover:text-white'
+                }`}
+              >
+                Blog
+              </Link>
+              <Link
+                href="/resources"
+                className={`font-medium transition-colors ${
+                  isScrolled ? 'text-gray-700 hover:text-[#8B6F47]' : 'text-white/90 hover:text-white'
+                }`}
+              >
+                Resources
+              </Link>
               <button
                 onClick={() => setIsCalendlyOpen(true)}
                 className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
@@ -439,6 +455,20 @@ export default function SpeedyScholarsLanding() {
                   {link.label}
                 </a>
               ))}
+              <Link
+                href="/blog"
+                className="block text-gray-700 hover:text-[#8B6F47] font-medium py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link
+                href="/resources"
+                className="block text-gray-700 hover:text-[#8B6F47] font-medium py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Resources
+              </Link>
               <button
                 onClick={() => {
                   setIsCalendlyOpen(true);
@@ -827,6 +857,9 @@ export default function SpeedyScholarsLanding() {
                 <li><a href="#instructor" className="hover:text-white transition-colors">Our Instructor</a></li>
                 <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="#testimonials" className="hover:text-white transition-colors">Reviews</a></li>
+                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li><Link href="/resources" className="hover:text-white transition-colors">Resources</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
@@ -834,18 +867,22 @@ export default function SpeedyScholarsLanding() {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>+91 9352646671</li>
-                <li>nidhikhariwal2012@gmail.com</li>
+                <li>
+                  <a href="tel:+919352646671" className="hover:text-white transition-colors">+91 9352646671</a>
+                </li>
+                <li>
+                  <a href="mailto:nidhikhariwal2012@gmail.com" className="hover:text-white transition-colors">nidhikhariwal2012@gmail.com</a>
+                </li>
                 <li>Online Classes Worldwide</li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>&copy; 2025 Speedy Scholars. All rights reserved.</p>
+            <p>&copy; 2026 Speedy Scholars. All rights reserved.</p>
             <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>

@@ -245,3 +245,65 @@ export function HomePageStructuredData() {
     </>
   );
 }
+
+interface BlogPostingSchemaProps {
+  title: string;
+  description: string;
+  imageUrl: string;
+  datePublished: string;
+  dateModified: string;
+  authorName: string;
+  authorTitle: string;
+  slug: string;
+}
+
+export function BlogPostingSchema({
+  title,
+  description,
+  imageUrl,
+  datePublished,
+  dateModified,
+  authorName,
+  authorTitle,
+  slug,
+}: BlogPostingSchemaProps) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    image: imageUrl,
+    datePublished,
+    dateModified,
+    author: {
+      "@type": "Person",
+      name: authorName,
+      jobTitle: authorTitle,
+      url: "https://www.speedyscholars.com/about",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Speedy Scholars",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.speedyscholars.com/images/logo.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.speedyscholars.com/blog/${slug}`,
+    },
+    isPartOf: {
+      "@type": "Blog",
+      name: "Speedy Scholars Blog",
+      url: "https://www.speedyscholars.com/blog",
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  );
+}
