@@ -81,11 +81,14 @@
 
 ### Tutoring Platform Profiles
 - [x] Superprof - Profile created with optimized copy
-- [ ] Wyzant - Math/Abacus category (USA-focused)
-- [ ] TutorOcean - International, has abacus category
-- [ ] Preply - Waiting for abacus/math category (skip English teacher profile)
-- [ ] Care.com - Tutoring section
-- [ ] Thumbtack - Local services marketplace
+- [ ] Preply - International, strong USA/UK/Australia reach ✅ PRIORITY
+- [ ] TutorOcean - International, has abacus category ✅
+- [ ] Classgap - International, popular in UK/Europe ✅
+- [ ] TeacherOn - Global reach, free to list ✅
+- [ ] Lessonpal - US-facing but open to international tutors (verify) ✅
+- [x] ~~Wyzant~~ - ❌ NOT ELIGIBLE — requires US residency + valid SSN
+- [x] ~~Care.com~~ - ❌ NOT ELIGIBLE — US residents only
+- [x] ~~Thumbtack~~ - ❌ NOT ELIGIBLE — US residents only
 
 ---
 
@@ -132,13 +135,23 @@
 ## Phase 4: Multi-Platform Presence
 
 ### Tutoring Marketplaces (Priority Order)
-1. [ ] **Preply** - Good for international students
-2. [ ] **Wyzant** - Popular in USA
-3. [ ] **Superprof** - Active in UK, Europe, India
-4. [ ] **Tutor.com** - USA focused
-5. [ ] **UrbanPro** - India focused
-6. [ ] **TeacherOn** - Global reach
-7. [ ] **Varsity Tutors** - USA premium market
+> Note: Must be based outside USA — platforms requiring US residency/SSN are not eligible.
+
+**✅ Eligible Platforms (international tutors accepted):**
+1. [ ] **Preply** - Best reach for USA/UK/Australia parents, international tutors welcome
+2. [x] **Superprof** - Already listed. Active in UK, Europe, India, Australia
+3. [ ] **TutorOcean** - International, has abacus/math category
+4. [ ] **Classgap** - Strong in UK and Europe, open to international tutors
+5. [ ] **TeacherOn** - Global reach, free to list
+6. [ ] **UrbanPro** - India focused, good for Indian diaspora parents
+7. [ ] **Fiverr** - Global freelance, "abacus tutor" niche has low competition
+
+**❌ Not Eligible (require US residency / SSN):**
+- ~~Wyzant~~ — Confirmed: requires US residency + SSN
+- ~~Tutor.com~~ — US residents only
+- ~~Varsity Tutors~~ — US residents only
+- ~~Care.com~~ — US residents only
+- ~~Thumbtack~~ — US residents only
 
 ### Freelance Platforms
 - [ ] Update Fiverr profile with new branding
