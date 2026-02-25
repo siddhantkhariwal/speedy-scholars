@@ -298,6 +298,20 @@ export default function SpeedyScholarsLanding() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { formatPrice } = useCurrency();
 
+  const openCalendly = (location: string) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const w = window as any;
+      if (typeof window !== 'undefined' && w.gtag) {
+        w.gtag('event', 'book_demo_click', {
+          event_category: 'engagement',
+          event_label: location,
+        });
+      }
+    } catch { /* GA not loaded */ }
+    setIsCalendlyOpen(true);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -423,7 +437,7 @@ export default function SpeedyScholarsLanding() {
                 Resources
               </Link>
               <button
-                onClick={() => setIsCalendlyOpen(true)}
+                onClick={() => openCalendly('navbar')}
                 className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
                   isScrolled
                     ? 'bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white hover:shadow-lg hover:scale-105'
@@ -471,7 +485,7 @@ export default function SpeedyScholarsLanding() {
               </Link>
               <button
                 onClick={() => {
-                  setIsCalendlyOpen(true);
+                  openCalendly('mobile_menu');
                   setIsMobileMenuOpen(false);
                 }}
                 className="w-full bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white py-3 rounded-xl font-semibold"
@@ -526,7 +540,7 @@ export default function SpeedyScholarsLanding() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <button
-                onClick={() => setIsCalendlyOpen(true)}
+                onClick={() => openCalendly('hero')}
                 className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-[#7A6040] hover:to-[#5A4830] transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
               >
                 Claim Your Free Demo
@@ -675,7 +689,7 @@ export default function SpeedyScholarsLanding() {
               </div>
 
               <button
-                onClick={() => setIsCalendlyOpen(true)}
+                onClick={() => openCalendly('instructor_section')}
                 className="inline-flex items-center gap-2 bg-white text-[#6B5335] px-8 py-4 rounded-full font-semibold hover:bg-stone-50 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Book a Session with Mrs. Nidhi
@@ -720,7 +734,7 @@ export default function SpeedyScholarsLanding() {
                 "Get personalized recommendations",
                 "No commitment required"
               ]}
-              onBook={() => setIsCalendlyOpen(true)}
+              onBook={() => openCalendly('pricing_free_demo')}
               formatPrice={formatPrice}
             />
 
@@ -738,7 +752,7 @@ export default function SpeedyScholarsLanding() {
                 "Competition preparation"
               ]}
               isPopular
-              onBook={() => setIsCalendlyOpen(true)}
+              onBook={() => openCalendly('pricing_10class')}
               formatPrice={formatPrice}
             />
 
@@ -754,7 +768,7 @@ export default function SpeedyScholarsLanding() {
                 "Flexible scheduling",
                 "Session recordings available"
               ]}
-              onBook={() => setIsCalendlyOpen(true)}
+              onBook={() => openCalendly('pricing_payg')}
               formatPrice={formatPrice}
             />
           </div>
@@ -792,7 +806,7 @@ export default function SpeedyScholarsLanding() {
             Join thousands of parents who have seen remarkable improvements in their children&apos;s confidence and abilities.
           </p>
           <button
-            onClick={() => setIsCalendlyOpen(true)}
+            onClick={() => openCalendly('cta_section')}
             className="inline-flex items-center gap-2 bg-white text-[#6B5335] px-10 py-5 rounded-full font-bold text-lg hover:bg-stone-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
           >
             Book Your Free Demo Class Today
