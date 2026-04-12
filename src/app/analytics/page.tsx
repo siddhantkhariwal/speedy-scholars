@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+// Simple access guard — set NEXT_PUBLIC_ANALYTICS_PASSWORD in .env.local
+// Leave it unset in Vercel production to block public access
+const ACCESS_PASSWORD = process.env.NEXT_PUBLIC_ANALYTICS_PASSWORD ?? "";
+
 function renderMarkdown(text: string) {
   const lines = text.split("\n");
   const elements: React.ReactNode[] = [];
@@ -235,8 +239,36 @@ export default function AnalyticsDashboard() {
     }
   };
 
+  const [authed, setAuthed] = useState(!ACCESS_PASSWORD);
+  const [pwInput, setPwInput] = useState("");
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { fetchBrief(); }, []);
+  useEffect(() => { if (authed) fetchBrief(); }, [authed]);
+
+  if (!authed) {
+    return (
+      <div style={{ minHeight: "100vh", background: "#F5EDE3", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Arial, sans-serif" }}>
+        <div style={{ background: "#FFF8F0", border: "1.5px solid #D4B896", borderRadius: 16, padding: "40px 48px", textAlign: "center", maxWidth: 360 }}>
+          <div style={{ color: "#5A4830", fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Analytics</div>
+          <div style={{ color: "#8B6F47", fontSize: 13, marginBottom: 24 }}>Enter password to continue</div>
+          <input
+            type="password"
+            value={pwInput}
+            onChange={(e) => setPwInput(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter" && pwInput === ACCESS_PASSWORD) setAuthed(true); }}
+            placeholder="Password"
+            style={{ width: "100%", padding: "10px 14px", border: "1.5px solid #D4B896", borderRadius: 8, fontSize: 14, color: "#5A4830", background: "#FFF8F0", outline: "none", marginBottom: 12, boxSizing: "border-box" }}
+          />
+          <button
+            onClick={() => { if (pwInput === ACCESS_PASSWORD) setAuthed(true); }}
+            style={{ width: "100%", background: "#8B6F47", color: "#fff", border: "none", borderRadius: 8, padding: "10px", fontSize: 14, fontWeight: 700, cursor: "pointer" }}
+          >
+            Enter
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const maxImpressions = data ? Math.max(...data.gsc.queries.map((q) => q.impressions), 1) : 1;
   const maxSessions = data ? Math.max(...data.ga4.daily.map((d) => d.sessions), 1) : 1;
