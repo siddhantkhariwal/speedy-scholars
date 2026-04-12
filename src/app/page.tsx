@@ -401,11 +401,6 @@ export default function SpeedyScholarsLanding() {
                 height={56}
                 className={`transition-all duration-300 ${isScrolled ? 'w-12 h-12' : 'w-14 h-14'}`}
               />
-              <span className={`font-bold transition-all duration-300 ${
-                isScrolled ? 'text-gray-900 text-lg' : 'text-white text-xl'
-              }`}>
-                Speedy Scholars
-              </span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
