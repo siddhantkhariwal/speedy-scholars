@@ -3,6 +3,88 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+function renderMarkdown(text: string) {
+  const lines = text.split("\n");
+  const elements: React.ReactNode[] = [];
+  let i = 0;
+
+  const inlineFormat = (str: string, key: number): React.ReactNode => {
+    const parts = str.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
+    return (
+      <span key={key}>
+        {parts.map((p, j) => {
+          if (p.startsWith("**") && p.endsWith("**")) return <strong key={j}>{p.slice(2, -2)}</strong>;
+          if (p.startsWith("*") && p.endsWith("*")) return <em key={j}>{p.slice(1, -1)}</em>;
+          if (p.startsWith("`") && p.endsWith("`")) return <code key={j} style={{ background: "#F5EDE3", borderRadius: 3, padding: "1px 5px", fontSize: 12, fontFamily: "monospace" }}>{p.slice(1, -1)}</code>;
+          return p;
+        })}
+      </span>
+    );
+  };
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // Table
+    if (line.startsWith("|") && lines[i + 1]?.match(/^\|[-| ]+\|$/)) {
+      const headers = line.split("|").filter((c) => c.trim()).map((c) => c.trim());
+      i += 2;
+      const rows: string[][] = [];
+      while (i < lines.length && lines[i].startsWith("|")) {
+        rows.push(lines[i].split("|").filter((c) => c.trim()).map((c) => c.trim()));
+        i++;
+      }
+      elements.push(
+        <div key={i} style={{ overflowX: "auto", margin: "10px 0" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+            <thead>
+              <tr>{headers.map((h, j) => <th key={j} style={{ background: "#F5EDE3", color: "#5A4830", padding: "6px 10px", textAlign: "left", borderBottom: "2px solid #D4B896", fontWeight: 700 }}>{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {rows.map((row, ri) => (
+                <tr key={ri} style={{ background: ri % 2 === 0 ? "#fff" : "#FFF8F0" }}>
+                  {row.map((cell, ci) => <td key={ci} style={{ padding: "6px 10px", borderBottom: "1px solid #F5EDE3", color: "#5A4830" }}>{cell}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      continue;
+    }
+
+    // Heading
+    if (line.startsWith("## ")) {
+      elements.push(<div key={i} style={{ fontWeight: 700, fontSize: 14, color: "#5A4830", margin: "10px 0 4px" }}>{line.slice(3)}</div>);
+    } else if (line.startsWith("# ")) {
+      elements.push(<div key={i} style={{ fontWeight: 700, fontSize: 15, color: "#5A4830", margin: "10px 0 4px" }}>{line.slice(2)}</div>);
+    }
+    // Horizontal rule
+    else if (line.match(/^---+$/)) {
+      elements.push(<hr key={i} style={{ border: "none", borderTop: "1px solid #D4B896", margin: "10px 0" }} />);
+    }
+    // Bullet
+    else if (line.match(/^[-*] /)) {
+      elements.push(
+        <div key={i} style={{ display: "flex", gap: 8, margin: "3px 0" }}>
+          <span style={{ color: "#C9A86C", flexShrink: 0 }}>•</span>
+          <span>{inlineFormat(line.slice(2), i)}</span>
+        </div>
+      );
+    }
+    // Empty line
+    else if (line.trim() === "") {
+      elements.push(<div key={i} style={{ height: 6 }} />);
+    }
+    // Normal paragraph
+    else {
+      elements.push(<div key={i} style={{ margin: "2px 0" }}>{inlineFormat(line, i)}</div>);
+    }
+    i++;
+  }
+  return elements;
+}
+
 interface BriefData {
   generatedAt: string;
   ga4: {
@@ -490,9 +572,9 @@ export default function AnalyticsDashboard() {
                       lineHeight: 1.6,
                     }}>
                       {msg.role === "claude" && (
-                        <div style={{ fontSize: 10, fontWeight: 700, color: "#C9A86C", textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>Claude</div>
+                        <div style={{ fontSize: 10, fontWeight: 700, color: "#C9A86C", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>Claude</div>
                       )}
-                      {msg.text}
+                      {msg.role === "claude" ? renderMarkdown(msg.text) : msg.text}
                     </div>
                   </div>
                 ))}
