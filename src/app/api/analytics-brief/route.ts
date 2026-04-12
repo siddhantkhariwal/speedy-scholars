@@ -1,19 +1,22 @@
 import { NextResponse } from "next/server";
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
 import { google } from "googleapis";
-import path from "path";
 
-const GA_CREDS = path.join(process.cwd(), "speedy-scholars-114b292fc6d8.json");
 const GA_PROPERTY_ID = "521738025";
 const GSC_SITE = "https://www.speedyscholars.com/";
-const GSC_TOKEN = path.join(process.cwd(), "gsc-oauth-credentials_token.json");
 
 export async function GET() {
   try {
     // ── GA4 ──────────────────────────────────────────────────────────────
-    const gaClient = new BetaAnalyticsDataClient({
-      keyFilename: GA_CREDS,
-    });
+    // Credentials from env var (JSON string) or file path fallback for local dev
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let gaClientOptions: any = {};
+    if (process.env.GA_SERVICE_ACCOUNT_JSON) {
+      gaClientOptions = { credentials: JSON.parse(process.env.GA_SERVICE_ACCOUNT_JSON) };
+    } else {
+      gaClientOptions = { keyFilename: "speedy-scholars-114b292fc6d8.json" };
+    }
+    const gaClient = new BetaAnalyticsDataClient(gaClientOptions);
 
     const [overviewResp] = await gaClient.runReport({
       property: `properties/${GA_PROPERTY_ID}`,
@@ -75,16 +78,22 @@ export async function GET() {
       .sort((a, b) => a.date.localeCompare(b.date));
 
     // ── GSC ──────────────────────────────────────────────────────────────
-    const fs = await import("fs");
-    const tokenData = JSON.parse(fs.readFileSync(GSC_TOKEN, "utf-8"));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let gscAuth: any;
+    if (process.env.GSC_TOKEN_JSON) {
+      const t = JSON.parse(process.env.GSC_TOKEN_JSON);
+      const oauth2 = new google.auth.OAuth2(t.client_id, t.client_secret);
+      oauth2.setCredentials({ access_token: t.access_token, refresh_token: t.refresh_token });
+      gscAuth = oauth2;
+    } else {
+      const fs = await import("fs");
+      const t = JSON.parse(fs.readFileSync("gsc-oauth-credentials_token.json", "utf-8"));
+      const oauth2 = new google.auth.OAuth2(t.client_id, t.client_secret);
+      oauth2.setCredentials({ access_token: t.access_token, refresh_token: t.refresh_token });
+      gscAuth = oauth2;
+    }
 
-    const auth = new google.auth.OAuth2(tokenData.client_id, tokenData.client_secret);
-    auth.setCredentials({
-      access_token: tokenData.access_token,
-      refresh_token: tokenData.refresh_token,
-    });
-
-    const gsc = google.searchconsole({ version: "v1", auth });
+    const gsc = google.searchconsole({ version: "v1", auth: gscAuth });
     const today = new Date().toISOString().split("T")[0];
     const monthAgo = new Date(Date.now() - 28 * 86400000).toISOString().split("T")[0];
 
@@ -120,7 +129,7 @@ export async function GET() {
       .sort((a, b) => b.impressions - a.impressions)
       .slice(0, 6);
 
-    const topQuery = queries.sort((a, b) => b.impressions - a.impressions)[0];
+    const topQuery = [...queries].sort((a, b) => b.impressions - a.impressions)[0];
 
     return NextResponse.json({
       generatedAt: new Date().toISOString(),
