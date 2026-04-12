@@ -75,6 +75,12 @@ src/
 │   ├── page.tsx              # Home page ("use client") — main landing page
 │   ├── layout.tsx            # Root layout — metadata, GA4, fonts
 │   ├── sitemap.ts            # Dynamic sitemap — update when adding pages
+│   ├── analytics/
+│   │   └── page.tsx          # Analytics dashboard ("use client") — password-protected
+│   ├── api/
+│   │   ├── analytics-brief/  # GA4 + GSC data API (reads from env vars)
+│   │   ├── action-items/     # Claude AI action items from analytics data
+│   │   └── analytics-chat/   # Claude chat endpoint for /analytics page
 │   ├── about/
 │   │   ├── page.tsx          # About page ("use client", Framer Motion)
 │   │   └── layout.tsx        # About metadata (server component)
@@ -98,6 +104,12 @@ src/
 └── lib/
     ├── blog.ts               # ALL blog data lives here — add new posts here
     └── utils.ts              # cn() helper
+
+scripts/
+├── generate_kg1_book.py      # KG-1 Book A PDF generator (ReportLab)
+├── illustrations.py          # Shared illustration library for all books
+├── morning_brief.py          # Terminal analytics brief (GA4 + GSC)
+└── BOOK_DESIGN_GUIDE.md      # Design rules for all future books
 ```
 
 ---
@@ -141,6 +153,46 @@ Service account credentials: `speedy-scholars-114b292fc6d8.json` (gitignored —
 
 ---
 
+## Analytics Dashboard (/analytics)
+
+Password-protected page with live GA4 + GSC data, Claude AI action items, and a chat interface.
+
+### Credentials (all in .env.local — never commit)
+- `GA_SERVICE_ACCOUNT_JSON` — full service account JSON as single-line string
+- `GSC_TOKEN_JSON` — OAuth token JSON from `gsc-oauth-credentials_token.json`
+- `ANTHROPIC_API_KEY` — for action items + chat
+- `NEXT_PUBLIC_ANALYTICS_PASSWORD` — local access password (set to `speedy123` in .env.local, NOT set on Vercel = blocked publicly)
+
+### GSC OAuth files (gitignored)
+- `gsc-oauth-credentials.json` — OAuth client credentials
+- `gsc-oauth-credentials_token.json` — saved OAuth token (refresh token inside, auto-refreshes)
+
+### MCP servers (registered in Claude Code)
+- `google-analytics` — `npx mcp-google-analytics` with GA_SERVICE_ACCOUNT_JSON + GA_PROPERTY_ID
+- `gsc` — `npx mcp-gsc@latest` with GOOGLE_GSC_CREDENTIALS_PATH
+
+---
+
+## Book Design System
+
+KG-1 Book A: 35-page landscape A4 PDF. Generator: `scripts/generate_kg1_book.py`.
+Full design rules: `scripts/BOOK_DESIGN_GUIDE.md`
+Output: `public/Speedy-Scholars-KG1-Book-A.pdf`
+
+### Key rules (never break these)
+- Upper abacus beads: **hexagonal** (6-sided polygon)
+- Mascot: graduation-hat bead bird on **every page** via `draw_footer()`
+- Logo: `public/images/logo3_transparent.png` (white bg removed)
+- Use **"Level"** not "Class" — abacus terminology
+- Object padding from card borders: **20px minimum**
+- Every calc page must have **unique problem data**
+- Bottom strip shows **both groups** (a objects + operator + b objects)
+
+### Future books planned
+KG-1 Book B, KG-2 Book A/B, Level 1 Book A/B — reuse `illustrations.py`
+
+---
+
 ## ESLint Rules That Bite
 - No `any` type — use `eslint-disable-next-line` with a comment explaining why if unavoidable
 - No unused variables — remove them or prefix with `_` (but `_` alone is also flagged, use `catch { }` not `catch (_) { }`)
@@ -174,6 +226,13 @@ git push origin main  # Triggers Vercel auto-deploy
 | Wyzant | ❌ Ineligible | US residency + SSN required |
 | Tutor.com | ❌ Ineligible | US only |
 | Varsity Tutors | ❌ Ineligible | US only |
+
+---
+
+## Logo
+- All pages use `public/images/logo3_transparent.png` (white background removed)
+- Old logo backed up as `public/images/logo-old-backup.png`
+- Favicons regenerated from new logo (Apr 2026)
 
 ---
 
