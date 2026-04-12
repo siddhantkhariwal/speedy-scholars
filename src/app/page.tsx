@@ -395,7 +395,7 @@ export default function SpeedyScholarsLanding() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3">
               <Image
-                src="/images/logo.png"
+                src="/images/logo3_transparent.png"
                 alt="Speedy Scholars"
                 width={56}
                 height={56}
@@ -848,7 +848,7 @@ export default function SpeedyScholarsLanding() {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <Image src="/images/logo.png" alt="Speedy Scholars" width={48} height={48} />
+                <Image src="/images/logo3_transparent.png" alt="Speedy Scholars" width={48} height={48} />
                 <span className="text-xl font-bold">Speedy Scholars</span>
               </div>
               <p className="text-gray-400 mb-6 max-w-md">

@@ -88,7 +88,7 @@ export default function BlogPage() {
             aria-label="Speedy Scholars home page"
           >
             <Image
-              src="/images/logo.png"
+              src="/images/logo3_transparent.png"
               alt="Speedy Scholars logo"
               width={40}
               height={40}

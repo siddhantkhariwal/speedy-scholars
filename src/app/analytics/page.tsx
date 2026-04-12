@@ -417,13 +417,13 @@ export default function AnalyticsDashboard() {
           {/* What's Next */}
           <div style={{ borderTop: "2px solid #C9A86C", margin: "8px 0 32px" }} />
           <h2 style={{ color: "#5A4830", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, margin: "0 0 16px" }}>
-            Roadmap
+            What&rsquo;s Next
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 40 }}>
             {[
               { label: "Now — Live", items: ["GA4 traffic brief", "Search Console queries", "AI action items", "Daily refresh"] },
-              { label: "Next — 1-2 months", items: ["WhatsApp brief delivery", "Meta Ads MCP (Instagram)", "Auto-fix blog title/meta", "Lead alerts from Gmail"] },
-              { label: "Dream", items: ["Claude opens the PR to fix SEO", "Campaign briefs from ad data", "Multi-channel growth loop", "Weekly founder digest"] },
+              { label: "Next — WhatsApp & Ads", items: ["WhatsApp morning brief delivery", "Meta Ads MCP (Instagram campaigns)", "Auto-fix blog title & meta tags", "Lead alerts from Gmail"] },
+              { label: "Next — Claude takes action", items: ["Claude opens the PR to fix SEO", "Ad performance briefs when campaigns run", "More MCP integrations as we grow"] },
             ].map((col) => (
               <div key={col.label} style={{ background: "#FFF8F0", border: "1.5px solid #D4B896", borderRadius: 12, padding: 20 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: "#C9A86C", textTransform: "uppercase", letterSpacing: 1, marginBottom: 12 }}>{col.label}</div>

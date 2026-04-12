@@ -116,7 +116,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3" aria-label="Speedy Scholars home">
             <Image
-              src="/images/logo.png"
+              src="/images/logo3_transparent.png"
               alt="Speedy Scholars logo"
               width={44}
               height={44}
@@ -527,7 +527,7 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <Link href="/" className="flex items-center gap-3" aria-label="Speedy Scholars home">
               <Image
-                src="/images/logo.png"
+                src="/images/logo3_transparent.png"
                 alt="Speedy Scholars logo"
                 width={40}
                 height={40}

@@ -23,7 +23,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/images/logo.png" alt="Speedy Scholars Logo" width={80} height={80} className="h-20 w-20" />
+            <Image src="/images/logo3_transparent.png" alt="Speedy Scholars Logo" width={80} height={80} className="h-20 w-20" />
           </Link>
           <div className="hidden md:flex items-center space-x-6 ml-24">
               {navLinks.map((link) => (

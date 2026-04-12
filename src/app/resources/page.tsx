@@ -217,7 +217,7 @@ export default function ResourcesPage() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2" aria-label="Speedy Scholars home page">
             <Image
-              src="/images/logo.png"
+              src="/images/logo3_transparent.png"
               alt="Speedy Scholars logo"
               width={40}
               height={40}

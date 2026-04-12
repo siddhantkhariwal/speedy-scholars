@@ -52,7 +52,7 @@ export default function ContactPage() {
       <nav className="bg-[#8B6F47] py-4 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3">
-            <Image src="/images/logo.png" alt="Speedy Scholars Logo" width={60} height={60} className="h-14 w-14" />
+            <Image src="/images/logo3_transparent.png" alt="Speedy Scholars Logo" width={60} height={60} className="h-14 w-14" />
             <span className="text-xl font-bold text-white">Speedy Scholars</span>
           </Link>
           <Link href="/" className="text-white hover:text-[#FFD7BA] transition">

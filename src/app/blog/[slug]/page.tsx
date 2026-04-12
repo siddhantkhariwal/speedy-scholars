@@ -134,7 +134,7 @@ export default function BlogPostPage({ params }: Props) {
       name: "Speedy Scholars",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.speedyscholars.com/images/logo.png",
+        url: "https://www.speedyscholars.com/images/logo3_transparent.png",
       },
     },
     mainEntityOfPage: {
@@ -193,7 +193,7 @@ export default function BlogPostPage({ params }: Props) {
             aria-label="Speedy Scholars home page"
           >
             <Image
-              src="/images/logo.png"
+              src="/images/logo3_transparent.png"
               alt="Speedy Scholars logo"
               width={40}
               height={40}

@@ -9,7 +9,7 @@ export function LocalBusinessSchema() {
     description:
       "Online abacus classes for kids. Transform your child's math skills with expert instruction. 20+ years experience, 2000+ students worldwide.",
     url: "https://speedyscholars.com",
-    logo: "https://speedyscholars.com/images/logo.png",
+    logo: "https://speedyscholars.com/images/logo3_transparent.png",
     image: "https://speedyscholars.com/images/og-image.jpg",
     telephone: "+919352646671",
     email: "nidhikhariwal2012@gmail.com",
@@ -286,7 +286,7 @@ export function BlogPostingSchema({
       name: "Speedy Scholars",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.speedyscholars.com/images/logo.png",
+        url: "https://www.speedyscholars.com/images/logo3_transparent.png",
       },
     },
     mainEntityOfPage: {
