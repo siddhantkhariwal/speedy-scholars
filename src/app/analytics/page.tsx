@@ -101,6 +101,9 @@ export default function AnalyticsDashboard() {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingActions, setLoadingActions] = useState(false);
   const [lastFetched, setLastFetched] = useState<string | null>(null);
+  const [chatMessages, setChatMessages] = useState<{ role: "user" | "claude"; text: string }[]>([]);
+  const [chatInput, setChatInput] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
 
   const fetchActions = async (briefData: BriefData) => {
     setLoadingActions(true);
@@ -128,6 +131,25 @@ export default function AnalyticsDashboard() {
       fetchActions(json);
     } finally {
       setLoadingData(false);
+    }
+  };
+
+  const askClaude = async () => {
+    if (!chatInput.trim() || !data || chatLoading) return;
+    const question = chatInput.trim();
+    setChatInput("");
+    setChatMessages((prev) => [...prev, { role: "user", text: question }]);
+    setChatLoading(true);
+    try {
+      const res = await fetch("/api/analytics-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, briefData: { ga4: data.ga4, gsc: data.gsc } }),
+      });
+      const json = await res.json();
+      setChatMessages((prev) => [...prev, { role: "claude", text: json.answer ?? json.error }]);
+    } finally {
+      setChatLoading(false);
     }
   };
 
@@ -413,6 +435,111 @@ export default function AnalyticsDashboard() {
               ))}
             </div>
           )}
+
+          {/* ── ASK CLAUDE CHAT ─────────────────────────────────────── */}
+          <div style={{ borderTop: "2px solid #C9A86C", margin: "8px 0 32px" }} />
+          <div style={{ marginBottom: 32 }}>
+            <h2 style={{ color: "#5A4830", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, margin: "0 0 4px" }}>
+              Ask Claude
+            </h2>
+            <div style={{ color: "#8B6F47", fontSize: 12, marginBottom: 20 }}>
+              Ask anything about your data in plain English
+            </div>
+
+            {/* Suggested questions */}
+            {chatMessages.length === 0 && (
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
+                {[
+                  "What is my top performing page?",
+                  "Why am I getting impressions but no clicks?",
+                  "Which keyword should I target next?",
+                  "How many people tried to book a demo?",
+                  "What should I fix first on my site?",
+                ].map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => { setChatInput(q); }}
+                    style={{
+                      background: "#FFF8F0", border: "1.5px solid #D4B896",
+                      borderRadius: 20, padding: "6px 14px",
+                      fontSize: 12, color: "#8B6F47", cursor: "pointer",
+                    }}
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Chat messages */}
+            {chatMessages.length > 0 && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 16 }}>
+                {chatMessages.map((msg, i) => (
+                  <div key={i} style={{
+                    display: "flex",
+                    justifyContent: msg.role === "user" ? "flex-end" : "flex-start",
+                  }}>
+                    <div style={{
+                      maxWidth: "75%",
+                      background: msg.role === "user" ? "#8B6F47" : "#FFF8F0",
+                      border: msg.role === "claude" ? "1.5px solid #D4B896" : "none",
+                      borderRadius: msg.role === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
+                      padding: "12px 16px",
+                      fontSize: 13,
+                      color: msg.role === "user" ? "#fff" : "#5A4830",
+                      lineHeight: 1.6,
+                    }}>
+                      {msg.role === "claude" && (
+                        <div style={{ fontSize: 10, fontWeight: 700, color: "#C9A86C", textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>Claude</div>
+                      )}
+                      {msg.text}
+                    </div>
+                  </div>
+                ))}
+                {chatLoading && (
+                  <div style={{ display: "flex", justifyContent: "flex-start" }}>
+                    <div style={{
+                      background: "#FFF8F0", border: "1.5px solid #D4B896",
+                      borderRadius: "16px 16px 16px 4px", padding: "12px 16px",
+                    }}>
+                      <div style={{ fontSize: 10, fontWeight: 700, color: "#C9A86C", textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>Claude</div>
+                      <div style={{ color: "#8B6F47", fontSize: 13 }}>Thinking...</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Input */}
+            <div style={{ display: "flex", gap: 10 }}>
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && askClaude()}
+                placeholder={data ? "Ask about your analytics..." : "Loading data first..."}
+                disabled={!data || chatLoading}
+                style={{
+                  flex: 1, background: "#FFF8F0",
+                  border: "1.5px solid #D4B896", borderRadius: 10,
+                  padding: "12px 16px", fontSize: 13, color: "#5A4830",
+                  outline: "none",
+                }}
+              />
+              <button
+                onClick={askClaude}
+                disabled={!data || !chatInput.trim() || chatLoading}
+                style={{
+                  background: (!data || !chatInput.trim() || chatLoading) ? "#D4B896" : "#8B6F47",
+                  color: "#fff", border: "none", borderRadius: 10,
+                  padding: "12px 24px", fontSize: 13, fontWeight: 700,
+                  cursor: (!data || !chatInput.trim() || chatLoading) ? "not-allowed" : "pointer",
+                }}
+              >
+                Ask
+              </button>
+            </div>
+          </div>
 
           {/* What's Next */}
           <div style={{ borderTop: "2px solid #C9A86C", margin: "8px 0 32px" }} />
