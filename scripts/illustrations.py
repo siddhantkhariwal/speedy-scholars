@@ -510,13 +510,24 @@ def draw_abacus(c, x, y, width, height, upper=0, lower=0, label=None, show_arrow
     p.close()
     c.drawPath(p, stroke=1, fill=1)
 
-    # Lower beads — active ones stick snug against beam from top, inactive sit at bottom
-    lt = beam_y - 1; lb = y + 3; sp = (lt - lb) / 4.5
+    # Lower beads — actives stack flush against the beam (touching each other),
+    # inactives stack flush at the bottom of the rod (touching each other)
+    lt = beam_y - 1; lb = y + 3
+    # Bead height sized so 4 beads + small spacing all fit; tweak to leave breathing room
+    bead_h = min((lt - lb) / 4.6, 11)
+    half = bead_h / 2
     for i in range(4):
-        bcy = lt - (i + 0.5) * sp if i < lower else lb + (3 - i + 0.5) * sp
-        c.setFillColor(BROWN if i < lower else LIGHT_GOLD)
-        c.setStrokeColor(DARK_BROWN); c.setLineWidth(0.5)
-        c.roundRect(rod_x - bw * 0.4, bcy - sp * 0.27, bw * 0.8, sp * 0.55, 2, stroke=1, fill=1)
+        if i < lower:
+            # Active bead i: top edge at lt - i*bead_h → center at lt - i*bead_h - half
+            bcy = lt - i * bead_h - half
+            fill = BROWN
+        else:
+            # Inactive: stack from the bottom. Position from bottom = (3 - i)
+            from_bottom = 3 - i
+            bcy = lb + from_bottom * bead_h + half
+            fill = LIGHT_GOLD
+        c.setFillColor(fill); c.setStrokeColor(DARK_BROWN); c.setLineWidth(0.5)
+        c.roundRect(rod_x - bw * 0.4, bcy - half, bw * 0.8, bead_h, 2, stroke=1, fill=1)
 
     if label is not None:
         c.setFont("Helvetica-Bold", min(10, width * 0.4))
