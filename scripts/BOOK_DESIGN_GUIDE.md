@@ -247,11 +247,13 @@ Every calculation page **MUST have unique problem data**. Early versions reused 
 3. **Don't reuse same problem data** across pages
 4. **Don't put objects at `bx + 5`** — minimum 20px padding from card borders
 5. **Don't use "Class"** — use "Level" (abacus terminology)
-6. **Don't use green** — brown/gold palette only
+6. **Don't use green** — brown/gold palette only. `LEAF_GREEN` in illustrations.py is `#A0875A` (warm brown), NOT green
 7. **Don't forget both groups in addition/subtraction illustrations** — show a AND b objects
 8. **Don't use banana/pineapple in small spaces** — they're unrecognizable below 16px
 9. **Logo must use transparent version** — `logo3_transparent.png`
 10. **Test every page visually** — extract as PNG and review (PyMuPDF: `page.get_pixmap(dpi=150)`)
+11. **Don't use `pn % N` for bottom strip sets** — use a page-keyed dict `{page_num: [set]}` so every calc page gets a unique strip with no repeats
+12. **Don't use `drawRightString` for fingering exercise text** — it overlaps the logo. Use `drawString(x, y+5, fing)` (left-aligned) instead
 
 ---
 

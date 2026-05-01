@@ -18,7 +18,7 @@ WARM_WHITE   = HexColor("#FFF8F0")
 LIGHT_BROWN  = HexColor("#C4A882")
 NAVY         = HexColor("#2C3E50")
 SKIN         = HexColor("#FDDCB5")
-LEAF_GREEN   = HexColor("#7BA05B")
+LEAF_GREEN   = HexColor("#A0875A")  # warm earthy brown (no green on brand)
 RED_FRUIT    = HexColor("#CC4444")
 ORANGE_BEAK  = HexColor("#E8A040")
 

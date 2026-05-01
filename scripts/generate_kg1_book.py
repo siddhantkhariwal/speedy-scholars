@@ -73,7 +73,8 @@ def draw_calc_table(c, x, y, probs, cols=8, fing=None, table_width=None):
     hf = 9; df = 10  # header font, data font
     if fing:
         c.setFont("Helvetica", 7.5); c.setFillColor(BROWN)
-        c.drawRightString(x + sw + cw * cols, y + 14, fing)
+        # Left-aligned, positioned between gold line and first table row
+        c.drawString(x, y - 3, fing)
     hy = y - rh
     c.setFillColor(BROWN); c.rect(x, hy, sw, rh, stroke=0, fill=1)
     c.setFillColor(white); c.setFont("Helvetica-Bold", hf)
@@ -259,9 +260,12 @@ def page_01(c):
     available_h = box_h - 38  # space below title
     mini_h = min(16 * mm, available_h - 14)  # leave room for label
     mini_w = 10 * mm
+    # Center abacuses vertically in available space (below title)
+    total_strip_w = 5 * (mini_w + 4) - 4
+    start_x = bx + (box_w - total_strip_w) / 2
+    my = by + (available_h - mini_h) / 2 + 4  # vertically centered
     for num in range(5):
-        mx = bx + 8 + num * (mini_w + 4)
-        my = by + 16  # padding from bottom
+        mx = start_x + num * (mini_w + 4)
         u = 1 if num >= 5 else 0
         lo = num - 5 if num >= 5 else num
         draw_abacus(c, mx, my, mini_w, mini_h, u, lo, label=num)
@@ -301,7 +305,7 @@ def page_02(c):
     y2 = y - 2 * section_h - 4
     c.setFont("Helvetica-Bold", 10); c.setFillColor(DARKER_BROWN)
     c.drawString(MARGIN, y2, "Now set these numbers on the abacus:")
-    y2 -= 10
+    y2 -= 22  # extra space so number labels don't overlap with text above
     prac_ah = min(ah, y2 - footer_y - 16)
     for i, n in enumerate([3, 7, 1, 9, 5]):
         ax = MARGIN + i * sp + (sp - aw) / 2
@@ -331,7 +335,7 @@ def page_03_04(c, pn):
         c.setFillColor(white); c.setFont("Helvetica-Bold", 7); c.drawCentredString(hx + w / 2, y - 10, h)
         hx += w
     y -= 15
-    rh = (y - 18 * mm) / 5
+    rh = (y - 22 * mm) / 5  # extra footer clearance so row 5 doesn't clip
 
     for idx, num in enumerate(nums):
         ry = y - (idx + 1) * rh
@@ -469,12 +473,16 @@ def page_06_07(c, pn):
         c.setStrokeColor(GOLD); c.setLineWidth(0.8); c.setFillColor(WARM_WHITE)
         c.roundRect(bx, by, bw, bh, 4, stroke=1, fill=1)
 
-        # Draw objects BIG — scale up for fewer objects
+        # Draw objects BIG — scale up for fewer objects, centered in left portion
         actual_size = obj_size if count >= 4 else int(obj_size * 1.4)  # bigger when fewer
-        sp = actual_size + 6
+        sp = actual_size + 8  # more spacing between objects
+        max_cols = min(count, 4)
+        obj_area_w = bw * 0.55  # left portion of card (right has =, box, abacus)
+        total_obj_w = max_cols * sp
+        obj_start_x = bx + max(28, (obj_area_w - total_obj_w) / 2 + 10)
         for j in range(count):
-            ox = bx + 20 + (j % 4) * sp
-            oy = by + bh - 25 - (j // 4) * sp
+            ox = obj_start_x + (j % max_cols) * sp
+            oy = by + bh - 25 - (j // max_cols) * sp
             try:
                 if fn == draw_star: fn(c, ox, oy, size=actual_size * 0.4, color=GOLD, filled=True)
                 elif fn == draw_bone: fn(c, ox, oy, size=actual_size, angle=random.randint(-10, 10))
@@ -551,10 +559,17 @@ def page_calc(c, pn, title, data):
     bg(c); y = draw_hdr(c, title); draw_footer(c, pn)
     scatter_decorations(c, pn)
 
-    # Tables use FULL page width
+    # Draw fingering exercise text between header and first table (if present)
+    first_fing = data[0][0] if data and data[0][0] else None
+    if first_fing:
+        c.setFont("Helvetica", 7); c.setFillColor(BROWN)
+        c.drawString(MARGIN, y - 2, first_fing)
+        y -= 10  # extra space for the fingering line
+
+    # Tables use FULL page width — fingering handled above, not passed to draw_calc_table
     for ti, (fing, probs) in enumerate(data):
         cols = len(probs)
-        y = draw_calc_table(c, MARGIN, y, probs, cols, fing if ti == 0 else None, table_width=CW)
+        y = draw_calc_table(c, MARGIN, y, probs, cols, None, table_width=CW)
         y -= 8
 
     # Bottom illustration strip — horizontal row of picture problems
@@ -563,15 +578,28 @@ def page_calc(c, pn, title, data):
     strip_h = y - strip_y - 4
     if strip_h < 25: strip_h = 25  # minimum
 
-    all_problem_sets = [
-        [(3, "+", 1, draw_apple), (4, "-", 1, draw_fish), (2, "+", 3, draw_flower), (5, "-", 2, draw_strawberry)],
-        [(2, "+", 3, draw_cherry), (4, "-", 2, draw_apple), (1, "+", 4, draw_fish), (3, "-", 1, draw_flower)],
-        [(4, "+", 2, draw_strawberry), (5, "-", 3, draw_apple), (3, "+", 1, draw_cherry), (4, "-", 2, draw_fish)],
-        [(1, "+", 3, draw_apple), (5, "-", 4, draw_cherry), (2, "+", 3, draw_flower), (4, "-", 3, draw_strawberry)],
-        [(5, "+", 1, draw_apple), (3, "-", 2, draw_strawberry), (4, "+", 1, draw_cherry), (5, "-", 4, draw_fish)],
-        [(2, "+", 3, draw_flower), (5, "-", 2, draw_apple), (3, "+", 2, draw_cherry), (4, "-", 3, draw_strawberry)],
-    ]
-    mini_set = all_problem_sets[pn % len(all_problem_sets)]
+    # Unique strip sets per page — no repeats across calc pages
+    all_problem_sets = {
+        10: [(3, "+", 2, draw_apple),      (5, "-", 3, draw_cherry),     (4, "+", 1, draw_flower),    (5, "-", 4, draw_fish)],
+        11: [(2, "+", 4, draw_cherry),     (5, "-", 2, draw_apple),      (3, "+", 2, draw_strawberry),(4, "-", 3, draw_fish)],
+        13: [(1, "+", 5, draw_flower),     (4, "-", 2, draw_cherry),     (2, "+", 3, draw_apple),     (5, "-", 1, draw_strawberry)],
+        15: [(3, "+", 3, draw_apple),      (5, "-", 4, draw_fish),       (1, "+", 4, draw_cherry),    (4, "-", 2, draw_flower)],
+        16: [(4, "+", 2, draw_fish),       (5, "-", 3, draw_apple),      (2, "+", 3, draw_cherry),    (3, "-", 1, draw_strawberry)],
+        17: [(3, "+", 1, draw_strawberry), (4, "-", 1, draw_cherry),     (2, "+", 4, draw_apple),     (5, "-", 2, draw_flower)],
+        19: [(4, "+", 1, draw_cherry),     (5, "-", 2, draw_strawberry), (1, "+", 3, draw_fish),      (4, "-", 3, draw_apple)],
+        20: [(2, "+", 2, draw_apple),      (4, "-", 3, draw_fish),       (3, "+", 3, draw_cherry),    (5, "-", 4, draw_flower)],
+        21: [(5, "+", 1, draw_flower),     (3, "-", 2, draw_apple),      (4, "+", 2, draw_cherry),    (5, "-", 3, draw_strawberry)],
+        22: [(1, "+", 4, draw_strawberry), (5, "-", 1, draw_cherry),     (3, "+", 2, draw_fish),      (4, "-", 2, draw_apple)],
+        25: [(2, "+", 3, draw_fish),       (5, "-", 3, draw_flower),     (4, "+", 1, draw_strawberry),(3, "-", 2, draw_cherry)],
+        27: [(4, "+", 2, draw_apple),      (5, "-", 4, draw_strawberry), (2, "+", 4, draw_fish),      (4, "-", 1, draw_cherry)],
+        28: [(3, "+", 3, draw_cherry),     (5, "-", 2, draw_fish),       (1, "+", 5, draw_apple),     (4, "-", 3, draw_flower)],
+        30: [(2, "+", 2, draw_flower),     (4, "-", 2, draw_strawberry), (3, "+", 1, draw_cherry),    (5, "-", 3, draw_apple)],
+        31: [(5, "+", 1, draw_strawberry), (3, "-", 1, draw_apple),      (2, "+", 3, draw_flower),    (4, "-", 2, draw_cherry)],
+        32: [(1, "+", 3, draw_cherry),     (4, "-", 1, draw_flower),     (3, "+", 2, draw_apple),     (5, "-", 2, draw_strawberry)],
+        33: [(4, "+", 2, draw_strawberry), (5, "-", 3, draw_cherry),     (2, "+", 2, draw_fish),      (3, "-", 1, draw_flower)],
+    }
+    # Fallback to a default set if page not found
+    mini_set = all_problem_sets.get(pn, [(3, "+", 2, draw_apple), (4, "-", 1, draw_cherry), (2, "+", 3, draw_fish), (5, "-", 2, draw_flower)])
     num_probs = len(mini_set)
     prob_w = CW / num_probs
 
@@ -585,28 +613,32 @@ def page_calc(c, pn, title, data):
 
         obj_s = min(13, strip_h * 0.28)
         obj_y = strip_y + strip_h * 0.58  # centered vertically with padding
-        pad = 10  # horizontal padding from card edges
+
+        # Center objects + operator horizontally in card
+        obj_sp = obj_s + 3
+        total_w = a * obj_sp + 18 + b * obj_sp  # a objects + operator gap + b objects
+        start_x = px + max(8, (pw - total_w) / 2)
 
         # Draw FIRST group (a objects)
         for j in range(a):
-            ox = px + pad + j * (obj_s + 3)
+            ox = start_x + j * obj_sp
             try: fn(c, ox, obj_y, size=obj_s)
             except: fn(c, ox, obj_y)
 
         # Operator
-        op_x = px + pad + a * (obj_s + 3) + 4
+        op_x = start_x + a * obj_sp + 4
         c.setFont("Helvetica-Bold", 11); c.setFillColor(DARKER_BROWN)
         c.drawString(op_x, obj_y - 4, op)
 
         # Draw SECOND group (b objects)
         for j in range(b):
-            ox = op_x + 14 + j * (obj_s + 3)
+            ox = op_x + 14 + j * obj_sp
             try: fn(c, ox, obj_y, size=obj_s)
             except: fn(c, ox, obj_y)
 
         # Expression + answer box at bottom of card
         c.setFont("Helvetica-Bold", 9); c.setFillColor(DARKER_BROWN)
-        c.drawString(px + pad, strip_y + 5, f"{a} {op} {b} =")
+        c.drawString(px + 10, strip_y + 5, f"{a} {op} {b} =")
 
         c.setStrokeColor(GOLD); c.setFillColor(white)
         c.rect(px + pw - 14 * mm, strip_y + 2, 12 * mm, 12, stroke=1, fill=1)
@@ -638,8 +670,11 @@ def page_visual(c, pn, title, problems):
         c.setFillColor(HexColor("#F0E8DA"))
         c.roundRect(bx + 2, by + bh * 0.3, bw - 4, bh * 0.65, 3, stroke=0, fill=1)
 
-        # First group - BIG with proper spacing
-        sp = obj_s + 5
+        # First group - BIG with proper spacing, constrained to card
+        actual_obj = obj_s if (a + b) <= 6 else 20  # smaller objects for busy cards
+        sp = actual_obj + 10  # more breathing room between objects
+        max_c = 4 if a <= 4 else 5  # columns per row
+
         def _draw_obj(fn, ox, oy, s, col=None):
             try:
                 if fn == draw_bone: fn(c, ox, oy, size=s, angle=0)
@@ -648,9 +683,12 @@ def page_visual(c, pn, title, problems):
                 else: fn(c, ox, oy, size=s)
             except: fn(c, ox, oy)
 
+        # Store object positions for X-mark alignment in subtraction
+        obj_positions = []
         for j in range(a):
-            ox = bx + 20 + (j % 4) * sp
-            oy = by + bh - 28 - (j // 4) * sp
+            ox = bx + 24 + (j % max_c) * sp
+            oy = by + bh - 28 - (j // max_c) * sp
+            obj_positions.append((ox, oy))
             _draw_obj(fn, ox, oy, obj_s)
 
         # Operator (BIG)
@@ -658,16 +696,19 @@ def page_visual(c, pn, title, problems):
         c.drawCentredString(bx + bw * 0.45, by + bh * 0.42, op)
 
         if op == "+":
+            max_c2 = 4 if b <= 4 else 5
             for j in range(b):
-                ox = bx + bw * 0.5 + 14 + (j % 4) * sp
-                oy = by + bh - 18 - (j // 4) * sp
-                _draw_obj(fn, ox, oy, obj_s, LIGHT_GOLD)
+                ox = bx + bw * 0.5 + 14 + (j % max_c2) * sp
+                oy = by + bh - 18 - (j // max_c2) * sp
+                _draw_obj(fn, ox, oy, actual_obj, LIGHT_GOLD)
         else:
-            # Subtraction — draw all objects, then overlay X on the ones being removed
-            # X marks are drawn BIGGER and RED, clearly over the first b objects
+            # Subtraction — overlay X on the first b objects, aligned to actual positions
             for j in range(b):
-                ox = bx + 14 + (j % 4) * sp
-                oy = by + bh - 18 - (j // 4) * sp
+                if j < len(obj_positions):
+                    ox, oy = obj_positions[j]
+                else:
+                    ox = bx + 24 + (j % max_c) * sp
+                    oy = by + bh - 28 - (j // max_c) * sp
                 c.setStrokeColor(HexColor("#CC3333")); c.setLineWidth(2)
                 sz = obj_s * 0.45
                 c.line(ox - sz, oy - sz, ox + sz, oy + sz)
