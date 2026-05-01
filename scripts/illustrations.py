@@ -490,9 +490,15 @@ def draw_abacus(c, x, y, width, height, upper=0, lower=0, label=None, show_arrow
     c.line(rod_x, y + 2, rod_x, y + height - 2)
 
     bw = width * 0.38; bh_u = height * 0.1
-    uby = beam_y + bh_u * 1.5 if upper > 0 else y + height - bh_u * 2
-    # Upper bead — HEXAGONAL shape
-    c.setFillColor(GOLD); c.setStrokeColor(DARK_BROWN); c.setLineWidth(0.6)
+    # Upper bead — when active (upper > 0), stick snug against beam with DARK color
+    # When inactive, sit at the top of upper zone with light color
+    if upper > 0:
+        uby = beam_y + bh_u + 0.5   # bottom edge touches beam
+        upper_fill = BROWN          # active = dark
+    else:
+        uby = y + height - bh_u * 2
+        upper_fill = GOLD           # inactive = light
+    c.setFillColor(upper_fill); c.setStrokeColor(DARK_BROWN); c.setLineWidth(0.6)
     hw = bw / 2; hh = bh_u  # half-width and half-height of hexagon
     p = c.beginPath()
     p.moveTo(rod_x - hw, uby)              # left middle
@@ -504,7 +510,8 @@ def draw_abacus(c, x, y, width, height, upper=0, lower=0, label=None, show_arrow
     p.close()
     c.drawPath(p, stroke=1, fill=1)
 
-    lt = beam_y - 3; lb = y + 3; sp = (lt - lb) / 4.5
+    # Lower beads — active ones stick snug against beam from top, inactive sit at bottom
+    lt = beam_y - 1; lb = y + 3; sp = (lt - lb) / 4.5
     for i in range(4):
         bcy = lt - (i + 0.5) * sp if i < lower else lb + (3 - i + 0.5) * sp
         c.setFillColor(BROWN if i < lower else LIGHT_GOLD)
