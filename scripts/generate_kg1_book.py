@@ -875,18 +875,35 @@ def page_29(c):
         c.setFillColor(HexColor("#F0E8DA"))
         c.roundRect(bx + 2, by + bh * 0.3, bw - 4, bh * 0.65, 3, stroke=0, fill=1)
 
-        for j in range(a):
-            ox = bx + 18 + (j % 3) * (os2 + 4)
-            oy = by + bh - 26 - (j // 3) * (os2 + 3)
+        # Horizontal split: [Group A] [+] [Group B], vertically centered in object zone
+        sp = os2 + 6
+        cols = 3
+        zone_cy = by + bh * 0.62
+        left_cx = bx + bw * 0.25
+        right_cx = bx + bw * 0.75
+
+        def _layout(cx, count):
+            positions = []
+            rows = (count + cols - 1) // cols if count > 0 else 0
+            total_h = (rows - 1) * sp if rows > 0 else 0
+            for j in range(count):
+                row_i = j // cols
+                col_i = j % cols
+                items_in_row = min(cols, count - row_i * cols)
+                row_w = (items_in_row - 1) * sp
+                ox = cx - row_w / 2 + col_i * sp
+                oy = zone_cy + total_h / 2 - row_i * sp
+                positions.append((ox, oy))
+            return positions
+
+        for ox, oy in _layout(left_cx, a):
             try: fn(c, ox, oy, size=os2)
             except: fn(c, ox, oy)
 
-        c.setFont("Helvetica-Bold", 20); c.setFillColor(DARKER_BROWN)
-        c.drawCentredString(bx + bw * 0.42, by + bh * 0.5, "+")
+        c.setFont("Helvetica-Bold", 28); c.setFillColor(DARKER_BROWN)
+        c.drawCentredString(bx + bw * 0.5, zone_cy - 8, "+")
 
-        for j in range(b):
-            ox = bx + bw * 0.5 + 14 + (j % 3) * (os2 + 4)
-            oy = by + bh - 26 - (j // 3) * (os2 + 3)
+        for ox, oy in _layout(right_cx, b):
             try: fn(c, ox, oy, size=os2)
             except: fn(c, ox, oy)
 
