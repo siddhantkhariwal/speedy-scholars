@@ -614,9 +614,11 @@ def page_calc(c, pn, title, data):
         obj_s = min(13, strip_h * 0.28)
         obj_y = strip_y + strip_h * 0.58  # centered vertically with padding
 
-        # Center objects + operator horizontally in card
+        # Center objects + operator horizontally with clear padding around operator
         obj_sp = obj_s + 3
-        total_w = a * obj_sp + 18 + b * obj_sp  # a objects + operator gap + b objects
+        op_pad = 14  # padding on EACH side of the operator
+        op_w = 8     # approximate operator glyph width
+        total_w = a * obj_sp + op_pad + op_w + op_pad + b * obj_sp
         start_x = px + max(8, (pw - total_w) / 2)
 
         # Draw FIRST group (a objects)
@@ -625,14 +627,15 @@ def page_calc(c, pn, title, data):
             try: fn(c, ox, obj_y, size=obj_s)
             except: fn(c, ox, obj_y)
 
-        # Operator
-        op_x = start_x + a * obj_sp + 4
+        # Operator — centered between the two groups with equal padding
+        op_cx = start_x + a * obj_sp + op_pad + op_w / 2
         c.setFont("Helvetica-Bold", 11); c.setFillColor(DARKER_BROWN)
-        c.drawString(op_x, obj_y - 4, op)
+        c.drawCentredString(op_cx, obj_y - 4, op)
 
         # Draw SECOND group (b objects)
+        b_start = op_cx + op_w / 2 + op_pad
         for j in range(b):
-            ox = op_x + 14 + j * obj_sp
+            ox = b_start + j * obj_sp
             try: fn(c, ox, obj_y, size=obj_s)
             except: fn(c, ox, obj_y)
 
@@ -666,14 +669,9 @@ def page_visual(c, pn, title, problems):
         c.setStrokeColor(GOLD); c.setLineWidth(0.8); c.setFillColor(WARM_WHITE)
         c.roundRect(bx, by, bw, bh, 4, stroke=1, fill=1)
 
-        # Green-ish background band for objects
+        # Background band for objects (upper portion)
         c.setFillColor(HexColor("#F0E8DA"))
         c.roundRect(bx + 2, by + bh * 0.3, bw - 4, bh * 0.65, 3, stroke=0, fill=1)
-
-        # First group - BIG with proper spacing, constrained to card
-        actual_obj = obj_s if (a + b) <= 6 else 20  # smaller objects for busy cards
-        sp = actual_obj + 10  # more breathing room between objects
-        max_c = 4 if a <= 4 else 5  # columns per row
 
         def _draw_obj(fn, ox, oy, s, col=None):
             try:
@@ -683,34 +681,66 @@ def page_visual(c, pn, title, problems):
                 else: fn(c, ox, oy, size=s)
             except: fn(c, ox, oy)
 
-        # Store object positions for X-mark alignment in subtraction
-        obj_positions = []
-        for j in range(a):
-            ox = bx + 24 + (j % max_c) * sp
-            oy = by + bh - 28 - (j // max_c) * sp
-            obj_positions.append((ox, oy))
-            _draw_obj(fn, ox, oy, obj_s)
-
-        # Operator (BIG)
-        c.setFont("Helvetica-Bold", 26); c.setFillColor(DARKER_BROWN)
-        c.drawCentredString(bx + bw * 0.45, by + bh * 0.42, op)
-
-        if op == "+":
-            max_c2 = 4 if b <= 4 else 5
-            for j in range(b):
-                ox = bx + bw * 0.5 + 14 + (j % max_c2) * sp
-                oy = by + bh - 18 - (j // max_c2) * sp
-                _draw_obj(fn, ox, oy, actual_obj, LIGHT_GOLD)
+        # Horizontal split layout: [Group A] [operator] [Group B]
+        # Each side gets ~42% of card width, operator sits centered between
+        max_count = max(a, b)
+        # Pick object size based on the busiest side; sp = obj + breathing room
+        if max_count <= 4:
+            obj_size = 22
+        elif max_count <= 6:
+            obj_size = 18
         else:
-            # Subtraction — overlay X on the first b objects, aligned to actual positions
-            for j in range(b):
-                if j < len(obj_positions):
-                    ox, oy = obj_positions[j]
-                else:
-                    ox = bx + 24 + (j % max_c) * sp
-                    oy = by + bh - 28 - (j // max_c) * sp
-                c.setStrokeColor(HexColor("#CC3333")); c.setLineWidth(2)
-                sz = obj_s * 0.45
+            obj_size = 15
+        sp = obj_size + 6
+        cols = 3 if max_count <= 6 else 4  # columns per side before wrapping
+
+        # Vertical center of object zone (upper 65% of card)
+        zone_y_top = by + bh * 0.92
+        zone_y_bot = by + bh * 0.32
+        zone_cy = (zone_y_top + zone_y_bot) / 2
+
+        def _layout_group(side_x_center, count):
+            """Return list of (x, y) positions for `count` objects centered around side_x_center."""
+            positions = []
+            rows = (count + cols - 1) // cols if count > 0 else 0
+            for j in range(count):
+                row_i = j // cols
+                col_i = j % cols
+                # Items in this specific row (last row may have fewer)
+                items_in_row = min(cols, count - row_i * cols)
+                row_w = (items_in_row - 1) * sp
+                row_start_x = side_x_center - row_w / 2
+                ox = row_start_x + col_i * sp
+                # Stack rows from top down, centered vertically around zone_cy
+                total_h = (rows - 1) * sp if rows > 0 else 0
+                row_top_y = zone_cy + total_h / 2
+                oy = row_top_y - row_i * sp
+                positions.append((ox, oy))
+            return positions
+
+        left_cx = bx + bw * 0.25
+        right_cx = bx + bw * 0.75
+        op_x = bx + bw * 0.5
+
+        # Group A — left side
+        for ox, oy in _layout_group(left_cx, a):
+            _draw_obj(fn, ox, oy, obj_size)
+
+        # Operator — centered between groups, vertically aligned with object zone
+        c.setFont("Helvetica-Bold", 28); c.setFillColor(DARKER_BROWN)
+        c.drawCentredString(op_x, zone_cy - 8, op)
+
+        # Group B — right side
+        b_positions = _layout_group(right_cx, b)
+        for ox, oy in b_positions:
+            color = HexColor("#CC8866") if op == "-" else LIGHT_GOLD
+            _draw_obj(fn, ox, oy, obj_size, color)
+
+        # For subtraction: overlay X on group B (these are being taken away)
+        if op == "-":
+            c.setStrokeColor(HexColor("#CC3333")); c.setLineWidth(2)
+            sz = obj_size * 0.5
+            for ox, oy in b_positions:
                 c.line(ox - sz, oy - sz, ox + sz, oy + sz)
                 c.line(ox - sz, oy + sz, ox + sz, oy - sz)
 
