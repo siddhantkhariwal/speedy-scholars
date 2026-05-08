@@ -193,10 +193,11 @@ def draw_cloud(c, x, y, width=30, height=15, color=None):
 # OBJECTS — All drawn BIG and charming
 # ══════════════════════════════════════════════════════════════
 
-def draw_apple(c, x, y, size=20):
+def draw_apple(c, x, y, size=20, color=None):
     c.saveState()
     r = size * 0.42
-    c.setFillColor(RED_FRUIT); c.setStrokeColor(DARK_BROWN); c.setLineWidth(0.6)
+    fill = color if color is not None else RED_FRUIT
+    c.setFillColor(fill); c.setStrokeColor(DARK_BROWN); c.setLineWidth(0.6)
     c.circle(x - r * 0.25, y, r, stroke=1, fill=1)
     c.circle(x + r * 0.25, y, r, stroke=1, fill=1)
     # Stem

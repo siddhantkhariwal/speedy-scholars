@@ -752,60 +752,102 @@ def page_visual(c, pn, title, problems):
 
 
 def page_23(c):
-    """Page 23: Composition of 5 with TREE and mascot."""
+    """Page 23: Composition of 5. Color-coded splits + number bond + abacus tie-in + tree."""
     bg(c); y = draw_hdr(c, "Composition of 5", "Understanding how numbers make 5"); draw_footer(c, 23)
     scatter_decorations(c, 23)
     instr(c, MARGIN, y - 5, "5 can be split into two parts in different ways!")
     y -= 18
 
-    # Left side: Apple groups showing splits
-    splits_x = MARGIN
-    splits_w = W * 0.35
+    # Color codes for the two parts of every split
+    PART_A = RED_FRUIT          # red apples for left group
+    PART_B = HexColor("#E8A040") # amber apples for right group
 
-    # Big "5" at top
-    c.setFont("Helvetica-Bold", 60); c.setFillColor(GOLD)
-    c.drawCentredString(splits_x + splits_w / 2, y - 30, "5")
+    # ── LEFT COLUMN: color-coded apple splits + number bond ─────────────
+    left_x = MARGIN
+    left_w = CW * 0.36
 
-    # Apple group splits
-    pairs = [(4, 1), (2, 3), (1, 4), (3, 2)]
-    sy = y - 60
+    # Big "5" headline with caption
+    c.setFont("Helvetica-Bold", 56); c.setFillColor(GOLD)
+    c.drawCentredString(left_x + left_w / 2, y - 32, "5")
+    c.setFont("Helvetica-Oblique", 9); c.setFillColor(DARK_BROWN)
+    c.drawCentredString(left_x + left_w / 2, y - 46, "is made of two parts")
+
+    # Splits: red group + amber group, with apple icons (color-coded)
+    pairs = [(4, 1), (3, 2), (2, 3), (1, 4)]
+    sy = y - 70
+    row_h = 24
+    apple_size = 14
+    apple_sp = 16
     for i, (a, b) in enumerate(pairs):
-        gy = sy - i * 28
-
-        # Tree branch notation: 5 → a & b
-        c.setFont("Helvetica-Bold", 12); c.setFillColor(DARKER_BROWN)
-        c.drawString(splits_x, gy, f"{a} & {b}")
-
-        # Draw apple groups
-        for j in range(a):
-            draw_apple(c, splits_x + 45 + j * 16, gy + 3, size=12)
-        for j in range(b):
-            draw_apple(c, splits_x + 45 + a * 16 + 10 + j * 16, gy + 3, size=12)
-
-        c.setFont("Helvetica-Bold", 12); c.setFillColor(GOLD)
-        c.drawString(splits_x + 45 + (a + b) * 16 + 14, gy, "= 5")
-
-    # Summary
-    sy2 = sy - len(pairs) * 28 - 15
-    for i, (a, b) in enumerate(pairs):
+        gy = sy - i * row_h
+        # "a & b" label
         c.setFont("Helvetica-Bold", 11); c.setFillColor(DARKER_BROWN)
-        c.drawString(splits_x, sy2 - i * 16, f"{a} & {b}  =  5")
+        c.drawString(left_x, gy, f"{a} & {b}")
+        # red group
+        for j in range(a):
+            draw_apple(c, left_x + 38 + j * apple_sp, gy + 3, size=apple_size, color=PART_A)
+        # gap
+        gap_x = left_x + 38 + a * apple_sp + 6
+        # amber group
+        for j in range(b):
+            draw_apple(c, gap_x + j * apple_sp, gy + 3, size=apple_size, color=PART_B)
+        # = 5
+        eq_x = gap_x + b * apple_sp + 8
+        c.setFont("Helvetica-Bold", 12); c.setFillColor(GOLD)
+        c.drawString(eq_x, gy, "= 5")
 
-    # Center: Mascot pointing — BIG
-    draw_bead_bird(c, W * 0.4, y - 80, 38, GOLD, "right", "happy", hat="graduation", action="waving")
+    # ── NUMBER BOND DIAGRAM (better than UCMAS) ─────────────────────────
+    nb_top = sy - len(pairs) * row_h - 12
+    nb_cx = left_x + left_w / 2
+    big_r = 14
+    small_r = 11
+    # Top circle: 5 (whole)
+    c.setFillColor(GOLD); c.setStrokeColor(DARK_BROWN); c.setLineWidth(1.4)
+    c.circle(nb_cx, nb_top, big_r, stroke=1, fill=1)
+    c.setFillColor(white); c.setFont("Helvetica-Bold", 16)
+    c.drawCentredString(nb_cx, nb_top - 5, "5")
+    # Branches down to two empty parts
+    bx_l = nb_cx - 32; bx_r = nb_cx + 32
+    by_b = nb_top - 32
+    c.setStrokeColor(BROWN); c.setLineWidth(1.2)
+    c.line(nb_cx - big_r * 0.55, nb_top - big_r * 0.7, bx_l + small_r * 0.6, by_b + small_r * 0.6)
+    c.line(nb_cx + big_r * 0.55, nb_top - big_r * 0.7, bx_r - small_r * 0.6, by_b + small_r * 0.6)
+    # Two empty part-circles (color-coded, with light fill so kids write inside)
+    for cx, fill in [(bx_l, HexColor("#F5D9C2")), (bx_r, HexColor("#FBE9C9"))]:
+        c.setFillColor(fill); c.setStrokeColor(DARK_BROWN); c.setLineWidth(1.2)
+        c.circle(cx, by_b, small_r, stroke=1, fill=1)
+        c.setFont("Helvetica", 9); c.setFillColor(DARK_BROWN)
+        c.drawCentredString(cx, by_b - 3, "?")
+    # Caption
+    c.setFont("Helvetica-Oblique", 8); c.setFillColor(DARK_BROWN)
+    c.drawCentredString(nb_cx, by_b - small_r - 10, "Number bond: split 5 into two parts")
 
-    # Right side: Apple Tree!
-    tree_x = W * 0.52; tree_w = W * 0.42; tree_h = y - 25 * mm
-    draw_apple_tree(c, tree_x, 22 * mm, tree_w, tree_h, [1, 2, 3, 4, 5])
+    # ── CENTER COLUMN: mascot pointing + mini abacus showing 5 ──────────
+    cen_cx = W * 0.49
+    draw_bead_bird(c, cen_cx, y - 80, 36, GOLD, "right", "happy", hat="graduation", action="waving")
+    # Mini abacus showing 5 (our differentiator vs UCMAS)
+    ab_w = 22 * mm; ab_h = 36 * mm
+    ab_x = cen_cx - ab_w / 2
+    ab_y = y - 80 - 36 - ab_h - 4
+    draw_abacus(c, ab_x, ab_y, ab_w, ab_h, upper=1, lower=0, label=5)
+    c.setFont("Helvetica-Oblique", 8); c.setFillColor(DARK_BROWN)
+    c.drawCentredString(cen_cx, ab_y - 22, "On the abacus,")
+    c.drawCentredString(cen_cx, ab_y - 32, "5 is one upper bead.")
 
-    # Practice at bottom
-    py = 30 * mm
+    # ── RIGHT COLUMN: Apple tree ────────────────────────────────────────
+    tree_x = W * 0.62; tree_w = W * 0.36; tree_h = y - 30 * mm
+    draw_apple_tree(c, tree_x, 28 * mm, tree_w, tree_h, [1, 2, 3, 4, 5])
+    c.setFont("Helvetica-Oblique", 9); c.setFillColor(DARK_BROWN)
+    c.drawCentredString(tree_x + tree_w / 2, 24 * mm, "Five apples on the tree!")
+
+    # ── BOTTOM: practice ────────────────────────────────────────────────
+    py = 18 * mm
     c.setFont("Helvetica-Bold", 10); c.setFillColor(DARKER_BROWN)
     c.drawString(MARGIN, py, "Fill in the missing number:")
-    py -= 16
+    py -= 14
     for i, ex in enumerate(["4 + ___ = 5", "___ + 3 = 5", "1 + ___ = 5", "___ + 2 = 5", "3 + ___ = 5", "___ + 4 = 5"]):
-        c.setFont("Helvetica-Bold", 12); c.setFillColor(DARKER_BROWN)
-        c.drawString(MARGIN + (i % 3) * (CW / 3), py - (i // 3) * 18, ex)
+        c.setFont("Helvetica-Bold", 11); c.setFillColor(DARKER_BROWN)
+        c.drawString(MARGIN + (i % 6) * (CW / 6), py, ex)
 
 
 def page_24(c):
