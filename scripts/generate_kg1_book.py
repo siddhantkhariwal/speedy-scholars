@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Speedy Scholars — KG-1 Book A Workbook Generator (v3)
+Speedy Scholars - KG-1 Book A Workbook Generator (v3)
 Landscape A4, kid-friendly with mascots, big objects, dotted tracing, crosshair boxes.
 """
 
@@ -153,7 +153,7 @@ def page_cover(c):
 
 
 def page_01(c):
-    """Page 1: Description — MULTIPLE progressive abacus diagrams + mascots interacting."""
+    """Page 1: Description with progressive abacus diagrams and mascots."""
     bg(c); y = draw_hdr(c, "Description of the Abacus"); draw_footer(c, 1)
     scatter_decorations(c, 1)
 
@@ -254,7 +254,7 @@ def page_01(c):
     c.setFont("Helvetica-Bold", 10); c.setFillColor(DARKER_BROWN)
     c.drawString(bx + 6, by + box_h - 14, "Complete Abacus")
     c.setFont("Helvetica", 7.5); c.setFillColor(BROWN)
-    c.drawString(bx + 6, by + box_h - 24, "All parts together — values 0 to 9")
+    c.drawString(bx + 6, by + box_h - 24, "All parts together: values 0 to 9")
 
     # Show 5 mini abacuses for 0-4 — sized to fit inside card with padding
     available_h = box_h - 38  # space below title
@@ -388,7 +388,7 @@ def page_03_04(c, pn):
 
 
 def page_05(c):
-    """Page 5: Hidden numbers — numbers overlap to form a dense puzzle."""
+    """Page 5: Hidden numbers, overlapping to form a dense puzzle."""
     bg(c); y = draw_hdr(c, "Write the Numbers You Can Identify"); draw_footer(c, 5)
     scatter_decorations(c, 5)
     instr(c, MARGIN, y - 5, "How many numbers can you find hidden in the picture? Write them in the boxes!")
@@ -789,7 +789,7 @@ def page_23(c):
     sy2 = sy - len(pairs) * 28 - 15
     for i, (a, b) in enumerate(pairs):
         c.setFont("Helvetica-Bold", 11); c.setFillColor(DARKER_BROWN)
-        c.drawString(splits_x, sy2 - i * 16, f"{a} & {b}  ——  5")
+        c.drawString(splits_x, sy2 - i * 16, f"{a} & {b}  =  5")
 
     # Center: Mascot pointing — BIG
     draw_bead_bird(c, W * 0.4, y - 80, 38, GOLD, "right", "happy", hat="graduation", action="waving")
@@ -832,10 +832,11 @@ def page_24(c):
         # Mascot character acting it out
         draw_bead_bird(c, bx + 18, by + bh * 0.45, 18, GOLD, "right", ["happy", "wink", "surprised", "happy"][i])
 
-        # Two abacuses
-        aw, ah = 22 * mm, bh - 38
-        aby = by + 10
-        ax1 = bx + bw * 0.35
+        # Two abacuses - wider proportions, capped height for balanced look
+        aw = 30 * mm
+        ah = min(bh - 38, aw * 2.4)
+        aby = by + (bh - ah) / 2 - 4
+        ax1 = bx + bw * 0.30
         ua = 1 if a >= 5 else 0; la = a - 5 if a >= 5 else a
         draw_abacus(c, ax1, aby, aw, ah, ua, la, label=a, show_arrows=True)
 
@@ -849,7 +850,7 @@ def page_24(c):
         c.drawCentredString(arx + 7 * mm, ary + 8, f"+{b}")
 
         # Result
-        draw_abacus(c, ax1 + aw + 20 * mm, aby, aw, ah, 1, 0, label=5)
+        draw_abacus(c, ax1 + aw + 22 * mm, aby, aw, ah, 1, 0, label=5)
 
 
 def page_29(c):
@@ -914,76 +915,102 @@ def page_29(c):
 
 
 def page_34(c):
-    """Page 34: BIG train filling the page."""
+    """Page 34: Speedy Scholars Express - engine pulls wagons with sums; big answer wheels."""
     bg(c); y = draw_hdr(c, "Abacus Calculation: Revision", "All Aboard the Speedy Scholars Express!")
     draw_footer(c, 34)
-    instr(c, MARGIN, y - 5, "Solve each problem — write answers in the wheel circles!")
+    instr(c, MARGIN, y - 5, "Solve each problem and write answers in the wheel circles!")
     y -= 12
 
-    # Train fills most of the page — lower track to avoid title overlap
-    track_y = 45 * mm
+    # Big answer circles sit BELOW the track, so push the track up enough to
+    # leave room for them while still keeping wagons large.
+    answer_r = 11 * mm
+    track_y = 30 * mm + answer_r  # answer circles hang under track
     c.setStrokeColor(BROWN); c.setLineWidth(2.5)
     c.line(MARGIN - 5 * mm, track_y, W - MARGIN + 5 * mm, track_y)
     c.setLineWidth(1)
     for tx in range(int(MARGIN - 5 * mm), int(W - MARGIN + 5 * mm), 10):
         c.line(tx, track_y - 4, tx, track_y + 4)
 
-    # Engine — sized to fit below header
-    ew = 50 * mm
-    max_engine_top = y - 8  # leave gap below gold line
-    eh = max_engine_top - track_y - 8 - 25 * mm  # leave room for chimney+smoke
+    # Engine - sized to fit below header
+    ew = 48 * mm
+    max_engine_top = y - 8
+    eh = max_engine_top - track_y - 8 - 25 * mm
     ex = MARGIN
     c.setFillColor(DARKER_BROWN); c.setStrokeColor(DARK_BROWN); c.setLineWidth(2)
     c.roundRect(ex, track_y + 8, ew, eh, 5, stroke=1, fill=1)
-    # Chimney — shorter
+    # Chimney
     chimney_h = 15 * mm
     c.setFillColor(BROWN); c.rect(ex + 8, track_y + 8 + eh, 12 * mm, chimney_h, stroke=1, fill=1)
-    # Smoke — positioned above chimney
+    # Smoke
     smoke_base = track_y + 8 + eh + chimney_h
     draw_cloud(c, ex + 10, smoke_base + 4, 22, 10)
     draw_cloud(c, ex + 3, smoke_base + 12, 15, 8)
-    # Wheels
-    wr = 10
+    # Wheels (engine)
     c.setFillColor(GOLD); c.setStrokeColor(DARK_BROWN); c.setLineWidth(1.5)
-    c.circle(ex + 16, track_y, wr, stroke=1, fill=1)
-    c.circle(ex + ew - 16, track_y, wr, stroke=1, fill=1)
-    # Label
-    c.setFillColor(white); c.setFont("Helvetica-Bold", 9)
-    c.drawCentredString(ex + ew / 2, track_y + eh / 2 + 12, "SPEEDY")
+    c.circle(ex + 16, track_y, 10, stroke=1, fill=1)
+    c.circle(ex + ew - 16, track_y, 10, stroke=1, fill=1)
+    # Engine label
+    c.setFillColor(white); c.setFont("Helvetica-Bold", 10)
+    c.drawCentredString(ex + ew / 2, track_y + eh / 2 + 14, "SPEEDY")
     c.drawCentredString(ex + ew / 2, track_y + eh / 2, "SCHOLARS")
     # Driver mascot
-    draw_bead_bird(c, ex + ew / 2, track_y + eh - 10, 18, GOLD, "right", "happy", hat="graduation")
+    draw_bead_bird(c, ex + ew / 2, track_y + eh - 12, 18, GOLD, "right", "happy", hat="graduation")
 
-    # Carriages — BIG
-    probs = [[3, 4, 2], [1, 3, 4], [2, 2, 1], [4, 1, 4], [2, 3, 2], [1, 2, 3]]
-    cw2 = 35 * mm; ch2 = eh - 8; car_x = ex + ew + 10 * mm
+    # Wagons - 4 wagons, each wide enough to comfortably distribute 3 sums
+    probs = [[3, 4, 2], [1, 3, 4], [2, 2, 1], [4, 1, 4]]
+    n = len(probs)
+    avail = (W - MARGIN) - (ex + ew + 10 * mm)
+    gap = 8 * mm
+    cw2 = (avail - (n - 1) * gap) / n
+    ch2 = eh - 6
+    car_x_start = ex + ew + 10 * mm
+    cy = track_y + 8
 
     for i, prob in enumerate(probs):
-        cx = car_x + i * (cw2 + 8 * mm)
-        if cx + cw2 > W - MARGIN: break
-        cy = track_y + 8
+        cx = car_x_start + i * (cw2 + gap)
 
-        c.setFillColor(WARM_WHITE); c.setStrokeColor(BROWN); c.setLineWidth(1.2)
-        c.roundRect(cx, cy, cw2, ch2, 4, stroke=1, fill=1)
+        # Wagon body
+        c.setFillColor(WARM_WHITE); c.setStrokeColor(BROWN); c.setLineWidth(1.4)
+        c.roundRect(cx, cy, cw2, ch2, 5, stroke=1, fill=1)
 
-        # Bead bird mascots riding on top
+        # Cargo band on top of wagon (UCMAS-style decorative strip)
+        cargo_h = 6 * mm
+        c.setFillColor(LIGHT_GOLD); c.setStrokeColor(BROWN); c.setLineWidth(1)
+        c.roundRect(cx + 3, cy + ch2 - cargo_h - 2, cw2 - 6, cargo_h, 2, stroke=1, fill=1)
+
+        # Bead bird mascot riding on top of every other wagon
         if i % 2 == 0:
-            draw_bead_bird(c, cx + cw2 / 2, cy + ch2 + 10, 13,
+            draw_bead_bird(c, cx + cw2 / 2, cy + ch2 + 12, 13,
                             [GOLD, BROWN, LIGHT_GOLD][i % 3], "right",
                             ["happy", "wink", "surprised"][i % 3])
 
-        # Problem text
-        c.setFont("Helvetica-Bold", 11); c.setFillColor(DARKER_BROWN)
+        # Problem text - distribute the 3 numbers evenly through the wagon body
+        # Reserve top cargo band and bottom signature line; sums fill the middle.
+        text_top = cy + ch2 - cargo_h - 8 * mm
+        text_bottom = cy + 12 * mm
+        slot_h = (text_top - text_bottom) / (len(prob) - 1) if len(prob) > 1 else 0
+        c.setFont("Helvetica-Bold", 18); c.setFillColor(DARKER_BROWN)
         for j, v in enumerate(prob):
             t = str(v) if j == 0 else (f"+{v}" if v > 0 else str(v))
-            c.drawCentredString(cx + cw2 / 2, cy + ch2 - 14 - j * 14, t)
+            ty = text_top - j * slot_h
+            c.drawCentredString(cx + cw2 / 2, ty, t)
 
-        # Wheel with answer circle
-        c.setFillColor(LIGHT_GOLD); c.setStrokeColor(BROWN); c.setLineWidth(1.5)
-        c.circle(cx + cw2 / 2, track_y, 10, stroke=1, fill=1)
+        # Equals/answer line near bottom of wagon
+        c.setStrokeColor(BROWN); c.setLineWidth(1)
+        c.line(cx + cw2 * 0.25, cy + 8 * mm, cx + cw2 * 0.75, cy + 8 * mm)
+
+        # Small support wheel under each wagon (decorative, on the track)
+        c.setFillColor(GOLD); c.setStrokeColor(DARK_BROWN); c.setLineWidth(1.2)
+        c.circle(cx + 12, track_y, 7, stroke=1, fill=1)
+        c.circle(cx + cw2 - 12, track_y, 7, stroke=1, fill=1)
+
+        # BIG answer circle hanging below the track (where student writes the answer)
+        ans_cy = track_y - answer_r - 1
+        c.setFillColor(LIGHT_GOLD); c.setStrokeColor(BROWN); c.setLineWidth(1.8)
+        c.circle(cx + cw2 / 2, ans_cy, answer_r, stroke=1, fill=1)
         # Ans label
-        c.setFont("Helvetica", 6); c.setFillColor(BROWN)
-        c.drawCentredString(cx + cw2 / 2, track_y - 3, "Ans")
+        c.setFont("Helvetica-Bold", 7); c.setFillColor(DARK_BROWN)
+        c.drawCentredString(cx + cw2 / 2, ans_cy + answer_r - 7, "Ans")
 
 
 # ══════════════════════════════════════════════════════════════
