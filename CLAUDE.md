@@ -34,7 +34,7 @@ Warm white:      #FFF8F0
 
 ### Rules
 - **No emojis** anywhere in website pages (docs/markdown files are fine)
-- **No green** — the old about page used #556B2F olive green, that's been replaced. Never use green on any page.
+- the old about page used #556B2F olive green, that's been replaced.
 - Font: Arial / Geist Sans (system default via Next.js)
 - Tone: Professional, warm, trustworthy, educational — never salesy or gimmicky
 
@@ -106,10 +106,15 @@ src/
     └── utils.ts              # cn() helper
 
 scripts/
-├── generate_kg1_book.py      # KG-1 Book A PDF generator (ReportLab)
-├── illustrations.py          # Shared illustration library for all books
-├── morning_brief.py          # Terminal analytics brief (GA4 + GSC)
-└── BOOK_DESIGN_GUIDE.md      # Design rules for all future books
+├── books/
+│   ├── _shared/
+│   │   ├── chrome.py              # Brand page furniture (palette, header, footer, mascot, calc table)
+│   │   ├── illustrations.py       # Drawing primitives (mascots, fruits, abacus, hands)
+│   │   └── BOOK_DESIGN_GUIDE.md   # Universal rules for ALL books
+│   └── kg1_book_a/
+│       ├── generate.py            # KG-1 Book A generator — `python3 scripts/books/kg1_book_a/generate.py`
+│       └── NOTES.md               # Book-specific decisions (curriculum, problem data, page quirks)
+└── morning_brief.py               # Terminal analytics brief (GA4 + GSC)
 ```
 
 ---
@@ -175,8 +180,10 @@ Password-protected page with live GA4 + GSC data, Claude AI action items, and a 
 
 ## Book Design System
 
-KG-1 Book A: 35-page landscape A4 PDF. Generator: `scripts/generate_kg1_book.py`.
-Full design rules: `scripts/BOOK_DESIGN_GUIDE.md`
+KG-1 Book A: 35-page landscape A4 PDF. Generator: `scripts/books/kg1_book_a/generate.py`.
+Universal design rules: `scripts/books/_shared/BOOK_DESIGN_GUIDE.md`. Book-specific
+decisions: `scripts/books/kg1_book_a/NOTES.md`. One Python script per book — never
+share a script between books.
 Output: `public/Speedy-Scholars-KG1-Book-A.pdf`
 
 ### Key rules (never break these)
