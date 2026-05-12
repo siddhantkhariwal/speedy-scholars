@@ -1,7 +1,13 @@
-# Elementary Book A — Book Notes (DRAFT — awaiting morning sign-off)
+# Elementary B Book A — Book Notes
 
-UCMAS calls this "ELEMENTARY B (3rd Level) BOOK A". For Speedy Scholars we
-shorten to "Elementary Book A". **Not yet built.**
+UCMAS "Elementary B (3rd Level) Book A". Speedy Scholars uses the same name.
+
+## Decisions Made (signed off 2026-05-13)
+
+- **Naming**: "Elementary B Book A" (matches UCMAS terminology)
+- **Time-limit headers**: keep them ("Time Limit: 10 Mins" on each page)
+- **Multiplication visuals**: use Speedy Scholars object library (apples, fish, flowers grouped) — same brand palette as everywhere else
+- **Page count**: 42 content + cover = 43 PDF pages (matching UCMAS)
 
 Reference: UCMAS
 (`public/ucmas-books/ELEMENTARY BOOK-A(1-24) (1).pdf` +
@@ -59,20 +65,3 @@ New page types needed beyond what we have:
 Reuse from existing: `page_cover`, `gen_calc_data` (extend to 3-digit mode),
 chrome.
 
-Estimated build time post-signoff: 60-90 min (denser content, more new
-page types).
-
-## Open Questions
-
-- **Naming**: I'm calling it "Elementary Book A" — UCMAS calls it "Elementary B
-  Book A" (3rd level). Do you prefer the longer UCMAS name? Or even rename
-  the level itself?
-- **Time-limit headers**: UCMAS shows "Time Limit: 10 Mins" on each page.
-  Keep that?
-- **Multiplication visuals**: UCMAS uses kid drawings (balloons, animals).
-  Our brand version → use our object library (apples grouped, mascots
-  grouped). OK?
-- **42 pages vs flexed** — the page count is big. If we hit visual issues at
-  some slot, can I drop the page count by 1-2 to recover layout?
-
-After you sign off, I'll build.
