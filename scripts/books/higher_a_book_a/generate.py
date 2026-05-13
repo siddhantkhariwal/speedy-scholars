@@ -25,6 +25,9 @@ import generate as elem_gen
 set_book("Higher A Book A")
 OUTPUT_PATH = os.path.join(PUBLIC_DIR, "Speedy-Scholars-Higher-A-Book-A.pdf")
 
+elem_gen.set_seed_offset(5000)
+_BOOK_SEED = 5000  # also used for this book's own gen_4digit_data
+
 
 def page_cover(c):
     bg(c)
@@ -69,7 +72,7 @@ def page_cover(c):
 
 def gen_4digit_data(pn, num_cols=20, num_rows=2):
     """2-row format for 4-digit numbers (1000-9999)."""
-    random.seed(pn * 29 + 41)
+    random.seed(pn * 29 + 41 + _BOOK_SEED)
     cols = []
     for cc in range(num_cols):
         a = random.randint(1000, 8000)

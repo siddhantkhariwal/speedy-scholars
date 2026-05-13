@@ -70,8 +70,17 @@ def page_cover(c):
 
 
 # ─── PROGRAMMATIC DATA GEN ────────────────────────────────────────────────
+# Per-book seed offset — each importing book sets this before generating so that
+# different books with shared helpers don't produce identical page data.
+BOOK_SEED_OFFSET = 0
+
+def set_seed_offset(n):
+    global BOOK_SEED_OFFSET
+    BOOK_SEED_OFFSET = n
+
+
 def gen_calc_data(pn, num_cols=20, num_rows=6, start_lo=10, start_hi=99, op_max=9):
-    random.seed(pn * 17 + 11)
+    random.seed(pn * 17 + 11 + BOOK_SEED_OFFSET)
     cols = []
     for cc in range(num_cols):
         attempts = 0
@@ -104,7 +113,7 @@ def gen_calc_data(pn, num_cols=20, num_rows=6, start_lo=10, start_hi=99, op_max=
 
 def gen_3digit_data(pn, num_cols=24, num_rows=2):
     """2-row format for 3-digit numbers."""
-    random.seed(pn * 23 + 19)
+    random.seed(pn * 23 + 19 + BOOK_SEED_OFFSET)
     cols = []
     for cc in range(num_cols):
         a = random.randint(100, 800)
@@ -196,7 +205,7 @@ def _draw_grid(c, x, y, table_data, num_rows=6):
                 v = table_data[i][ri]
                 if v is not None:
                     c.setFillColor(DARKER_BROWN); c.setFont("Helvetica", 8.5)
-                    s = str(v) if ri == 0 else (f"+{v}" if v > 0 else str(v))
+                    s = str(v)  # no + sign for positive operands (abacus convention)
                     c.drawCentredString(cx + cw / 2, ry + 3, s)
     return hy - (num_rows + 1) * rh - 4
 

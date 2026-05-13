@@ -166,6 +166,7 @@ def draw_calc_table(c, x, y, probs, cols=8, fing=None, table_width=None):
                 v = probs[i][ri]
                 c.setFillColor(DARKER_BROWN)
                 c.setFont("Helvetica", df)
-                c.drawCentredString(cx + cw / 2, ry + 5,
-                                    str(v) if ri == 0 else (f"+{v}" if v > 0 else str(v)))
+                # Abacus convention: positive numbers show as bare digits (no +),
+                # only negative numbers show their sign.
+                c.drawCentredString(cx + cw / 2, ry + 5, str(v))
     return hy - 5 * rh - 4

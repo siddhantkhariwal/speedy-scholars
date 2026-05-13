@@ -123,7 +123,7 @@ def page_01(c):
         c.roundRect(rs_x, cy, rs_w, card_h, 4, stroke=1, fill=1)
         c.setFont("Helvetica-Bold", 22); c.setFillColor(DARKER_BROWN)
         c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 30, str(a))
-        c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 56, f"+{b}")
+        c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 56, str(b))  # no + sign
         # Underline + answer box
         c.setStrokeColor(DARKER_BROWN); c.setLineWidth(1)
         c.line(rs_x + 12, cy + card_h - 68, rs_x + rs_w - 12, cy + card_h - 68)
@@ -253,7 +253,7 @@ def page_13(c):
         c.roundRect(rs_x, cy, rs_w, card_h, 4, stroke=1, fill=1)
         c.setFont("Helvetica-Bold", 26); c.setFillColor(DARKER_BROWN)
         c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 36, str(a))
-        c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 68, f"+{b}")
+        c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 68, str(b))  # no + sign
         c.setStrokeColor(DARKER_BROWN); c.setLineWidth(1)
         c.line(rs_x + 14, cy + card_h - 84, rs_x + rs_w - 14, cy + card_h - 84)
         c.setFillColor(white); c.setStrokeColor(GOLD)
@@ -409,7 +409,7 @@ def page_22(c):
         c.roundRect(rs_x, cy, rs_w, card_h, 4, stroke=1, fill=1)
         c.setFont("Helvetica-Bold", 26); c.setFillColor(DARKER_BROWN)
         c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 36, str(a))
-        c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 68, f"+{b}")
+        c.drawCentredString(rs_x + rs_w / 2, cy + card_h - 68, str(b))  # no + sign
         c.setStrokeColor(DARKER_BROWN); c.setLineWidth(1)
         c.line(rs_x + 14, cy + card_h - 84, rs_x + rs_w - 14, cy + card_h - 84)
         c.setFillColor(white); c.setStrokeColor(GOLD)
@@ -818,7 +818,7 @@ def _draw_mental_block(c, x, y, label, table, block_w):
                 v = table[i][ri]
                 c.setFillColor(DARKER_BROWN); c.setFont("Helvetica", 10)
                 c.drawCentredString(cx + cw / 2, ry + 5,
-                                    str(v) if ri == 0 else (f"+{v}" if v > 0 else str(v)))
+                                    str(v))  # abacus convention: no + sign
     return hy - 5 * rh - 4
 
 

@@ -960,7 +960,7 @@ def page_34(c):
         slot_h = (text_top - text_bottom) / (len(prob) - 1) if len(prob) > 1 else 0
         c.setFont("Helvetica-Bold", 18); c.setFillColor(DARKER_BROWN)
         for j, v in enumerate(prob):
-            t = str(v) if j == 0 else (f"+{v}" if v > 0 else str(v))
+            t = str(v)  # no + sign for positive operands (abacus convention)
             ty = text_top - j * slot_h
             c.drawCentredString(cx + cw2 / 2, ty, t)
 

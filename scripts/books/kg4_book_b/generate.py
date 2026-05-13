@@ -28,6 +28,9 @@ import generate as kg4a_gen
 set_book("KG-4 Book B")
 OUTPUT_PATH = os.path.join(PUBLIC_DIR, "Speedy-Scholars-KG4-Book-B.pdf")
 
+# Unique seed offset so this book's problem data differs from KG-4 Book A
+kg4a_gen.set_seed_offset(2000)
+
 
 # ─── COVER ────────────────────────────────────────────────────────────────
 def page_cover(c):

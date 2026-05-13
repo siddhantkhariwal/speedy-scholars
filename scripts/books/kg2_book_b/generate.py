@@ -663,7 +663,7 @@ def _draw_mental_block(c, x, y, label, table, block_w):
                 v = table[i][ri]
                 c.setFillColor(DARKER_BROWN); c.setFont("Helvetica", 10)
                 c.drawCentredString(cx + cw / 2, ry + 5,
-                                    str(v) if ri == 0 else (f"+{v}" if v > 0 else str(v)))
+                                    str(v))  # abacus convention: no + sign
     return hy - 5 * rh - 4
 
 

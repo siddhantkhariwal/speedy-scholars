@@ -67,10 +67,18 @@ def page_cover(c):
 
 
 # ─── PROGRAMMATIC DATA GEN ────────────────────────────────────────────────
+# Per-book seed offset (set by importing books)
+BOOK_SEED_OFFSET = 0
+
+def set_seed_offset(n):
+    global BOOK_SEED_OFFSET
+    BOOK_SEED_OFFSET = n
+
+
 def gen_calc_data(pn, num_cols=20, num_rows=3, start_lo=10, start_hi=99,
                   op_max=9, op_2digit=False):
     """Generate num_cols columns × num_rows operations, deterministic per page."""
-    random.seed(pn * 13 + 7)
+    random.seed(pn * 13 + 7 + BOOK_SEED_OFFSET)
     cols = []
     for c in range(num_cols):
         attempts = 0
@@ -106,7 +114,7 @@ def gen_calc_data(pn, num_cols=20, num_rows=3, start_lo=10, start_hi=99,
 
 def gen_sums_data(pn, num_problems=6, num_lines=4, val_lo=10, val_hi=99):
     """Generate multi-line sums for the bottom of certain pages."""
-    random.seed(pn * 19 + 23)
+    random.seed(pn * 19 + 23 + BOOK_SEED_OFFSET)
     problems = []
     for p in range(num_problems):
         vals = []
@@ -204,7 +212,7 @@ def _draw_grid_table(c, x, y, table_data, num_rows=3):
                 v = table_data[i][ri]
                 if v is not None:
                     c.setFillColor(DARKER_BROWN); c.setFont("Helvetica", 10)
-                    s = str(v) if ri == 0 else (f"+{v}" if v > 0 else str(v))
+                    s = str(v)  # no + sign for positive operands (abacus convention)
                     c.drawCentredString(cx + cw / 2, ry + 4, s)
     return hy - (num_rows + 1) * rh - 4
 

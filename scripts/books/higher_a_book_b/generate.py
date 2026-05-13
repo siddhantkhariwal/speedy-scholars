@@ -25,7 +25,7 @@ import generate as elem_gen
 
 # Inline helpers from higher_a_book_a (avoiding module-name collision)
 def gen_4digit_data(pn, num_cols=20, num_rows=2):
-    random.seed(pn * 29 + 41)
+    random.seed(pn * 29 + 41 + _BOOK_SEED)
     cols = []
     for cc in range(num_cols):
         a = random.randint(1000, 8000)
@@ -87,6 +87,9 @@ def page_multidigit_division(c, pn, title="Division: 4-digit ÷ 1-digit"):
 
 set_book("Higher A Book B")
 OUTPUT_PATH = os.path.join(PUBLIC_DIR, "Speedy-Scholars-Higher-A-Book-B.pdf")
+
+elem_gen.set_seed_offset(6000)
+_BOOK_SEED = 6000
 
 
 def page_cover(c):

@@ -25,6 +25,8 @@ import generate as elem_gen
 set_book("Intermediate A Book B")
 OUTPUT_PATH = os.path.join(PUBLIC_DIR, "Speedy-Scholars-Intermediate-A-Book-B.pdf")
 
+elem_gen.set_seed_offset(4000)
+
 
 def page_cover(c):
     bg(c)

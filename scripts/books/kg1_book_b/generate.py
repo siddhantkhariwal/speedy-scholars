@@ -586,7 +586,7 @@ def page_09(c):
         # Slot k counted from top. Slot 0 = start, slot 1 = op2, slot 2 = op3, slot 3 = answer
         for ri, v in enumerate([a, op2, op3]):
             slot_center_y = box_top - (ri + 0.5) * slot_h - 4
-            label = str(v) if ri == 0 else (f"+{v}" if v > 0 else str(v))
+            label = str(v)  # no + sign for positive operands (abacus convention)
             c.drawCentredString(sx, slot_center_y, label)
         # Answer underline in slot 3
         c.setStrokeColor(DARKER_BROWN); c.setLineWidth(1)
