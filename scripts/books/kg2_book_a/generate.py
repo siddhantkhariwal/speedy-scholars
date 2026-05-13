@@ -138,36 +138,40 @@ def page_02(c):
     scatter_decorations(c, 2)
 
     problems = ["7 − 3 + 6 =", "9 + 7 − 4 =", "9 + 6 − 1 =",
-                "6 − 3 + 8 =", "8 − 4 + 9 ="]
+                "6 − 3 + 8 =", "8 − 4 + 9 =", "5 + 6 − 3 =",
+                "7 − 2 + 4 =", "6 + 8 − 5 ="]
 
-    # Cloud-like scatter: 5 mascots+banners arranged across the available area
-    avail_top = y - 8
-    avail_bot = 22 * mm + 8
+    # 2 rows × 4 columns of mascot+banner pairs filling the available area
+    avail_top = y - 20
+    avail_bot = 22 * mm + 16
     avail_h = avail_top - avail_bot
 
-    # Positions (deterministic via seed)
-    random.seed(20021)
-    positions = []
-    for i in range(5):
-        col = i % 3
-        row = i // 3
-        # 3 columns × 2 rows, last one offset
-        cx = MARGIN + (col + 0.5) * (CW / 3) + (15 if row == 1 else 0)
-        cy = avail_bot + (1.0 - row * 0.55) * avail_h * 0.85 - 30
-        positions.append((cx, cy))
+    rows = 2
+    cols_n = 4
+    cell_w = CW / cols_n
+    cell_h = avail_h / rows
 
-    for i, ((cx, cy), prob) in enumerate(zip(positions, problems)):
-        # Cloud puffs (light gold) behind the banner
+    for i, prob in enumerate(problems):
+        col = i % cols_n
+        row = i // cols_n
+        cx = MARGIN + (col + 0.5) * cell_w
+        cy = avail_top - (row + 0.5) * cell_h
+
+        # Cloud puffs (light gold) behind the banner — bigger now
         c.setFillColor(LIGHT_GOLD); c.setStrokeColor(LIGHT_GOLD)
-        for dx, dy, dr in [(-30, 14, 14), (-10, 18, 16), (10, 18, 16), (28, 14, 13)]:
+        for dx, dy, dr in [(-44, 4, 18), (-18, 14, 22), (12, 14, 22), (40, 4, 18),
+                            (-30, -8, 16), (28, -8, 16)]:
             c.circle(cx + dx, cy + dy, dr, stroke=0, fill=1)
         # Banner
-        c.setFillColor(WARM_WHITE); c.setStrokeColor(DARKER_BROWN); c.setLineWidth(1.2)
-        c.roundRect(cx - 55, cy - 14, 110, 28, 4, stroke=1, fill=1)
-        c.setFont("Helvetica-Bold", 14); c.setFillColor(DARKER_BROWN)
+        c.setFillColor(WARM_WHITE); c.setStrokeColor(DARKER_BROWN); c.setLineWidth(1.4)
+        c.roundRect(cx - 62, cy - 16, 124, 32, 5, stroke=1, fill=1)
+        c.setFont("Helvetica-Bold", 15); c.setFillColor(DARKER_BROWN)
         c.drawCentredString(cx, cy - 4, prob)
-        # Mascot above
-        draw_bead_bird(c, cx + 30, cy + 30, 22, GOLD, "left", "happy",
+        # Mascot — bigger and sitting on top of the cloud
+        expr = ["happy", "wink", "surprised", "thinking"][i % 4]
+        face = "left" if i % 2 == 0 else "right"
+        draw_bead_bird(c, cx + (28 if face == "left" else -28), cy + 40, 30,
+                       GOLD if i % 2 == 0 else BROWN, face, expr,
                        hat="graduation")
 
 

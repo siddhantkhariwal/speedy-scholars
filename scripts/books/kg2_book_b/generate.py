@@ -420,14 +420,30 @@ def page_36(c):
         c.drawString(col_x, ry, str(a))
         c.drawString(col_x + 36, ry, str(b))
 
-    # Right side: two worked examples
+    # Right side: two worked examples shown as labeled equation cards
     ex_x = MARGIN + 460
-    c.setFont("Helvetica-Bold", 14); c.setFillColor(DARKER_BROWN)
-    c.drawString(ex_x, y - 30, "29 + 61 = 90")
-    # Mini abacus illustration (two-digit)
-    draw_abacus(c, ex_x, y - 130, 100, 80, 0, 0)  # blank placeholder
-    c.drawString(ex_x, y - 160, "47 + 53 = 100")
-    draw_abacus(c, ex_x, y - 260, 100, 80, 0, 0)
+    ex_w = W - MARGIN - ex_x - 6
+    c.setFont("Helvetica-Bold", 11); c.setFillColor(DARKER_BROWN)
+    c.drawString(ex_x, y - 16, "Two-digit examples:")
+
+    for ei, (a, b, ans) in enumerate([(29, 61, 90), (47, 53, 100),
+                                       (38, 42, 80), (65, 35, 100)]):
+        ey = y - 36 - ei * 60
+        # Card background
+        c.setFillColor(WARM_WHITE); c.setStrokeColor(GOLD); c.setLineWidth(0.6)
+        c.roundRect(ex_x, ey - 48, ex_w, 50, 4, stroke=1, fill=1)
+        # Vertical stacked sum (right-aligned)
+        c.setFont("Helvetica-Bold", 16); c.setFillColor(DARKER_BROWN)
+        c.drawRightString(ex_x + ex_w - 14, ey - 12, str(a))
+        c.drawRightString(ex_x + ex_w - 14, ey - 28, str(b))
+        c.setStrokeColor(DARKER_BROWN); c.setLineWidth(1)
+        c.line(ex_x + ex_w - 60, ey - 32, ex_x + ex_w - 12, ey - 32)
+        # Plus sign on the left of the addend
+        c.setFont("Helvetica-Bold", 16); c.setFillColor(BROWN)
+        c.drawString(ex_x + ex_w - 60, ey - 28, "+")
+        # Answer
+        c.setFont("Helvetica-Bold", 16); c.setFillColor(GOLD)
+        c.drawRightString(ex_x + ex_w - 14, ey - 44, str(ans))
 
 
 # ─── PAGE 38: FINAL ASSESSMENT (4 sections) ──────────────────────────────
