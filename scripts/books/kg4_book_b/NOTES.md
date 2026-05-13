@@ -2,7 +2,7 @@
 
 Sequel to KG-4 Book A. **Not yet built** — generator pending sign-off on spine.
 
-Reference: UCMAS KG-4 Book B (`public/ucmas-books/KG-4 Book B.pdf`).
+Reference: UCMAS KG-4 Book B (`reference-pdfs/KG-4 Book B.pdf`).
 Reference is **36 content pages** (single PDF, unsplit).
 
 ---

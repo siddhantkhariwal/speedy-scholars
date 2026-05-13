@@ -10,8 +10,8 @@ UCMAS "Elementary B (3rd Level) Book A". Speedy Scholars uses the same name.
 - **Page count**: 42 content + cover = 43 PDF pages (matching UCMAS)
 
 Reference: UCMAS
-(`public/ucmas-books/ELEMENTARY BOOK-A(1-24) (1).pdf` +
-`public/ucmas-books/ELEMENTARY -B BOOK-A (25-42) (1).pdf`).
+(`reference-pdfs/ELEMENTARY BOOK-A(1-24) (1).pdf` +
+`reference-pdfs/ELEMENTARY -B BOOK-A (25-42) (1).pdf`).
 Total content = 24 + 18 = **42 content pages** (cover + 42 = 43 PDF pages).
 
 ---

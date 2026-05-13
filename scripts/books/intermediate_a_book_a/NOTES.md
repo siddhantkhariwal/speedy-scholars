@@ -2,7 +2,7 @@
 
 4th-level (UCMAS terminology). 47 pages (cover + 46), landscape A4.
 
-Reference: UCMAS (`public/ucmas-books/INTERMEDIATE-A (BOOK-A) 1-24.pdf` +
+Reference: UCMAS (`reference-pdfs/INTERMEDIATE-A (BOOK-A) 1-24.pdf` +
 `INTERMEDIATE A(BOOK-A) 25-46.pdf`).
 
 ## What This Book Teaches

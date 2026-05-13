@@ -5,7 +5,7 @@ landscape A4. **Larger than other KG books** — UCMAS reference is 38 content
 pages (24 + 14).
 
 Reference: UCMAS KG-2 Book B
-(`public/ucmas-books/KG 2 BOOK B (1-24).pdf` + `KG 2 BOOK B(25-38).pdf`).
+(`reference-pdfs/KG 2 BOOK B (1-24).pdf` + `KG 2 BOOK B(25-38).pdf`).
 
 ---
 

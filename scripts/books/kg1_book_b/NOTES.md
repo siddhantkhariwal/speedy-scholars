@@ -4,7 +4,7 @@ The second Speedy Scholars workbook, sequel to KG-1 Book A. Same target reader
 (age 5–6). Same format: 34 content pages + cover = 35 pages, landscape A4.
 
 Reference: UCMAS KG-1 Book B
-(`public/ucmas-books/KG 1 BOOK-B(1-25).pdf` + `KG 1 BOOK-B(25-34).pdf`).
+(`reference-pdfs/KG 1 BOOK-B(1-25).pdf` + `KG 1 BOOK-B(25-34).pdf`).
 
 Generator: `generate.py` in this folder. Universal rules in
 `../_shared/BOOK_DESIGN_GUIDE.md`.

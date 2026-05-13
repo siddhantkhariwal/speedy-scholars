@@ -4,7 +4,7 @@ Third Speedy Scholars workbook. Sequel to KG-1 Book B. 35 pages (cover + 34),
 landscape A4.
 
 Reference: UCMAS KG-2 Book A
-(`public/ucmas-books/KG-2 BOOK-A (1-24)Pages.pdf` + `KG-2 BOOK-A PAGES(25-34).pdf`).
+(`reference-pdfs/KG-2 BOOK-A (1-24)Pages.pdf` + `KG-2 BOOK-A PAGES(25-34).pdf`).
 
 ---
 

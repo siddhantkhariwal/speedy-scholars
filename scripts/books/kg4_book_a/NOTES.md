@@ -6,7 +6,7 @@ Abacus Calculation with 2-digit numbers, plus an introduction to
 multiplication tables.
 
 Reference: UCMAS KG-4 Book A
-(`public/ucmas-books/KG-4 BOOK A 1-24.pdf` + `KG-4 BOOK-A (25-38).pdf`).
+(`reference-pdfs/KG-4 BOOK A 1-24.pdf` + `KG-4 BOOK-A (25-38).pdf`).
 
 ---
 
