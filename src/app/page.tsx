@@ -35,7 +35,7 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       {/* Modal */}
       <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-[#8B6F47] to-[#6B5335] px-6 py-4 flex items-center justify-between flex-shrink-0">
+        <div className="bg-gradient-to-r from-[#5A2A72] to-[#3F1D50] px-6 py-4 flex items-center justify-between flex-shrink-0">
           <div>
             <h3 className="text-xl font-bold text-white">Book Your Free Demo Class</h3>
             <p className="text-white/80 text-sm">Choose a time that works best for you</p>
@@ -54,7 +54,7 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           {isLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
               <div className="text-center">
-                <div className="w-12 h-12 border-4 border-[#8B6F47] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <div className="w-12 h-12 border-4 border-[#5A2A72] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
                 <p className="text-gray-600 font-medium">Loading calendar...</p>
               </div>
             </div>
@@ -159,13 +159,13 @@ function FeatureCard({ icon: Icon, title, description, image, delay = 0 }: {
         </div>
       ) : Icon && (
         <div className="p-8 pb-0">
-          <div className="w-16 h-16 bg-gradient-to-br from-[#F5EDE3] to-[#E8DED0] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            <Icon className="w-8 h-8 text-[#8B6F47]" />
+          <div className="w-16 h-16 bg-gradient-to-br from-[#F8F5F9] to-[#EFE7F3] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <Icon className="w-8 h-8 text-[#5A2A72]" />
           </div>
         </div>
       )}
       <div className="p-8 pt-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#8B6F47] transition-colors">{title}</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#5A2A72] transition-colors">{title}</h3>
         <p className="text-gray-600 leading-relaxed">{description}</p>
       </div>
     </div>
@@ -209,13 +209,13 @@ function TestimonialCard({ name, text, rating = 5, location, delay = 0 }: {
     >
       <div className="flex gap-1 mb-4">
         {[...Array(rating)].map((_, i) => (
-          <Star key={i} className="w-5 h-5 text-[#C9A86C] fill-current" />
+          <Star key={i} className="w-5 h-5 text-[#F9AE27] fill-current" />
         ))}
       </div>
       <p className="text-gray-700 mb-6 leading-relaxed italic">&ldquo;{text}&rdquo;</p>
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E8DED0] to-[#D4C4B0] flex items-center justify-center">
-          <span className="text-[#6B5335] font-bold text-lg">{name.charAt(0)}</span>
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#EFE7F3] to-[#D9C9E3] flex items-center justify-center">
+          <span className="text-[#3F1D50] font-bold text-lg">{name.charAt(0)}</span>
         </div>
         <div>
           <div className="font-semibold text-gray-900">{name}</div>
@@ -249,11 +249,11 @@ function PricingCard({
   return (
     <div className={`relative rounded-3xl p-8 transition-all duration-300 hover:scale-105 ${
       isPopular
-        ? 'bg-gradient-to-br from-[#8B6F47] to-[#5A4830] text-white shadow-2xl scale-105 lg:scale-110'
+        ? 'bg-gradient-to-br from-[#5A2A72] to-[#32173F] text-white shadow-2xl scale-105 lg:scale-110'
         : 'bg-white shadow-xl border border-gray-100'
     }`}>
       {isPopular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C9A86C] to-[#D4B896] text-[#5A4830] px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#F9AE27] to-[#CA8406] text-[#32173F] px-6 py-2 rounded-full text-sm font-bold shadow-lg">
           MOST POPULAR
         </div>
       )}
@@ -261,7 +261,7 @@ function PricingCard({
       <h3 className={`text-2xl font-bold mb-2 ${isPopular ? 'text-white' : 'text-gray-900'}`}>{title}</h3>
 
       <div className="mb-4">
-        <span className={`text-5xl font-bold ${isPopular ? 'text-white' : 'text-[#8B6F47]'}`}>
+        <span className={`text-5xl font-bold ${isPopular ? 'text-white' : 'text-[#5A2A72]'}`}>
           {typeof price === 'number' ? formatPrice(price) : price}
         </span>
         {period && <span className={`text-sm ${isPopular ? 'text-white/70' : 'text-gray-500'}`}> {period}</span>}
@@ -273,8 +273,8 @@ function PricingCard({
         onClick={onBook}
         className={`w-full py-4 rounded-2xl font-semibold transition-all duration-300 mb-6 ${
           isPopular
-            ? 'bg-white text-[#6B5335] hover:bg-stone-50'
-            : 'bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white hover:from-[#7A6040] hover:to-[#5A4830]'
+            ? 'bg-white text-[#3F1D50] hover:bg-stone-50'
+            : 'bg-gradient-to-r from-[#5A2A72] to-[#3F1D50] text-white hover:from-[#6B3486] hover:to-[#32173F]'
         }`}
       >
         Get Started
@@ -283,7 +283,7 @@ function PricingCard({
       <ul className="space-y-3">
         {features.map((feature, idx) => (
           <li key={idx} className="flex items-start gap-3">
-            <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isPopular ? 'text-[#C9A86C]' : 'text-[#8B6F47]'}`} />
+            <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isPopular ? 'text-[#F9AE27]' : 'text-[#5A2A72]'}`} />
             <span className={isPopular ? 'text-white/90' : 'text-gray-600'}>{feature}</span>
           </li>
         ))}
@@ -395,11 +395,12 @@ export default function SpeedyScholarsLanding() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3">
               <Image
-                src="/images/logo3_transparent.png"
+                src="/images/logo-owl.png"
                 alt="Speedy Scholars"
-                width={56}
-                height={56}
-                className={`transition-all duration-300 ${isScrolled ? 'w-12 h-12' : 'w-14 h-14'}`}
+                width={2048}
+                height={1002}
+                priority
+                className={`w-auto transition-all duration-300 ${isScrolled ? 'h-10' : 'h-12'}`}
               />
             </Link>
 
@@ -409,7 +410,7 @@ export default function SpeedyScholarsLanding() {
                   key={link.href}
                   href={link.href}
                   className={`font-medium transition-colors ${
-                    isScrolled ? 'text-gray-700 hover:text-[#8B6F47]' : 'text-white/90 hover:text-white'
+                    isScrolled ? 'text-gray-700 hover:text-[#5A2A72]' : 'text-white/90 hover:text-white'
                   }`}
                 >
                   {link.label}
@@ -418,7 +419,7 @@ export default function SpeedyScholarsLanding() {
               <Link
                 href="/blog"
                 className={`font-medium transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-[#8B6F47]' : 'text-white/90 hover:text-white'
+                  isScrolled ? 'text-gray-700 hover:text-[#5A2A72]' : 'text-white/90 hover:text-white'
                 }`}
               >
                 Blog
@@ -426,7 +427,7 @@ export default function SpeedyScholarsLanding() {
               <Link
                 href="/resources"
                 className={`font-medium transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-[#8B6F47]' : 'text-white/90 hover:text-white'
+                  isScrolled ? 'text-gray-700 hover:text-[#5A2A72]' : 'text-white/90 hover:text-white'
                 }`}
               >
                 Resources
@@ -435,8 +436,8 @@ export default function SpeedyScholarsLanding() {
                 onClick={() => openCalendly('navbar')}
                 className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
                   isScrolled
-                    ? 'bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white hover:shadow-lg hover:scale-105'
-                    : 'bg-white text-[#6B5335] hover:bg-stone-50'
+                    ? 'bg-gradient-to-r from-[#5A2A72] to-[#3F1D50] text-white hover:shadow-lg hover:scale-105'
+                    : 'bg-white text-[#3F1D50] hover:bg-stone-50'
                 }`}
               >
                 Book Free Demo
@@ -458,7 +459,7 @@ export default function SpeedyScholarsLanding() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block text-gray-700 hover:text-[#8B6F47] font-medium py-2"
+                  className="block text-gray-700 hover:text-[#5A2A72] font-medium py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
@@ -466,14 +467,14 @@ export default function SpeedyScholarsLanding() {
               ))}
               <Link
                 href="/blog"
-                className="block text-gray-700 hover:text-[#8B6F47] font-medium py-2"
+                className="block text-gray-700 hover:text-[#5A2A72] font-medium py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Blog
               </Link>
               <Link
                 href="/resources"
-                className="block text-gray-700 hover:text-[#8B6F47] font-medium py-2"
+                className="block text-gray-700 hover:text-[#5A2A72] font-medium py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Resources
@@ -483,7 +484,7 @@ export default function SpeedyScholarsLanding() {
                   openCalendly('mobile_menu');
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white py-3 rounded-xl font-semibold"
+                className="w-full bg-gradient-to-r from-[#5A2A72] to-[#3F1D50] text-white py-3 rounded-xl font-semibold"
               >
                 Book Free Demo
               </button>
@@ -514,8 +515,8 @@ export default function SpeedyScholarsLanding() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
               <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C9A86C] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C9A86C]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F9AE27] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F9AE27]"></span>
               </span>
               <span className="text-white font-medium">Limited Time: First Demo Class FREE</span>
             </div>
@@ -523,7 +524,7 @@ export default function SpeedyScholarsLanding() {
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Unlock Your Child&apos;s{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4B896] to-[#C9A86C]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#CA8406] to-[#F9AE27]">
                 Mathematical Genius
               </span>
             </h1>
@@ -536,7 +537,7 @@ export default function SpeedyScholarsLanding() {
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <button
                 onClick={() => openCalendly('hero')}
-                className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#8B6F47] to-[#6B5335] text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-[#7A6040] hover:to-[#5A4830] transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+                className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#5A2A72] to-[#3F1D50] text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-[#6B3486] hover:to-[#32173F] transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
               >
                 Claim Your Free Demo
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -554,8 +555,8 @@ export default function SpeedyScholarsLanding() {
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
                   {[1,2,3,4].map((i) => (
-                    <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4B896] to-[#C9A86C] border-2 border-white flex items-center justify-center">
-                      <span className="text-xs font-bold text-[#5A4830]">{String.fromCharCode(64 + i)}</span>
+                    <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-[#CA8406] to-[#F9AE27] border-2 border-white flex items-center justify-center">
+                      <span className="text-xs font-bold text-[#32173F]">{String.fromCharCode(64 + i)}</span>
                     </div>
                   ))}
                 </div>
@@ -567,7 +568,7 @@ export default function SpeedyScholarsLanding() {
               <div className="flex items-center gap-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-[#C9A86C] fill-current" />
+                    <Star key={i} className="w-5 h-5 text-[#F9AE27] fill-current" />
                   ))}
                 </div>
                 <span className="text-white font-medium">4.9/5 Rating</span>
@@ -596,7 +597,7 @@ export default function SpeedyScholarsLanding() {
               { value: 15, suffix: '+', label: 'Awards Won' }
             ].map((stat, idx) => (
               <div key={idx} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#8B6F47] mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-[#5A2A72] mb-2">
                   <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="text-gray-600">{stat.label}</div>
@@ -610,7 +611,7 @@ export default function SpeedyScholarsLanding() {
       <section id="benefits" className="py-24 bg-gradient-to-b from-white to-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block bg-[#F5EDE3] text-[#8B6F47] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+            <span className="inline-block bg-[#F8F5F9] text-[#5A2A72] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
               WHY ABACUS?
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -630,7 +631,7 @@ export default function SpeedyScholarsLanding() {
       </section>
 
       {/* Meet Instructor Section */}
-      <section id="instructor" className="py-24 bg-gradient-to-br from-[#5A4830] to-[#3D3020] text-white overflow-hidden">
+      <section id="instructor" className="py-24 bg-gradient-to-br from-[#32173F] to-[#3D3020] text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Image Side */}
@@ -646,11 +647,11 @@ export default function SpeedyScholarsLanding() {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-8 -left-8 w-24 h-24 bg-[#C9A86C]/20 rounded-full blur-2xl" />
-              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#D4B896]/20 rounded-full blur-2xl" />
+              <div className="absolute -top-8 -left-8 w-24 h-24 bg-[#F9AE27]/20 rounded-full blur-2xl" />
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#CA8406]/20 rounded-full blur-2xl" />
 
               {/* Floating Badge */}
-              <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20 bg-white text-[#6B5335] px-6 py-4 rounded-2xl shadow-xl">
+              <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20 bg-white text-[#3F1D50] px-6 py-4 rounded-2xl shadow-xl">
                 <div className="text-3xl font-bold">20+</div>
                 <div className="text-sm font-medium">Years of Excellence</div>
               </div>
@@ -658,12 +659,12 @@ export default function SpeedyScholarsLanding() {
 
             {/* Content Side */}
             <div>
-              <span className="inline-block bg-white/10 text-[#D4B896] px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+              <span className="inline-block bg-white/10 text-[#CA8406] px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
                 MEET YOUR INSTRUCTOR
               </span>
 
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Nidhi Khariwal</h2>
-              <p className="text-[#D4B896] text-xl mb-6">Founder & Lead Instructor</p>
+              <p className="text-[#CA8406] text-xl mb-6">Founder & Lead Instructor</p>
 
               <p className="text-white/80 text-lg leading-relaxed mb-8">
                 With over <strong className="text-white">20 years of dedicated experience</strong> in teaching abacus, mental arithmetic, and English, Mrs. Nidhi has transformed the lives of more than <strong className="text-white">2,000+ students</strong> worldwide. Fluent in both <strong className="text-white">English and Hindi</strong>, she provides personalized instruction to students across the globe, making her one of the most sought-after abacus educators for international families.
@@ -677,7 +678,7 @@ export default function SpeedyScholarsLanding() {
                   { icon: Globe, label: 'English & Hindi Classes' }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3 bg-white/10 rounded-xl p-3">
-                    <item.icon className="w-5 h-5 text-[#C9A86C]" />
+                    <item.icon className="w-5 h-5 text-[#F9AE27]" />
                     <span className="text-sm font-medium">{item.label}</span>
                   </div>
                 ))}
@@ -685,7 +686,7 @@ export default function SpeedyScholarsLanding() {
 
               <button
                 onClick={() => openCalendly('instructor_section')}
-                className="inline-flex items-center gap-2 bg-white text-[#6B5335] px-8 py-4 rounded-full font-semibold hover:bg-stone-50 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-2 bg-white text-[#3F1D50] px-8 py-4 rounded-full font-semibold hover:bg-stone-50 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Book a Session with Mrs. Nidhi
                 <ArrowRight className="w-5 h-5" />
@@ -699,7 +700,7 @@ export default function SpeedyScholarsLanding() {
       <section id="pricing" className="py-24 bg-gradient-to-b from-stone-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block bg-[#F5EDE3] text-[#8B6F47] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+            <span className="inline-block bg-[#F8F5F9] text-[#5A2A72] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
               PRICING
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -774,7 +775,7 @@ export default function SpeedyScholarsLanding() {
       <section id="testimonials" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block bg-[#F5EDE3] text-[#8B6F47] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+            <span className="inline-block bg-[#F8F5F9] text-[#5A2A72] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
               TESTIMONIALS
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -792,7 +793,7 @@ export default function SpeedyScholarsLanding() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-[#8B6F47] to-[#5A4830]">
+      <section className="py-24 bg-gradient-to-br from-[#5A2A72] to-[#32173F]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ready to Transform Your Child&apos;s Math Skills?
@@ -802,7 +803,7 @@ export default function SpeedyScholarsLanding() {
           </p>
           <button
             onClick={() => openCalendly('cta_section')}
-            className="inline-flex items-center gap-2 bg-white text-[#6B5335] px-10 py-5 rounded-full font-bold text-lg hover:bg-stone-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+            className="inline-flex items-center gap-2 bg-white text-[#3F1D50] px-10 py-5 rounded-full font-bold text-lg hover:bg-stone-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
           >
             Book Your Free Demo Class Today
             <ArrowRight className="w-5 h-5" />
@@ -825,8 +826,8 @@ export default function SpeedyScholarsLanding() {
               { icon: MapPin, title: 'Location', info: 'Online Classes', sub: 'Learn from anywhere' }
             ].map((item, idx) => (
               <div key={idx} className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#F5EDE3] to-[#E8DED0] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-[#8B6F47]" />
+                <div className="w-14 h-14 bg-gradient-to-br from-[#F8F5F9] to-[#EFE7F3] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-7 h-7 text-[#5A2A72]" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-700 font-medium">{item.info}</p>
@@ -838,60 +839,59 @@ export default function SpeedyScholarsLanding() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-[#F8F5F9] text-[#3A313F] py-16 border-t border-[#E5DCEC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
-                <Image src="/images/logo3_transparent.png" alt="Speedy Scholars" width={48} height={48} />
-                <span className="text-xl font-bold">Speedy Scholars</span>
+              <div className="mb-4">
+                <Image src="/images/logo-owl.png" alt="Speedy Scholars" width={2048} height={1002} className="h-14 w-auto" />
               </div>
-              <p className="text-gray-400 mb-6 max-w-md">
+              <p className="text-[#6B6275] mb-6 max-w-md">
                 Empowering children with mathematical confidence through expert abacus training. Join thousands of happy families worldwide.
               </p>
               <div className="flex gap-4">
                 {['facebook', 'youtube', 'instagram'].map((social) => (
-                  <a key={social} href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#8B6F47] transition-colors">
+                  <a key={social} href="#" className="w-10 h-10 bg-[#5A2A72]/10 rounded-full flex items-center justify-center hover:bg-[#5A2A72] transition-colors group">
                     <span className="sr-only">{social}</span>
-                    <div className="w-5 h-5 bg-white/70 rounded" />
+                    <div className="w-5 h-5 bg-[#5A2A72]/60 group-hover:bg-white rounded transition-colors" />
                   </a>
                 ))}
               </div>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#benefits" className="hover:text-white transition-colors">Why Abacus</a></li>
-                <li><a href="#instructor" className="hover:text-white transition-colors">Our Instructor</a></li>
-                <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#testimonials" className="hover:text-white transition-colors">Reviews</a></li>
-                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-                <li><Link href="/resources" className="hover:text-white transition-colors">Resources</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <h4 className="font-semibold mb-4 text-[#5A2A72]">Quick Links</h4>
+              <ul className="space-y-2 text-[#6B6275]">
+                <li><a href="#benefits" className="hover:text-[#5A2A72] transition-colors">Why Abacus</a></li>
+                <li><a href="#instructor" className="hover:text-[#5A2A72] transition-colors">Our Instructor</a></li>
+                <li><a href="#pricing" className="hover:text-[#5A2A72] transition-colors">Pricing</a></li>
+                <li><a href="#testimonials" className="hover:text-[#5A2A72] transition-colors">Reviews</a></li>
+                <li><Link href="/about" className="hover:text-[#5A2A72] transition-colors">About Us</Link></li>
+                <li><Link href="/blog" className="hover:text-[#5A2A72] transition-colors">Blog</Link></li>
+                <li><Link href="/resources" className="hover:text-[#5A2A72] transition-colors">Resources</Link></li>
+                <li><Link href="/contact" className="hover:text-[#5A2A72] transition-colors">Contact</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-semibold mb-4 text-[#5A2A72]">Contact</h4>
+              <ul className="space-y-2 text-[#6B6275]">
                 <li>
-                  <a href="tel:+919352646671" className="hover:text-white transition-colors">+91 9352646671</a>
+                  <a href="tel:+919352646671" className="hover:text-[#5A2A72] transition-colors">+91 9352646671</a>
                 </li>
                 <li>
-                  <a href="mailto:nidhikhariwal2012@gmail.com" className="hover:text-white transition-colors">nidhikhariwal2012@gmail.com</a>
+                  <a href="mailto:nidhikhariwal2012@gmail.com" className="hover:text-[#5A2A72] transition-colors">nidhikhariwal2012@gmail.com</a>
                 </li>
                 <li>Online Classes Worldwide</li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+          <div className="border-t border-[#E5DCEC] pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-[#8A8294]">
             <p>&copy; 2026 Speedy Scholars. All rights reserved.</p>
             <div className="flex gap-6 mt-4 md:mt-0">
-              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="hover:text-[#5A2A72] transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-[#5A2A72] transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>

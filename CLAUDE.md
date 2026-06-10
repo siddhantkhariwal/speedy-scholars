@@ -21,20 +21,27 @@ Built with Next.js 14 App Router, deployed on Vercel, auto-deploys on push to `m
 
 ## Brand Guidelines — Never Deviate From These
 
-### Colours
+### Colours (Owl Rebrand — purple + gold, June 2026)
 ```
-Primary brown:   #8B6F47
-Dark brown:      #6B5335
-Darker brown:    #5A4830
-Gold accent:     #C9A86C
-Light gold:      #D4B896
-Cream bg:        #F5EDE3
-Warm white:      #FFF8F0
+Purple (primary):  #5A2A72   — headings, buttons, nav, primary brand
+Purple dark:       #3F1D50   — button hover/active, dark sections
+Purple darker:     #32173F   — emphasis/heading text, text on gold
+Purple hover:      #6B3486   — lighter purple hover accent
+Gold (accent):     #F9AE27   — highlights, accents, gold buttons (with DARK text)
+Gold dark:         #CA8406   — gold TEXT on white, gold-button hover
+Navy (deep):       #42465D   — secondary dark / from the logo cap
+Cream bg:          #F8F5F9   — soft section + footer background
+Light purple tint: #EFE7F3   — gradient ends, subtle tints
+Text grey (body):  #3A313F
 ```
+
+### Colour Rules — CRITICAL
+- **Gold #F9AE27 is UNREADABLE as text on white** (WCAG fail, 1.89:1). For gold-coloured text use Gold dark #CA8406. Gold #F9AE27 is for accents/highlights and as a BUTTON BACKGROUND with dark text (#32173F), never `text-white` on gold.
+- **The logo needs a LIGHT background.** Purple "Scholars" disappears on dark/purple. Dark navs wrap the logo in a white/cream rounded band; the footer is cream so the logo sits directly.
+- No green (old #556B2F olive is fully gone). No brown (#8B6F47 family fully replaced June 2026).
 
 ### Rules
 - **No emojis** anywhere in website pages (docs/markdown files are fine)
-- the old about page used #556B2F olive green, that's been replaced.
 - Font: Arial / Geist Sans (system default via Next.js)
 - Tone: Professional, warm, trustworthy, educational — never salesy or gimmicky
 
@@ -189,7 +196,7 @@ Output: `public/Speedy-Scholars-KG1-Book-A.pdf`
 ### Key rules (never break these)
 - Upper abacus beads: **hexagonal** (6-sided polygon)
 - Mascot: graduation-hat bead bird on **every page** via `draw_footer()`
-- Logo: `public/images/logo3_transparent.png` (white bg removed)
+- Logo: `public/images/logo-owl.png` (owl rebrand). NOTE: book generators still use the OLD brown palette + mascot — book colour rebrand to purple/gold is a separate pending task.
 - Use **"Level"** not "Class" — abacus terminology
 - Object padding from card borders: **20px minimum**
 - Every calc page must have **unique problem data**
@@ -236,10 +243,13 @@ git push origin main  # Triggers Vercel auto-deploy
 
 ---
 
-## Logo
-- All pages use `public/images/logo3_transparent.png` (white background removed)
-- Old logo backed up as `public/images/logo-old-backup.png`
-- Favicons regenerated from new logo (Apr 2026)
+## Logo (Owl Rebrand — June 2026)
+- All pages use `public/images/logo-owl.png` (owl mascot, purple+gold, transparent). Wide wordmark (~2:1) — size with `w-auto` + fixed height, never square.
+- `public/images/logo-owl-greybg.png` — grey-bg version for OG/share image (transparent OG renders black on some platforms).
+- `public/images/mascot-owl.png` — standalone owl, square, used to generate favicons.
+- Favicons regenerated from the owl mascot: `icon-192.png`, `icon-512.png`, `favicon.ico` (both public/ and src/app/). manifest theme_color is #5A2A72.
+- Logo needs a LIGHT background (purple "Scholars" vanishes on dark). Dark navs use a white rounded band; footer is cream so logo sits directly.
+- Old logo: `public/images/logo3_transparent.png` (superseded). NO SVG (shaded illustration — PNG is correct).
 
 ---
 

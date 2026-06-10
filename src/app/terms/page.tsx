@@ -12,7 +12,7 @@ export default function TermsOfServicePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[#8B6F47] hover:text-[#6B5335] transition-colors"
+            className="inline-flex items-center gap-2 text-[#5A2A72] hover:text-[#3F1D50] transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="font-semibold">Back to Home</span>
@@ -21,7 +21,7 @@ export default function TermsOfServicePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#8B6F47] to-[#6B5335] text-white py-16">
+      <section className="bg-gradient-to-br from-[#5A2A72] to-[#3F1D50] text-white py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
@@ -45,7 +45,7 @@ export default function TermsOfServicePage() {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Agreement to Terms</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              Welcome to Speedy Scholars. These Terms of Service (&quot;Terms&quot;) govern your use of our website <a href="https://www.speedyscholars.com" className="text-[#8B6F47] hover:underline">www.speedyscholars.com</a> and online abacus classes provided by Speedy Scholars, operated by Nidhi Khariwal.
+              Welcome to Speedy Scholars. These Terms of Service (&quot;Terms&quot;) govern your use of our website <a href="https://www.speedyscholars.com" className="text-[#5A2A72] hover:underline">www.speedyscholars.com</a> and online abacus classes provided by Speedy Scholars, operated by Nidhi Khariwal.
             </p>
             <p className="text-gray-600 leading-relaxed">
               By accessing or using our services, you agree to be bound by these Terms. If you disagree with any part of these terms, you may not access our services.
@@ -55,7 +55,7 @@ export default function TermsOfServicePage() {
           {/* Services */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <CheckCircle className="w-6 h-6 text-[#8B6F47]" />
+              <CheckCircle className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">Our Services</h2>
             </div>
             <p className="text-gray-600 leading-relaxed mb-4">
@@ -93,7 +93,7 @@ export default function TermsOfServicePage() {
           {/* Pricing and Payment */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <Scale className="w-6 h-6 text-[#8B6F47]" />
+              <Scale className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">Pricing and Payment</h2>
             </div>
 
@@ -117,7 +117,7 @@ export default function TermsOfServicePage() {
           {/* Cancellation and Refund */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <XCircle className="w-6 h-6 text-[#8B6F47]" />
+              <XCircle className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">Cancellation and Refund Policy</h2>
             </div>
 
@@ -146,7 +146,7 @@ export default function TermsOfServicePage() {
           {/* Class Conduct */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <AlertCircle className="w-6 h-6 text-[#8B6F47]" />
+              <AlertCircle className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">Class Conduct and Expectations</h2>
             </div>
 
@@ -264,7 +264,7 @@ export default function TermsOfServicePage() {
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2">
               <li>We encourage direct communication to resolve issues amicably</li>
-              <li>Contact us at <a href="mailto:nidhikhariwal2012@gmail.com" className="text-[#8B6F47] hover:underline">nidhikhariwal2012@gmail.com</a></li>
+              <li>Contact us at <a href="mailto:nidhikhariwal2012@gmail.com" className="text-[#5A2A72] hover:underline">nidhikhariwal2012@gmail.com</a></li>
               <li>We will attempt to resolve disputes within 14 business days</li>
               <li>If unresolved, disputes shall be governed by Indian law (or applicable jurisdiction)</li>
             </ul>
@@ -305,9 +305,9 @@ export default function TermsOfServicePage() {
               If you have any questions about these Terms of Service, please contact us:
             </p>
             <div className="space-y-2 text-gray-600">
-              <p><strong>Email:</strong> <a href="mailto:nidhikhariwal2012@gmail.com" className="text-[#8B6F47] hover:underline">nidhikhariwal2012@gmail.com</a></p>
-              <p><strong>Phone:</strong> <a href="tel:+919929322999" className="text-[#8B6F47] hover:underline">+91 99293 22999</a></p>
-              <p><strong>Website:</strong> <a href="https://www.speedyscholars.com" className="text-[#8B6F47] hover:underline">www.speedyscholars.com</a></p>
+              <p><strong>Email:</strong> <a href="mailto:nidhikhariwal2012@gmail.com" className="text-[#5A2A72] hover:underline">nidhikhariwal2012@gmail.com</a></p>
+              <p><strong>Phone:</strong> <a href="tel:+919929322999" className="text-[#5A2A72] hover:underline">+91 99293 22999</a></p>
+              <p><strong>Website:</strong> <a href="https://www.speedyscholars.com" className="text-[#5A2A72] hover:underline">www.speedyscholars.com</a></p>
               <p><strong>Business Name:</strong> Speedy Scholars</p>
               <p><strong>Founder:</strong> Nidhi Khariwal</p>
             </div>
@@ -316,7 +316,7 @@ export default function TermsOfServicePage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-[#5A4830] to-[#3D3020] text-white py-8">
+      <footer className="bg-gradient-to-br from-[#32173F] to-[#3D3020] text-white py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-white/80">
             © 2026 Speedy Scholars. All rights reserved.

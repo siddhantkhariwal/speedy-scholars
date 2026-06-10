@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[#8B6F47] hover:text-[#6B5335] transition-colors"
+            className="inline-flex items-center gap-2 text-[#5A2A72] hover:text-[#3F1D50] transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="font-semibold">Back to Home</span>
@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#8B6F47] to-[#6B5335] text-white py-16">
+      <section className="bg-gradient-to-br from-[#5A2A72] to-[#3F1D50] text-white py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
@@ -45,7 +45,7 @@ export default function PrivacyPolicyPage() {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Introduction</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              Welcome to Speedy Scholars. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://www.speedyscholars.com" className="text-[#8B6F47] hover:underline">www.speedyscholars.com</a> and use our services.
+              Welcome to Speedy Scholars. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://www.speedyscholars.com" className="text-[#5A2A72] hover:underline">www.speedyscholars.com</a> and use our services.
             </p>
             <p className="text-gray-600 leading-relaxed">
               By using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our services.
@@ -55,7 +55,7 @@ export default function PrivacyPolicyPage() {
           {/* Information We Collect */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <Database className="w-6 h-6 text-[#8B6F47]" />
+              <Database className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">Information We Collect</h2>
             </div>
 
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
           {/* How We Use Your Information */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <Eye className="w-6 h-6 text-[#8B6F47]" />
+              <Eye className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">How We Use Your Information</h2>
             </div>
             <p className="text-gray-600 leading-relaxed mb-4">
@@ -117,7 +117,7 @@ export default function PrivacyPolicyPage() {
           {/* Third-Party Services */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <Users className="w-6 h-6 text-[#8B6F47]" />
+              <Users className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">Third-Party Services</h2>
             </div>
             <p className="text-gray-600 leading-relaxed mb-4">
@@ -151,7 +151,7 @@ export default function PrivacyPolicyPage() {
           {/* Data Security */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <Lock className="w-6 h-6 text-[#8B6F47]" />
+              <Lock className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">Data Security</h2>
             </div>
             <p className="text-gray-600 leading-relaxed mb-4">
@@ -172,7 +172,7 @@ export default function PrivacyPolicyPage() {
           {/* Your Rights */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <Globe className="w-6 h-6 text-[#8B6F47]" />
+              <Globe className="w-6 h-6 text-[#5A2A72]" />
               <h2 className="text-3xl font-bold text-gray-900">Your Privacy Rights</h2>
             </div>
             <p className="text-gray-600 leading-relaxed mb-4">
@@ -188,7 +188,7 @@ export default function PrivacyPolicyPage() {
               <li><strong>Withdraw Consent:</strong> Withdraw consent for processing at any time</li>
             </ul>
             <p className="text-gray-600 leading-relaxed mt-4">
-              To exercise these rights, please contact us at <a href="mailto:nidhikhariwal2012@gmail.com" className="text-[#8B6F47] hover:underline">nidhikhariwal2012@gmail.com</a>
+              To exercise these rights, please contact us at <a href="mailto:nidhikhariwal2012@gmail.com" className="text-[#5A2A72] hover:underline">nidhikhariwal2012@gmail.com</a>
             </p>
           </section>
 
@@ -243,9 +243,9 @@ export default function PrivacyPolicyPage() {
               If you have any questions about this Privacy Policy or our data practices, please contact us:
             </p>
             <div className="space-y-2 text-gray-600">
-              <p><strong>Email:</strong> <a href="mailto:nidhikhariwal2012@gmail.com" className="text-[#8B6F47] hover:underline">nidhikhariwal2012@gmail.com</a></p>
-              <p><strong>Phone:</strong> <a href="tel:+919929322999" className="text-[#8B6F47] hover:underline">+91 99293 22999</a></p>
-              <p><strong>Website:</strong> <a href="https://www.speedyscholars.com" className="text-[#8B6F47] hover:underline">www.speedyscholars.com</a></p>
+              <p><strong>Email:</strong> <a href="mailto:nidhikhariwal2012@gmail.com" className="text-[#5A2A72] hover:underline">nidhikhariwal2012@gmail.com</a></p>
+              <p><strong>Phone:</strong> <a href="tel:+919929322999" className="text-[#5A2A72] hover:underline">+91 99293 22999</a></p>
+              <p><strong>Website:</strong> <a href="https://www.speedyscholars.com" className="text-[#5A2A72] hover:underline">www.speedyscholars.com</a></p>
               <p><strong>Business Name:</strong> Speedy Scholars</p>
               <p><strong>Founder:</strong> Nidhi Khariwal</p>
             </div>
@@ -254,7 +254,7 @@ export default function PrivacyPolicyPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-[#5A4830] to-[#3D3020] text-white py-8">
+      <footer className="bg-gradient-to-br from-[#32173F] to-[#3D3020] text-white py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-white/80">
             © 2026 Speedy Scholars. All rights reserved.

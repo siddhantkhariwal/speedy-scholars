@@ -66,15 +66,15 @@ function renderContent(content: string): string {
     .map((line) => {
       // H1
       if (line.startsWith("# ")) {
-        return `<h1 class="text-3xl font-bold mt-8 mb-4" style="color:#5A4830">${line.slice(2)}</h1>`;
+        return `<h1 class="text-3xl font-bold mt-8 mb-4" style="color:#32173F">${line.slice(2)}</h1>`;
       }
       // H2
       if (line.startsWith("## ")) {
-        return `<h2 class="text-2xl font-bold mt-10 mb-4" style="color:#6B5335">${line.slice(3)}</h2>`;
+        return `<h2 class="text-2xl font-bold mt-10 mb-4" style="color:#3F1D50">${line.slice(3)}</h2>`;
       }
       // H3
       if (line.startsWith("### ")) {
-        return `<h3 class="text-xl font-semibold mt-6 mb-3" style="color:#8B6F47">${line.slice(4)}</h3>`;
+        return `<h3 class="text-xl font-semibold mt-6 mb-3" style="color:#5A2A72">${line.slice(4)}</h3>`;
       }
       // HR
       if (line.trim() === "---") {
@@ -102,7 +102,7 @@ function renderInline(text: string): string {
   return text
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="underline font-medium" style="color:#8B6F47">$1</a>');
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="underline font-medium" style="color:#5A2A72">$1</a>');
 }
 
 export default function BlogPostPage({ params }: Props) {
@@ -134,7 +134,7 @@ export default function BlogPostPage({ params }: Props) {
       name: "Speedy Scholars",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.speedyscholars.com/images/logo3_transparent.png",
+        url: "https://www.speedyscholars.com/images/logo-owl.png",
       },
     },
     mainEntityOfPage: {
@@ -182,7 +182,7 @@ export default function BlogPostPage({ params }: Props) {
 
       {/* Navigation */}
       <nav
-        style={{ backgroundColor: "#6B5335" }}
+        style={{ backgroundColor: "#3F1D50" }}
         className="sticky top-0 z-50 shadow-md"
         aria-label="Main navigation"
       >
@@ -192,34 +192,35 @@ export default function BlogPostPage({ params }: Props) {
             className="flex items-center gap-2"
             aria-label="Speedy Scholars home page"
           >
-            <Image
-              src="/images/logo3_transparent.png"
-              alt="Speedy Scholars logo"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            <span className="text-white font-bold text-lg hidden sm:block">Speedy Scholars</span>
+            <span className="inline-block rounded-lg bg-white px-3 py-2">
+              <Image
+                src="/images/logo-owl.png"
+                alt="Speedy Scholars logo"
+                width={2048}
+                height={1002}
+                className="h-9 w-auto"
+              />
+            </span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-amber-200 hover:text-white text-sm transition-colors">
+            <Link href="/" className="text-[#F9AE27] hover:text-white text-sm transition-colors">
               Home
             </Link>
             <Link
               href="/blog"
-              className="text-amber-200 hover:text-white text-sm transition-colors"
+              className="text-[#F9AE27] hover:text-white text-sm transition-colors"
             >
               Blog
             </Link>
             <Link
               href="/resources"
-              className="text-amber-200 hover:text-white text-sm transition-colors"
+              className="text-[#F9AE27] hover:text-white text-sm transition-colors"
             >
               Resources
             </Link>
             <Link
               href="/#pricing"
-              className="bg-amber-500 hover:bg-amber-400 text-white text-sm px-4 py-2 rounded-full font-semibold transition-colors"
+              className="bg-[#F9AE27] hover:bg-[#CA8406] text-[#32173F] text-sm px-4 py-2 rounded-full font-semibold transition-colors"
             >
               Book Free Demo
             </Link>
@@ -269,13 +270,13 @@ export default function BlogPostPage({ params }: Props) {
               <span
                 key={tag}
                 className="text-xs px-3 py-1 rounded-full"
-                style={{ backgroundColor: "#F5EDE3", color: "#8B6F47" }}
+                style={{ backgroundColor: "#F8F5F9", color: "#5A2A72" }}
               >
                 {tag}
               </span>
             ))}
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#5A4830" }}>
+          <h1 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#32173F" }}>
             {post.title}
           </h1>
           <div className="flex items-center gap-4">
@@ -307,10 +308,10 @@ export default function BlogPostPage({ params }: Props) {
         {/* CTA Box */}
         <aside
           className="my-10 p-8 rounded-2xl text-center"
-          style={{ backgroundColor: "#F5EDE3", border: "2px solid #D4B896" }}
+          style={{ backgroundColor: "#F8F5F9", border: "2px solid #CA8406" }}
           aria-label="Book a free demo class"
         >
-          <h2 className="text-2xl font-bold mb-3" style={{ color: "#5A4830" }}>
+          <h2 className="text-2xl font-bold mb-3" style={{ color: "#32173F" }}>
             Book Your FREE Demo Class
           </h2>
           <p className="text-stone-600 mb-6">
@@ -320,7 +321,7 @@ export default function BlogPostPage({ params }: Props) {
           <Link
             href="/#pricing"
             className="inline-block font-bold px-8 py-4 rounded-full text-lg transition-colors text-white shadow-md"
-            style={{ backgroundColor: "#8B6F47" }}
+            style={{ backgroundColor: "#5A2A72" }}
             aria-label="Book your free demo class at Speedy Scholars"
           >
             Book My Free Demo Class
@@ -339,7 +340,7 @@ export default function BlogPostPage({ params }: Props) {
                 <p className="text-xs text-stone-500 mb-1">Previous</p>
                 <p
                   className="font-semibold group-hover:underline line-clamp-2"
-                  style={{ color: "#5A4830" }}
+                  style={{ color: "#32173F" }}
                 >
                   {prevPost.title}
                 </p>
@@ -356,7 +357,7 @@ export default function BlogPostPage({ params }: Props) {
                 <p className="text-xs text-stone-500 mb-1">Next</p>
                 <p
                   className="font-semibold group-hover:underline line-clamp-2"
-                  style={{ color: "#5A4830" }}
+                  style={{ color: "#32173F" }}
                 >
                   {nextPost.title}
                 </p>
@@ -371,12 +372,12 @@ export default function BlogPostPage({ params }: Props) {
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
         <section
-          style={{ backgroundColor: "#F5EDE3" }}
+          style={{ backgroundColor: "#F8F5F9" }}
           className="py-16 px-4"
           aria-label="Related articles"
         >
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8 text-center" style={{ color: "#5A4830" }}>
+            <h2 className="text-2xl font-bold mb-8 text-center" style={{ color: "#32173F" }}>
               You May Also Like
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
@@ -400,7 +401,7 @@ export default function BlogPostPage({ params }: Props) {
                     <div className="p-4">
                       <h3
                         className="font-semibold mb-2 hover:underline line-clamp-2"
-                        style={{ color: "#5A4830" }}
+                        style={{ color: "#32173F" }}
                       >
                         {related.title}
                       </h3>
@@ -415,25 +416,25 @@ export default function BlogPostPage({ params }: Props) {
       )}
 
       {/* Footer */}
-      <footer style={{ backgroundColor: "#5A4830" }} className="py-8 px-4" aria-label="Footer">
+      <footer style={{ backgroundColor: "#32173F" }} className="py-8 px-4" aria-label="Footer">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-amber-200 text-sm">
+          <div className="text-[#F9AE27] text-sm">
             &copy; 2026 Speedy Scholars. All rights reserved.
           </div>
           <nav aria-label="Footer links" className="flex gap-6 text-sm">
-            <Link href="/" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/" className="text-[#F9AE27] hover:text-white transition-colors">
               Home
             </Link>
-            <Link href="/blog" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/blog" className="text-[#F9AE27] hover:text-white transition-colors">
               Blog
             </Link>
-            <Link href="/resources" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/resources" className="text-[#F9AE27] hover:text-white transition-colors">
               Resources
             </Link>
-            <Link href="/privacy" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/privacy" className="text-[#F9AE27] hover:text-white transition-colors">
               Privacy
             </Link>
-            <Link href="/terms" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/terms" className="text-[#F9AE27] hover:text-white transition-colors">
               Terms
             </Link>
           </nav>

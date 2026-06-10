@@ -210,34 +210,35 @@ export default function ResourcesPage() {
 
       {/* Navigation */}
       <nav
-        style={{ backgroundColor: "#6B5335" }}
+        style={{ backgroundColor: "#3F1D50" }}
         className="sticky top-0 z-50 shadow-md"
         aria-label="Main navigation"
       >
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2" aria-label="Speedy Scholars home page">
-            <Image
-              src="/images/logo3_transparent.png"
-              alt="Speedy Scholars logo"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            <span className="text-white font-bold text-lg hidden sm:block">Speedy Scholars</span>
+            <span className="inline-block rounded-lg bg-white px-3 py-2">
+              <Image
+                src="/images/logo-owl.png"
+                alt="Speedy Scholars logo"
+                width={2048}
+                height={1002}
+                className="h-9 w-auto"
+              />
+            </span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-amber-200 hover:text-white text-sm transition-colors">
+            <Link href="/" className="text-[#F9AE27] hover:text-white text-sm transition-colors">
               Home
             </Link>
-            <Link href="/blog" className="text-amber-200 hover:text-white text-sm transition-colors">
+            <Link href="/blog" className="text-[#F9AE27] hover:text-white text-sm transition-colors">
               Blog
             </Link>
-            <Link href="/about" className="text-amber-200 hover:text-white text-sm transition-colors">
+            <Link href="/about" className="text-[#F9AE27] hover:text-white text-sm transition-colors">
               About
             </Link>
             <Link
               href="/#pricing"
-              className="bg-amber-500 hover:bg-amber-400 text-white text-sm px-4 py-2 rounded-full font-semibold transition-colors"
+              className="bg-[#F9AE27] hover:bg-[#CA8406] text-[#32173F] text-sm px-4 py-2 rounded-full font-semibold transition-colors"
             >
               Book Free Demo
             </Link>
@@ -248,20 +249,20 @@ export default function ResourcesPage() {
       {/* Hero */}
       <header
         style={{
-          background: "linear-gradient(135deg, #5A4830 0%, #8B6F47 50%, #6B5335 100%)",
+          background: "linear-gradient(135deg, #32173F 0%, #5A2A72 50%, #3F1D50 100%)",
         }}
         className="py-20 px-4"
       >
         <div className="max-w-4xl mx-auto text-center">
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex justify-center items-center gap-2 text-amber-300 text-sm">
+            <ol className="flex justify-center items-center gap-2 text-[#F9AE27] text-sm">
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
-              <li aria-hidden="true" className="text-amber-600">/</li>
-              <li className="text-amber-100" aria-current="page">
+              <li aria-hidden="true" className="text-[#CA8406]">/</li>
+              <li className="text-[#FBD78B]" aria-current="page">
                 Resources
               </li>
             </ol>
@@ -269,7 +270,7 @@ export default function ResourcesPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Free Resources for Parents
           </h1>
-          <p className="text-xl text-amber-200 max-w-2xl mx-auto">
+          <p className="text-xl text-[#F9AE27] max-w-2xl mx-auto">
             Practical, expert-written guides to help you support your child&apos;s abacus and mental
             math journey at home.
           </p>
@@ -284,19 +285,19 @@ export default function ResourcesPage() {
         <div className="max-w-4xl mx-auto flex flex-wrap gap-4 justify-center">
           <a
             href="#mental-math-tricks"
-            className="text-sm font-semibold px-4 py-2 rounded-full border border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47] hover:text-white transition-colors"
+            className="text-sm font-semibold px-4 py-2 rounded-full border border-[#5A2A72] text-[#5A2A72] hover:bg-[#5A2A72] hover:text-white transition-colors"
           >
             10 Mental Math Tricks
           </a>
           <a
             href="#abacus-guide"
-            className="text-sm font-semibold px-4 py-2 rounded-full border border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47] hover:text-white transition-colors"
+            className="text-sm font-semibold px-4 py-2 rounded-full border border-[#5A2A72] text-[#5A2A72] hover:bg-[#5A2A72] hover:text-white transition-colors"
           >
             Abacus Buying Guide
           </a>
           <a
             href="#practice-tips"
-            className="text-sm font-semibold px-4 py-2 rounded-full border border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47] hover:text-white transition-colors"
+            className="text-sm font-semibold px-4 py-2 rounded-full border border-[#5A2A72] text-[#5A2A72] hover:bg-[#5A2A72] hover:text-white transition-colors"
           >
             Practice Tips
           </a>
@@ -307,7 +308,7 @@ export default function ResourcesPage() {
       <section id="mental-math-tricks" className="py-20 px-4" aria-label="10 mental math tricks">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-4xl font-bold mb-4" style={{ color: "#5A4830" }}>
+            <h2 className="text-4xl font-bold mb-4" style={{ color: "#32173F" }}>
               10 Mental Math Tricks for Kids
             </h2>
             <p className="text-stone-600 text-lg max-w-2xl mx-auto">
@@ -320,23 +321,23 @@ export default function ResourcesPage() {
               <article
                 key={trick.number}
                 className="flex gap-6 p-6 rounded-2xl"
-                style={{ backgroundColor: "#FFF8F0", border: "1px solid #D4B896" }}
+                style={{ backgroundColor: "#FFFFFF", border: "1px solid #CA8406" }}
               >
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0"
-                  style={{ backgroundColor: "#8B6F47" }}
+                  style={{ backgroundColor: "#5A2A72" }}
                   aria-hidden="true"
                 >
                   {trick.number}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2" style={{ color: "#5A4830" }}>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: "#32173F" }}>
                     {trick.title}
                   </h3>
                   <p className="text-stone-600 mb-3 leading-relaxed">{trick.description}</p>
                   <div
                     className="inline-block px-4 py-2 rounded-lg text-sm font-mono"
-                    style={{ backgroundColor: "#F5EDE3", color: "#6B5335" }}
+                    style={{ backgroundColor: "#F8F5F9", color: "#3F1D50" }}
                   >
                     <strong>Example:</strong> {trick.example}
                   </div>
@@ -344,7 +345,7 @@ export default function ResourcesPage() {
               </article>
             ))}
           </div>
-          <div className="mt-10 p-6 rounded-2xl text-center" style={{ backgroundColor: "#F5EDE3" }}>
+          <div className="mt-10 p-6 rounded-2xl text-center" style={{ backgroundColor: "#F8F5F9" }}>
             <p className="text-stone-700 mb-4">
               Want your child to master these techniques automatically through structured abacus
               training?
@@ -352,7 +353,7 @@ export default function ResourcesPage() {
             <Link
               href="/blog/mental-math-tips-for-kids"
               className="font-semibold underline"
-              style={{ color: "#8B6F47" }}
+              style={{ color: "#5A2A72" }}
             >
               Read our full guide: 7 Mental Math Tips Every Parent Should Know &rarr;
             </Link>
@@ -364,12 +365,12 @@ export default function ResourcesPage() {
       <section
         id="abacus-guide"
         className="py-20 px-4"
-        style={{ backgroundColor: "#F5EDE3" }}
+        style={{ backgroundColor: "#F8F5F9" }}
         aria-label="How to choose the right abacus"
       >
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-4xl font-bold mb-4" style={{ color: "#5A4830" }}>
+            <h2 className="text-4xl font-bold mb-4" style={{ color: "#32173F" }}>
               How to Choose the Right Abacus
             </h2>
             <p className="text-stone-600 text-lg max-w-2xl mx-auto">
@@ -383,13 +384,13 @@ export default function ResourcesPage() {
                 key={item.title}
                 className="bg-white p-6 rounded-2xl shadow-sm border border-stone-200"
               >
-                <h3 className="font-bold text-lg mb-3" style={{ color: "#5A4830" }}>
+                <h3 className="font-bold text-lg mb-3" style={{ color: "#32173F" }}>
                   {item.title}
                 </h3>
                 <p className="text-stone-600 text-sm leading-relaxed mb-4">{item.description}</p>
                 <div
                   className="px-3 py-2 rounded-lg text-sm font-semibold"
-                  style={{ backgroundColor: "#F5EDE3", color: "#6B5335" }}
+                  style={{ backgroundColor: "#F8F5F9", color: "#3F1D50" }}
                 >
                   ✓ {item.recommendation}
                 </div>
@@ -397,7 +398,7 @@ export default function ResourcesPage() {
             ))}
           </div>
           <div className="mt-10 bg-white p-8 rounded-2xl shadow-sm border border-stone-200">
-            <h3 className="text-xl font-bold mb-4" style={{ color: "#5A4830" }}>
+            <h3 className="text-xl font-bold mb-4" style={{ color: "#32173F" }}>
               Do You Need to Buy an Abacus Before Starting?
             </h3>
             <p className="text-stone-700 leading-relaxed mb-4">
@@ -408,7 +409,7 @@ export default function ResourcesPage() {
             <Link
               href="/#pricing"
               className="inline-block font-bold px-6 py-3 rounded-full text-white transition-colors"
-              style={{ backgroundColor: "#8B6F47" }}
+              style={{ backgroundColor: "#5A2A72" }}
               aria-label="Book your free demo class before buying an abacus"
             >
               Book Your Free Demo First
@@ -421,7 +422,7 @@ export default function ResourcesPage() {
       <section id="practice-tips" className="py-20 px-4" aria-label="Practice tips for parents">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-4xl font-bold mb-4" style={{ color: "#5A4830" }}>
+            <h2 className="text-4xl font-bold mb-4" style={{ color: "#32173F" }}>
               Practice Tips for Parents
             </h2>
             <p className="text-stone-600 text-lg max-w-2xl mx-auto">
@@ -434,9 +435,9 @@ export default function ResourcesPage() {
               <article
                 key={tip.title}
                 className="p-6 rounded-2xl shadow-sm border"
-                style={{ backgroundColor: "#FFF8F0", borderColor: "#D4B896" }}
+                style={{ backgroundColor: "#FFFFFF", borderColor: "#CA8406" }}
               >
-                <h3 className="font-bold text-lg mb-3" style={{ color: "#5A4830" }}>
+                <h3 className="font-bold text-lg mb-3" style={{ color: "#32173F" }}>
                   {tip.title}
                 </h3>
                 <p className="text-stone-600 leading-relaxed">{tip.description}</p>
@@ -449,11 +450,11 @@ export default function ResourcesPage() {
       {/* More Resources */}
       <section
         className="py-16 px-4"
-        style={{ backgroundColor: "#F5EDE3" }}
+        style={{ backgroundColor: "#F8F5F9" }}
         aria-label="More learning resources"
       >
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8 text-center" style={{ color: "#5A4830" }}>
+          <h2 className="text-2xl font-bold mb-8 text-center" style={{ color: "#32173F" }}>
             Continue Learning
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -480,11 +481,11 @@ export default function ResourcesPage() {
                 className="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition-shadow block"
                 aria-label={`Read article: ${item.title}`}
               >
-                <h3 className="font-bold mb-2" style={{ color: "#5A4830" }}>
+                <h3 className="font-bold mb-2" style={{ color: "#32173F" }}>
                   {item.title}
                 </h3>
                 <p className="text-stone-600 text-sm leading-relaxed">{item.desc}</p>
-                <p className="text-sm font-semibold mt-3" style={{ color: "#8B6F47" }}>
+                <p className="text-sm font-semibold mt-3" style={{ color: "#5A2A72" }}>
                   Read article &rarr;
                 </p>
               </Link>
@@ -495,7 +496,7 @@ export default function ResourcesPage() {
 
       {/* CTA */}
       <section
-        style={{ backgroundColor: "#8B6F47" }}
+        style={{ backgroundColor: "#5A2A72" }}
         className="py-20 px-4 text-center"
         aria-label="Book a free demo class"
       >
@@ -503,14 +504,14 @@ export default function ResourcesPage() {
           <h2 className="text-4xl font-bold text-white mb-6">
             Want Personalised Guidance?
           </h2>
-          <p className="text-amber-200 text-xl mb-10">
+          <p className="text-[#F9AE27] text-xl mb-10">
             Every child is different. Book a FREE 45-minute demo class and let our expert instructor
             Nidhi Khariwal assess your child&apos;s individual needs and create a personalised
             learning plan.
           </p>
           <Link
             href="/#pricing"
-            className="inline-block bg-amber-400 hover:bg-amber-300 text-stone-900 font-bold px-10 py-5 rounded-full text-xl transition-colors shadow-lg"
+            className="inline-block bg-[#F9AE27] hover:bg-[#CA8406] text-stone-900 font-bold px-10 py-5 rounded-full text-xl transition-colors shadow-lg"
             aria-label="Book your free demo class at Speedy Scholars"
           >
             Book Your FREE Demo Class
@@ -519,28 +520,28 @@ export default function ResourcesPage() {
       </section>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: "#5A4830" }} className="py-8 px-4" aria-label="Footer">
+      <footer style={{ backgroundColor: "#32173F" }} className="py-8 px-4" aria-label="Footer">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-amber-200 text-sm">
+          <div className="text-[#F9AE27] text-sm">
             &copy; 2026 Speedy Scholars. All rights reserved.
           </div>
           <nav aria-label="Footer navigation" className="flex flex-wrap gap-6 text-sm">
-            <Link href="/" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/" className="text-[#F9AE27] hover:text-white transition-colors">
               Home
             </Link>
-            <Link href="/blog" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/blog" className="text-[#F9AE27] hover:text-white transition-colors">
               Blog
             </Link>
-            <Link href="/about" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/about" className="text-[#F9AE27] hover:text-white transition-colors">
               About
             </Link>
-            <Link href="/contact" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/contact" className="text-[#F9AE27] hover:text-white transition-colors">
               Contact
             </Link>
-            <Link href="/privacy" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/privacy" className="text-[#F9AE27] hover:text-white transition-colors">
               Privacy
             </Link>
-            <Link href="/terms" className="text-amber-300 hover:text-white transition-colors">
+            <Link href="/terms" className="text-[#F9AE27] hover:text-white transition-colors">
               Terms
             </Link>
           </nav>
