@@ -363,22 +363,22 @@ export default function SpeedyScholarsLanding() {
   const testimonials = [
     {
       name: "Hanna M.",
-      text: "Mrs. Nidhi is an excellent abacus teacher! My child's confidence in math has grown tremendously, and she now loves solving problems.",
+      text: "My daughter used to dread maths homework. A few months with Mrs. Nidhi and she now solves problems for fun and asks for harder ones. Her confidence is completely different.",
       location: "Parent, USA"
     },
     {
       name: "Tara S.",
-      text: "The abacus classes are fantastic. My daughter not only improved her math skills but also her concentration and problem-solving abilities.",
+      text: "My daughter went from counting on her fingers to doing two-digit sums in her head. Her concentration in school has improved too — her teacher noticed the change.",
       location: "Parent, UK"
     },
     {
       name: "Jordan H.",
-      text: "Speedy Scholars has been a game-changer for my son. Mrs. Nidhi is patient and makes learning fun. His mental calculation skills improved so much!",
+      text: "My son couldn't sit still for ten minutes before. Now he looks forward to class every week and calculates faster than I can on paper. It's been a game-changer.",
       location: "Parent, Australia"
     },
     {
       name: "Joel G.",
-      text: "Mrs. Nidhi brings out the best in every student. My son's mental arithmetic skills have developed rapidly, and he looks forward to class every week.",
+      text: "Within a term my son moved from struggling with basic addition to doing rapid mental arithmetic. Mrs. Nidhi is patient and makes every class something he looks forward to.",
       location: "Parent, India"
     }
   ];
@@ -788,6 +788,34 @@ export default function SpeedyScholarsLanding() {
             {testimonials.map((testimonial, idx) => (
               <TestimonialCard key={idx} {...testimonial} delay={idx * 100} />
             ))}
+          </div>
+
+          {/* Countries strip */}
+          <div className="mt-20 text-center">
+            <p className="text-sm font-semibold tracking-wide text-[#5A2A72] uppercase mb-8">
+              Trusted by families across the world
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 max-w-4xl mx-auto">
+              {[
+                { code: "us", name: "USA" },
+                { code: "gb", name: "UK" },
+                { code: "au", name: "Australia" },
+                { code: "nz", name: "New Zealand" },
+                { code: "ae", name: "Dubai" },
+                { code: "in", name: "India" },
+                { code: "ug", name: "Uganda" },
+                { code: "no", name: "Norway" },
+              ].map((country) => (
+                <div key={country.name} className="flex items-center gap-2.5">
+                  <span
+                    className={`fi fi-${country.code} rounded-sm shadow-sm`}
+                    style={{ width: "2rem", height: "1.5rem", backgroundSize: "cover" }}
+                    aria-hidden="true"
+                  />
+                  <span className="text-base font-medium text-gray-700">{country.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
