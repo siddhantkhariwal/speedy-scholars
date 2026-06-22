@@ -1,8 +1,8 @@
 # Listening Book — Book Notes
 
-Special standalone reference book. **Only book in the curriculum that is
-PORTRAIT A4** (not landscape) — the 4-section format with stacked sections
-A/B/C/D needs vertical space.
+Special standalone reference book. **Landscape A4** (matches all other
+Speedy Scholars books — initial v1 was portrait, corrected on 2026-05-17
+to landscape per user direction).
 
 Reference: UCMAS Listening Exercise Book
 (`reference-pdfs/Listening Book (1-24).pdf` +
@@ -15,12 +15,15 @@ Reference: UCMAS Listening Exercise Book
 Each page is one "Listening Exercise". The teacher reads numbers aloud; the
 student listens and writes only the answers.
 
-Layout (top to bottom):
+Layout (4 sections side-by-side as horizontal bands):
 - Header: "Listening Exercise" + ORAL/WRITTEN tag top-right + time limit
-- **Section A**: 6 columns × 5 rows deep (6 problems, each 5 numbers)
-- **Section B**: 5 columns × 10 rows deep (5 problems, each 10 numbers)
-- **Section C**: 4 columns × 15 rows deep (4 problems, each 15 numbers)
-- **Section D**: 3 columns × 20 rows deep (3 problems, each 20 numbers)
+- **Section A** (leftmost): 6 columns × 5 rows deep — taller cells
+- **Section B**: 5 columns × 10 rows deep
+- **Section C**: 4 columns × 15 rows deep
+- **Section D** (rightmost): 3 columns × 20 rows deep — shorter cells
+
+All four sections share the same vertical band height; deeper sections have
+shorter row heights so the bottom edges align.
 - **Total: 18 problems per page**
 - **Answer Grid (10 cells)**: A, B, C, D, AB, BC, CD, ABC, BCD, ABCD
   - A/B/C/D = answer for each section's combined column totals

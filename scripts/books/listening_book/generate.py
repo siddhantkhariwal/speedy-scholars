@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
 Speedy Scholars — Listening Book Workbook Generator
-PORTRAIT A4 (only book in the curriculum not landscape).
+LANDSCAPE A4 (matches all other Speedy Scholars books).
 50 pages (cover + 49). Teacher reads aloud, student listens and writes
 only the answers in the answer grid.
 
-Per-page format:
-- Section A: 6 cols × 5 deep
+Per-page format (4 sections side-by-side as horizontal bands):
+- Section A: 6 cols × 5 deep   (taller cells, fewer rows)
 - Section B: 5 cols × 10 deep
 - Section C: 4 cols × 15 deep
-- Section D: 3 cols × 20 deep
+- Section D: 3 cols × 20 deep  (shorter cells, more rows)
 - 18 problems total per page
-- 10 answer cells: A, B, C, D, AB, BC, CD, ABC, BCD, ABCD
+- 10 answer cells at bottom: A, B, C, D, AB, BC, CD, ABC, BCD, ABCD
 """
 
 import os, sys, math, random
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.units import mm
 from reportlab.lib.colors import HexColor, white
 from reportlab.pdfgen import canvas
@@ -23,177 +23,147 @@ from reportlab.pdfgen import canvas
 _SHARED = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "_shared"))
 sys.path.insert(0, _SHARED)
 from illustrations import *
+from chrome import (W, H, MARGIN, CW, CH, TF, TH, LOGO_PATH, PUBLIC_DIR,
+                     bg, instr, draw_hdr, draw_footer, page_mascot,
+                     set_book)
 
-# Portrait A4 dimensions (210 × 297 mm)
-W, H = A4
-MARGIN = 14 * mm
-CW = W - 2 * MARGIN
-CH = H - 2 * MARGIN
-
-# Brand colors (re-imported)
-from chrome import LOGO_PATH, PUBLIC_DIR, TF, TH
-
+set_book("Listening Book")
 OUTPUT_PATH = os.path.join(PUBLIC_DIR, "Speedy-Scholars-Listening-Book.pdf")
 BOOK_SEED = 11000
 
 
-# ─── PORTRAIT CHROME (header/footer adapted for portrait) ────────────────
-def bg(c):
-    c.setFillColor(CREAM)
-    c.rect(0, 0, W, H, stroke=0, fill=1)
-
-
-def draw_hdr_portrait(c, title, time_limit, sub=None):
-    y = H - 14 * mm
+# ─── HEADER WITH ORAL/WRITTEN TAG ─────────────────────────────────────────
+def draw_hdr_listening(c, title, time_limit, sub=None):
+    y = H - 16 * mm
     try:
-        c.drawImage(LOGO_PATH, W - MARGIN - 26 * mm, y - 6 * mm, width=24 * mm,
-                    height=12 * mm, preserveAspectRatio=True, mask='auto')
+        c.drawImage(LOGO_PATH, W - MARGIN - 30 * mm, y - 6 * mm, width=28 * mm,
+                    height=14 * mm, preserveAspectRatio=True, mask='auto')
     except Exception:
         pass
-    c.setFont("Helvetica-Bold", 14); c.setFillColor(DARKER_BROWN)
+    c.setFont("Helvetica-Bold", 15); c.setFillColor(DARKER_BROWN)
     c.drawString(MARGIN, y, title)
     if sub:
-        c.setFont("Helvetica", 8); c.setFillColor(BROWN)
-        c.drawString(MARGIN, y - 11, sub)
-    # ORAL / WRITTEN tag top-right (above the logo)
-    tag_w = 38 * mm; tag_h = 14
-    tag_x = W - MARGIN - 28 * mm - tag_w - 4
-    tag_y = y - 2
+        c.setFont("Helvetica", 9); c.setFillColor(BROWN)
+        c.drawString(MARGIN, y - 13, sub)
+    # ORAL / WRITTEN tag top-right (just left of the logo)
+    tag_w = 56 * mm; tag_h = 16
+    tag_x = W - MARGIN - 32 * mm - tag_w
+    tag_y = y - 4
     c.setFillColor(LIGHT_GOLD); c.setStrokeColor(DARKER_BROWN); c.setLineWidth(0.6)
     c.roundRect(tag_x, tag_y, tag_w, tag_h, 3, stroke=1, fill=1)
-    c.setFont("Helvetica-Bold", 8); c.setFillColor(DARKER_BROWN)
-    c.drawCentredString(tag_x + tag_w / 2, tag_y + 3, f"ORAL / WRITTEN  •  {time_limit}")
-    # Gold underline
-    c.setStrokeColor(GOLD); c.setLineWidth(1)
-    ly = y - (14 if sub else 4)
-    c.line(MARGIN, ly, W - MARGIN - 30 * mm, ly)
-    return ly - 4
-
-
-def draw_footer_portrait(c, pn):
-    c.saveState()
-    c.setStrokeColor(LIGHT_GOLD); c.setLineWidth(0.4)
-    c.line(MARGIN, 10 * mm, W - MARGIN, 10 * mm)
-    c.setFont("Helvetica", 6.5); c.setFillColor(BROWN)
-    c.drawString(MARGIN, 7 * mm, "Speedy Scholars - Listening Book")
-    c.drawRightString(W - MARGIN, 7 * mm, str(pn))
-    c.restoreState()
+    c.setFont("Helvetica-Bold", 9); c.setFillColor(DARKER_BROWN)
+    c.drawCentredString(tag_x + tag_w / 2, tag_y + 4,
+                        f"ORAL  /  WRITTEN   •   {time_limit}")
+    c.setStrokeColor(GOLD); c.setLineWidth(1.2)
+    ly = y - (18 if sub else 6)
+    c.line(MARGIN, ly, W - MARGIN - 32 * mm - tag_w - 4, ly)
+    return ly - 6
 
 
 # ─── DATA GENERATION ──────────────────────────────────────────────────────
 def gen_problem(seed, depth, lo, hi, allow_negative=True, signed_prob=0.4):
-    """Generate one problem: a list of `depth` signed numbers."""
+    """Generate one problem: a list of `depth` signed numbers, running sum stays >= 0."""
     random.seed(seed)
     nums = []
     running = 0
     for i in range(depth):
         if i == 0:
-            # Start with a positive number
             v = random.randint(lo, hi)
-            nums.append(v)
-            running = v
+            nums.append(v); running = v
         else:
-            # Pick a number with a sign that keeps running >= 0
             attempts = 0
             while True:
                 sign = random.choice([1, -1]) if (allow_negative and random.random() < signed_prob) else 1
                 mag = random.randint(lo, hi)
                 v = sign * mag
                 if running + v >= 0:
-                    nums.append(v)
-                    running += v
+                    nums.append(v); running += v
                     break
                 attempts += 1
                 if attempts > 20:
-                    # Force a positive number
                     nums.append(mag); running += mag
                     break
     return nums, running
 
 
 def gen_section(pn, section_letter, num_cols, depth, lo, hi, allow_negative=True):
-    """Generate `num_cols` problems for a section. Returns list of (numbers, answer)."""
     section_seed = (pn * 31 + ord(section_letter) * 7 + BOOK_SEED)
     return [gen_problem(section_seed + col * 17, depth, lo, hi,
                         allow_negative=allow_negative)
             for col in range(num_cols)]
 
 
-# ─── SECTION TABLE DRAWING ────────────────────────────────────────────────
-def draw_section(c, x, y, label, columns_data, depth, total_w, total_h):
-    """Draw one section (A/B/C/D) with `len(columns_data)` columns of `depth` rows."""
+# ─── SECTION TABLE DRAWING (vertical band, fills full band height) ───────
+def draw_section_vertical(c, x, y_top, label, columns_data, depth,
+                          band_w, band_h):
+    """
+    Draw one section as a vertical band of `num_cols` problems.
+    Each cell is sized so the section fills the full band height
+    (deeper sections get shorter cells, shallow sections get taller cells).
+    """
     num_cols = len(columns_data)
-    # Left label column + column headers
-    label_w = 14
-    col_w = (total_w - label_w) / num_cols
-    row_h = total_h / (depth + 1)  # +1 for header row
-    hf = 6
+    col_w = band_w / num_cols
+    row_h = band_h / (depth + 1)  # +1 for header row
+    hf = 7
 
-    # Header row (column numbers)
-    hy = y - row_h
-    c.setFillColor(BROWN); c.rect(x, hy, label_w, row_h, stroke=0, fill=1)
-    c.setFillColor(white); c.setFont("Helvetica-Bold", hf)
-    c.drawCentredString(x + label_w / 2, hy + row_h / 2 - 2, label)
+    # Header row across the top with the section label spanning all columns
+    hy = y_top - row_h
+    # Section label band (across full band width)
+    c.setFillColor(BROWN); c.rect(x, hy + row_h - 12, band_w, 12, stroke=0, fill=1)
+    c.setFillColor(white); c.setFont("Helvetica-Bold", 9)
+    c.drawCentredString(x + band_w / 2, hy + row_h - 10, f"Section {label}")
+    # Column numbers row below the section label
+    sub_h = row_h - 12
     for ci in range(num_cols):
-        cx = x + label_w + ci * col_w
-        c.setFillColor(BROWN); c.rect(cx, hy, col_w, row_h, stroke=0, fill=1)
-        c.setFillColor(white); c.setFont("Helvetica-Bold", hf)
-        c.drawCentredString(cx + col_w / 2, hy + row_h / 2 - 2, str(ci + 1))
+        cx = x + ci * col_w
+        c.setFillColor(DARK_BROWN); c.rect(cx, hy, col_w, sub_h, stroke=0, fill=1)
+        c.setFillColor(white); c.setFont("Helvetica-Bold", hf - 1)
+        c.drawCentredString(cx + col_w / 2, hy + sub_h / 2 - 2, str(ci + 1))
 
     # Data rows
     for ri in range(depth):
         ry = hy - (ri + 1) * row_h
-        # Row number label
-        c.setFillColor(LIGHT_GOLD if ri % 2 == 0 else TF)
-        c.rect(x, ry, label_w, row_h, stroke=0, fill=1)
-        c.setStrokeColor(LIGHT_GOLD); c.setLineWidth(0.2)
-        c.rect(x, ry, label_w, row_h, stroke=1, fill=0)
-        c.setFillColor(DARKER_BROWN); c.setFont("Helvetica", hf - 1)
-        c.drawCentredString(x + label_w / 2, ry + row_h / 2 - 2, str(ri + 1))
-
         for ci, (nums, _ans) in enumerate(columns_data):
-            cx = x + label_w + ci * col_w
-            c.setFillColor(TF if ri % 2 == 0 else LIGHT_GOLD)
+            cx = x + ci * col_w
+            c.setFillColor(TF if ri % 2 == 0 else WARM_WHITE)
             c.rect(cx, ry, col_w, row_h, stroke=0, fill=1)
-            c.setStrokeColor(LIGHT_GOLD); c.setLineWidth(0.2)
+            c.setStrokeColor(LIGHT_GOLD); c.setLineWidth(0.25)
             c.rect(cx, ry, col_w, row_h, stroke=1, fill=0)
             if ri < len(nums):
                 v = nums[ri]
+                # Adaptive font size based on cell dimensions
+                fs = min(11, max(6, row_h * 0.45))
                 c.setFillColor(DARKER_BROWN)
-                c.setFont("Helvetica", min(8, row_h * 0.5))
-                c.drawCentredString(cx + col_w / 2, ry + row_h / 2 - 2.5, str(v))
+                c.setFont("Helvetica", fs)
+                c.drawCentredString(cx + col_w / 2,
+                                    ry + row_h / 2 - fs * 0.35, str(v))
 
-    return y - total_h
 
-
-# ─── ANSWER GRID (10 cells) ───────────────────────────────────────────────
+# ─── ANSWER GRID (10 cells: A B C D AB BC CD ABC BCD ABCD) ──────────────
 def draw_answer_grid(c, x, y, total_w, total_h):
-    """Draw the 10-cell answer grid: A B C D AB BC CD ABC BCD ABCD."""
     labels = ["A", "B", "C", "D", "AB", "BC", "CD", "ABC", "BCD", "ABCD"]
     cell_w = total_w / 10
-    cell_h = total_h * 0.5
-    label_h = total_h * 0.3
-
-    # Labels row
+    label_h = total_h * 0.42
+    cell_h = total_h - label_h
+    # Labels row (gold)
     for i, lab in enumerate(labels):
         cx = x + i * cell_w
         c.setFillColor(BROWN); c.rect(cx, y - label_h, cell_w, label_h, stroke=0, fill=1)
-        c.setFillColor(white); c.setFont("Helvetica-Bold", 8)
-        c.drawCentredString(cx + cell_w / 2, y - label_h + 3, lab)
-
+        c.setFillColor(white); c.setFont("Helvetica-Bold", 10)
+        c.drawCentredString(cx + cell_w / 2, y - label_h + 4, lab)
     # Answer cells (empty for student)
     for i in range(10):
         cx = x + i * cell_w
-        c.setFillColor(WARM_WHITE); c.setStrokeColor(DARKER_BROWN); c.setLineWidth(0.6)
+        c.setFillColor(WARM_WHITE); c.setStrokeColor(DARKER_BROWN); c.setLineWidth(0.7)
         c.rect(cx, y - label_h - cell_h, cell_w, cell_h, stroke=1, fill=1)
 
 
 # ─── ONE FULL PAGE ────────────────────────────────────────────────────────
 def page_listen(c, pn, time_limit, lo, hi, allow_negative=True):
     bg(c)
-    y = draw_hdr_portrait(c, "Listening Exercise", time_limit,
-                          sub="Teacher reads each column • Student listens and writes the answer")
-    draw_footer_portrait(c, pn)
+    y = draw_hdr_listening(c, "Listening Exercise", time_limit,
+                           sub="Teacher reads each column • Student listens and writes the answer")
+    draw_footer(c, pn)
 
     # Generate data for sections A, B, C, D
     sec_a = gen_section(pn, "A", 6, 5, lo, hi, allow_negative=allow_negative)
@@ -201,80 +171,84 @@ def page_listen(c, pn, time_limit, lo, hi, allow_negative=True):
     sec_c = gen_section(pn, "C", 4, 15, lo, hi, allow_negative=allow_negative)
     sec_d = gen_section(pn, "D", 3, 20, lo, hi, allow_negative=allow_negative)
 
-    # Layout heights (total height ~ y - 30mm available)
-    avail = y - 18 * mm  # leave 18mm for answer grid
-    # Distribute heights proportionally to depths: 5+10+15+20 = 50
-    # Plus 1 header row per section = 4 header rows extra
-    total_units = 5 + 10 + 15 + 20 + 4
-    unit_h = avail / total_units
-    section_heights = [(5 + 1) * unit_h, (10 + 1) * unit_h,
-                        (15 + 1) * unit_h, (20 + 1) * unit_h]
+    # Vertical layout: sections side-by-side as horizontal bands across the page
+    # Width distribution proportional to column count (A=6, B=5, C=4, D=3) = 18 total
+    total_cols = 18
+    section_widths = [(6 / total_cols) * CW, (5 / total_cols) * CW,
+                       (4 / total_cols) * CW, (3 / total_cols) * CW]
 
-    # Draw sections
-    cur_y = y
-    for sec_label, sec_data, depth, sec_h in [
-            ("A", sec_a, 5, section_heights[0]),
-            ("B", sec_b, 10, section_heights[1]),
-            ("C", sec_c, 15, section_heights[2]),
-            ("D", sec_d, 20, section_heights[3])]:
-        cur_y = draw_section(c, MARGIN, cur_y, sec_label, sec_data, depth,
-                             CW, sec_h)
-        cur_y -= 2  # small gap
+    # Layout: 4 section bands fill the upper area, answer grid sits above the footer.
+    # Footer line is at 13mm; reserve ~24mm above that for the answer grid + gap.
+    ans_grid_h = 24            # total height of labels + cells
+    ans_grid_top = 14 * mm + ans_grid_h + 4   # ~75pt from bottom of page
+    band_top = y
+    band_bot = ans_grid_top + 8   # 8pt gap between sections and answer grid
+    band_h = band_top - band_bot
 
-    # Answer grid at bottom
-    ans_y = 14 * mm + 16
-    draw_answer_grid(c, MARGIN, ans_y, CW, 14)
+    # Draw the 4 sections horizontally (side-by-side)
+    cur_x = MARGIN
+    for label, sec_data, depth, sec_w in [
+            ("A", sec_a, 5, section_widths[0]),
+            ("B", sec_b, 10, section_widths[1]),
+            ("C", sec_c, 15, section_widths[2]),
+            ("D", sec_d, 20, section_widths[3])]:
+        draw_section_vertical(c, cur_x, band_top, label, sec_data, depth,
+                              sec_w, band_h)
+        cur_x += sec_w
+
+    # Answer grid above the footer
+    draw_answer_grid(c, MARGIN, ans_grid_top, CW, ans_grid_h)
 
 
 # ─── COVER ────────────────────────────────────────────────────────────────
 def page_cover(c):
     bg(c)
     c.setStrokeColor(GOLD); c.setLineWidth(3)
-    c.roundRect(10 * mm, 10 * mm, W - 20 * mm, H - 20 * mm, 8, stroke=1, fill=0)
+    c.roundRect(12 * mm, 12 * mm, W - 24 * mm, H - 24 * mm, 8, stroke=1, fill=0)
     c.setStrokeColor(LIGHT_GOLD); c.setLineWidth(1)
-    c.roundRect(13 * mm, 13 * mm, W - 26 * mm, H - 26 * mm, 6, stroke=1, fill=0)
-    draw_bead_bird(c, 30 * mm, H - 30 * mm, 28, GOLD, "right", "happy", hat="graduation")
-    draw_bead_bird(c, W - 30 * mm, H - 30 * mm, 26, BROWN, "left", "wink", hat="graduation")
-    draw_bead_bird(c, 30 * mm, 40 * mm, 24, LIGHT_GOLD, "right", "surprised")
-    draw_bead_bird(c, W - 30 * mm, 40 * mm, 26, GOLD, "left", "happy", action="waving")
-    for i in range(12):
+    c.roundRect(15 * mm, 15 * mm, W - 30 * mm, H - 30 * mm, 6, stroke=1, fill=0)
+    draw_bead_bird(c, 55 * mm, H - 40 * mm, 32, GOLD, "right", "happy", hat="graduation")
+    draw_bead_bird(c, W - 55 * mm, H - 40 * mm, 30, BROWN, "left", "wink", hat="graduation")
+    draw_bead_bird(c, 45 * mm, 50 * mm, 28, LIGHT_GOLD, "right", "surprised")
+    draw_bead_bird(c, W - 50 * mm, 55 * mm, 30, GOLD, "left", "happy", action="waving")
+    for i in range(15):
         random.seed(i + 1800)
-        draw_star(c, random.uniform(20 * mm, W - 20 * mm),
-                  random.uniform(20 * mm, H - 20 * mm),
-                  3 + random.random() * 3, LIGHT_GOLD)
+        draw_star(c, random.uniform(25 * mm, W - 25 * mm),
+                  random.uniform(25 * mm, H - 25 * mm),
+                  3 + random.random() * 4, LIGHT_GOLD)
     try:
-        c.drawImage(LOGO_PATH, (W - 80 * mm) / 2, H - 95 * mm, width=80 * mm,
-                    height=45 * mm, preserveAspectRatio=True, mask='auto')
+        c.drawImage(LOGO_PATH, (W - 100 * mm) / 2, H - 90 * mm, width=100 * mm,
+                    height=55 * mm, preserveAspectRatio=True, mask='auto')
     except Exception:
         pass
-    c.setFont("Helvetica-Bold", 32); c.setFillColor(DARKER_BROWN)
-    c.drawCentredString(W / 2, H - 125 * mm, "LISTENING BOOK")
-    c.setFont("Helvetica", 13); c.setFillColor(GOLD)
-    c.drawCentredString(W / 2, H - 138 * mm, "Oral & Written Exercises")
-    c.setFont("Helvetica-Oblique", 10); c.setFillColor(BROWN)
-    c.drawCentredString(W / 2, H - 152 * mm,
+    c.setFont("Helvetica-Bold", 42); c.setFillColor(DARKER_BROWN)
+    c.drawCentredString(W / 2, H - 115 * mm, "LISTENING  BOOK")
+    c.setFont("Helvetica", 16); c.setFillColor(GOLD)
+    c.drawCentredString(W / 2, H - 130 * mm, "Oral & Written Exercises")
+    c.setFont("Helvetica-Oblique", 11); c.setFillColor(BROWN)
+    c.drawCentredString(W / 2, H - 144 * mm,
                         "Teacher reads • Student listens • Student writes")
     c.setStrokeColor(GOLD); c.setLineWidth(2)
-    c.line(W / 2 - 65 * mm, H - 162 * mm, W / 2 + 65 * mm, H - 162 * mm)
+    c.line(W / 2 - 80 * mm, H - 154 * mm, W / 2 + 80 * mm, H - 154 * mm)
 
-    iw = 140 * mm; iy = H - 230 * mm
+    iw = 180 * mm; iy = 32 * mm
     c.setFillColor(WARM_WHITE); c.setStrokeColor(GOLD); c.setLineWidth(1)
-    c.roundRect((W - iw) / 2, iy, iw, 50 * mm, 5, stroke=1, fill=1)
+    c.roundRect((W - iw) / 2, iy, iw, 42 * mm, 5, stroke=1, fill=1)
     c.setFont("Helvetica-Bold", 11); c.setFillColor(DARKER_BROWN)
-    c.drawCentredString(W / 2, iy + 42 * mm, "Student Information")
+    c.drawCentredString(W / 2, iy + 34 * mm, "Student Information")
     for i, f in enumerate(["Name:", "Level:", "Date:"]):
-        fy = iy + 30 * mm - i * 12 * mm
+        fy = iy + 22 * mm - i * 10 * mm
         c.setFont("Helvetica-Bold", 10); c.setFillColor(BROWN)
-        c.drawString((W - iw) / 2 + 8, fy, f)
+        c.drawString((W - iw) / 2 + 10, fy, f)
         c.setStrokeColor(LIGHT_GOLD); c.setDash(1, 2)
-        c.line((W - iw) / 2 + 30 * mm, fy - 2, (W + iw) / 2 - 8, fy - 2); c.setDash()
+        c.line((W - iw) / 2 + 35 * mm, fy - 2, (W + iw) / 2 - 10, fy - 2); c.setDash()
     c.setFont("Helvetica", 9); c.setFillColor(BROWN)
     c.drawCentredString(W / 2, 18 * mm, "www.speedyscholars.com")
 
 
 # ─── MAIN ────────────────────────────────────────────────────────────────
 def main():
-    c = canvas.Canvas(OUTPUT_PATH, pagesize=A4)  # PORTRAIT
+    c = canvas.Canvas(OUTPUT_PATH, pagesize=landscape(A4))
     page_cover(c); c.showPage()
 
     # p1-10: Beginner — single digit, mostly +
@@ -302,13 +276,13 @@ def main():
         page_listen(c, pn, "3 Mins", lo=100, hi=999, allow_negative=True)
         c.showPage()
 
-    # p49: Final mastery (mixed difficulties — use 2-digit medium time)
+    # p49: Final mastery (medium difficulty for assessment)
     page_listen(c, 49, "5 Mins", lo=10, hi=99, allow_negative=True)
     c.showPage()
 
     c.save()
     print(f"PDF generated: {OUTPUT_PATH}")
-    print("Total pages: 50 (cover + 49) — PORTRAIT A4")
+    print("Total pages: 50 (cover + 49) — LANDSCAPE A4")
 
 
 if __name__ == "__main__":
