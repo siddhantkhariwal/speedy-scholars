@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
               We may collect personal information that you voluntarily provide to us when you:
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-6">
-              <li>Book a demo class through our Calendly integration</li>
+              <li>Book a demo class through our Cal.com integration</li>
               <li>Contact us via email, phone, or WhatsApp</li>
               <li>Subscribe to our newsletter or communications</li>
               <li>Register for our abacus classes</li>
@@ -133,9 +133,9 @@ export default function PrivacyPolicyPage() {
               </div>
 
               <div className="bg-stone-50 p-4 rounded-xl">
-                <h4 className="font-bold text-gray-900 mb-2">Calendly</h4>
+                <h4 className="font-bold text-gray-900 mb-2">Cal.com</h4>
                 <p className="text-gray-600 text-sm">
-                  We use Calendly for scheduling demo classes. When you book a class, Calendly collects your name, email, and selected time slot.
+                  We use Cal.com for scheduling demo classes. When you book a class, Cal.com collects your name, email, and selected time slot.
                 </p>
               </div>
 

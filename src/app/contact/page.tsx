@@ -311,7 +311,7 @@ export default function ContactPage() {
                 },
                 {
                   q: "Is there a free trial available?",
-                  a: "Yes! We offer a FREE 45-minute demo class so you can experience our teaching methodology firsthand before making any commitment."
+                  a: "Yes! We offer a FREE 30-minute demo class so you can experience our teaching methodology firsthand before making any commitment."
                 }
               ].map((faq, idx) => (
                 <div key={idx} className="bg-white p-6 rounded-2xl shadow-lg">

@@ -502,7 +502,7 @@ export default function AboutPage() {
               href="/#pricing"
               className="inline-block font-bold px-10 py-5 rounded-full text-xl transition-all text-white shadow-lg hover:shadow-xl hover:scale-105"
               style={{ backgroundColor: "#5A2A72" }}
-              aria-label="Book your free 45-minute demo class"
+              aria-label="Book your free 30-minute demo class"
             >
               Book Your FREE Demo Class
             </Link>

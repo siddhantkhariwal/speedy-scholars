@@ -315,7 +315,7 @@ export default function BlogPostPage({ params }: Props) {
             Book Your FREE Demo Class
           </h2>
           <p className="text-stone-600 mb-6">
-            See the difference expert abacus training makes. 45 minutes, completely free, no
+            See the difference expert abacus training makes. 30 minutes, completely free, no
             commitment required.
           </p>
           <Link

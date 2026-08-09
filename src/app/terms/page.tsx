@@ -231,7 +231,7 @@ export default function TermsOfServicePage() {
               <li>Technical issues or internet connectivity problems</li>
               <li>Indirect, incidental, or consequential damages</li>
               <li>Loss of data or materials</li>
-              <li>Third-party actions or services (e.g., Calendly, payment processors)</li>
+              <li>Third-party actions or services (e.g., Cal.com, payment processors)</li>
             </ul>
             <p className="text-gray-600 leading-relaxed mt-4">
               Our total liability for any claim arising from these Terms shall not exceed the amount paid for the specific class or service in question.

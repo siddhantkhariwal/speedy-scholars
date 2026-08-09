@@ -6,26 +6,48 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCurrency, CurrencySelector } from '@/contexts/CurrencyContext';
 
-// Calendly Modal with iframe embed
+// Cal.com booking modal. The iframe is prewarmed in the background shortly
+// after the page goes idle, so clicking "Book Demo" reveals an already-loaded
+// calendar instantly instead of paying a 4-5s cold load on every click.
 function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [shouldMount, setShouldMount] = useState(false);
 
+  // Prewarm the iframe during idle time after the page loads.
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      setIsLoading(true);
-    } else {
-      document.body.style.overflow = 'unset';
+    const warm = () => setShouldMount(true);
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    if (typeof w.requestIdleCallback === 'function') {
+      const id = w.requestIdleCallback(warm, { timeout: 3000 });
+      return () => w.cancelIdleCallback?.(id);
     }
+    const t = setTimeout(warm, 2000);
+    return () => clearTimeout(t);
+  }, []);
+
+  // If the user clicks before the idle prewarm fired, mount immediately.
+  useEffect(() => {
+    if (isOpen) setShouldMount(true);
+  }, [isOpen]);
+
+  // Lock body scroll only while the modal is visible.
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div
+      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-300 ${
+        isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+      aria-hidden={!isOpen}
+    >
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -33,7 +55,7 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       />
 
       {/* Modal */}
-      <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 h-[90vh] flex flex-col">
+      <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden h-[90vh] flex flex-col">
         {/* Header */}
         <div className="bg-gradient-to-r from-[#5A2A72] to-[#3F1D50] px-6 py-4 flex items-center justify-between flex-shrink-0">
           <div>
@@ -48,7 +70,7 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           </button>
         </div>
 
-        {/* Calendly Embed via iframe */}
+        {/* Cal.com Embed via iframe (prewarmed) */}
         <div className="flex-1 relative bg-white">
           {/* Loading State */}
           {isLoading && (
@@ -59,15 +81,17 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               </div>
             </div>
           )}
-          <iframe
-            src="https://calendly.com/nidhikhariwal2012/30min?hide_gdpr_banner=1"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            title="Schedule a demo class"
-            className="w-full h-full"
-            onLoad={() => setIsLoading(false)}
-          />
+          {shouldMount && (
+            <iframe
+              src="https://cal.com/nidhi-khariwal/free-demo-30-min?theme=light"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              title="Schedule a demo class"
+              className="w-full h-full"
+              onLoad={() => setIsLoading(false)}
+            />
+          )}
         </div>
       </div>
     </div>
@@ -724,7 +748,7 @@ export default function SpeedyScholarsLanding() {
               price="FREE"
               description="Perfect for trying out our teaching style"
               features={[
-                "45-minute session",
+                "30-minute session",
                 "Meet your instructor",
                 "Assess current skill level",
                 "Get personalized recommendations",

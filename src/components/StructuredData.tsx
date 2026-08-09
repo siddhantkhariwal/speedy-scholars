@@ -84,7 +84,7 @@ export function CourseSchema() {
         price: "0",
         priceCurrency: "INR",
         availability: "https://schema.org/InStock",
-        description: "45-minute introductory session",
+        description: "30-minute introductory session",
       },
       {
         "@type": "Offer",
@@ -163,7 +163,7 @@ export function FAQSchema() {
         name: "Do you offer a free trial class?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes! We offer a free 45-minute demo class where you can experience our teaching style and see if it's a good fit for your child. Book your free demo on our website.",
+          text: "Yes! We offer a free 30-minute demo class where you can experience our teaching style and see if it's a good fit for your child. Book your free demo on our website.",
         },
       },
     ],

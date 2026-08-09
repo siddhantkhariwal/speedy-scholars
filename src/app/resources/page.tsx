@@ -505,7 +505,7 @@ export default function ResourcesPage() {
             Want Personalised Guidance?
           </h2>
           <p className="text-[#F9AE27] text-xl mb-10">
-            Every child is different. Book a FREE 45-minute demo class and let our expert instructor
+            Every child is different. Book a FREE 30-minute demo class and let our expert instructor
             Nidhi Khariwal assess your child&apos;s individual needs and create a personalised
             learning plan.
           </p>

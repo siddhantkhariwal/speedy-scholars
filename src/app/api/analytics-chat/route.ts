@@ -30,7 +30,7 @@ GSC — Last 28 Days:
 - Quick wins (pos 4-15): ${gsc.quickWins.map((q: {query: string; impressions: number; position: number}) => `"${q.query}" pos ${q.position.toFixed(1)}, ${q.impressions} impr`).join("; ")}
 
 Business context:
-- Free 45-min demo booking is the main CTA
+- Free 30-min demo booking is the main CTA
 - No paid ads running
 - Target: USA, UK, Australia, NZ, Indian diaspora
 - Only 1 blog post getting meaningful organic traffic so far

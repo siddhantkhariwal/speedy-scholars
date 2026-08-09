@@ -278,7 +278,7 @@ export default function BlogPage() {
             Ready to Transform Your Child&apos;s Math Skills?
           </h2>
           <p className="text-[#F9AE27] text-lg mb-8">
-            Book a FREE 45-minute demo class and experience the Speedy Scholars difference. No
+            Book a FREE 30-minute demo class and experience the Speedy Scholars difference. No
             commitment required.
           </p>
           <Link

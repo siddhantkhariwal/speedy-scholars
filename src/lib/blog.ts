@@ -147,7 +147,7 @@ The benefits of abacus training are not reserved for mathematically gifted child
 
 At Speedy Scholars, our award-winning instructor Nidhi Khariwal has guided over 2,000 children worldwide through this transformative journey. With 20+ years of experience, 15+ awards, and 50+ competition champions, we bring world-class abacus education directly to your home through live online classes.
 
-**Ready to see the difference abacus training can make?** [Book your FREE 45-minute demo class today](/) and let your child experience the joy of mental math mastery. There is no commitment, no pressure — just an opportunity to discover what is possible.
+**Ready to see the difference abacus training can make?** [Book your FREE 30-minute demo class today](/) and let your child experience the joy of mental math mastery. There is no commitment, no pressure — just an opportunity to discover what is possible.
 
 ---
 
@@ -312,7 +312,7 @@ The age at which you start matters far less than the consistency and quality of 
 
 ## Book Your Free Demo Class
 
-The best way to know if abacus training is right for your child is to experience it firsthand. At Speedy Scholars, we offer a completely free 45-minute demo class for every new student.
+The best way to know if abacus training is right for your child is to experience it firsthand. At Speedy Scholars, we offer a completely free 30-minute demo class for every new student.
 
 During the demo, our lead instructor Nidhi Khariwal will assess your child's current level, demonstrate how abacus learning works, and give you a clear picture of what to expect. There is no commitment and no pressure.
 
@@ -511,7 +511,7 @@ If these techniques have given you a taste of what structured mental math educat
 
 At Speedy Scholars, our expert instructor Nidhi Khariwal teaches these strategies in an integrated, systematic way that builds deep mathematical intuition. With 20+ years of experience and over 2,000 students taught, we know exactly how to make mental math click for every child.
 
-**[Book a FREE 45-minute demo class](/)** and let your child experience the difference structured abacus training makes. No commitment, no pressure — just real learning and real results.
+**[Book a FREE 30-minute demo class](/)** and let your child experience the difference structured abacus training makes. No commitment, no pressure — just real learning and real results.
 
 ---
 
@@ -673,7 +673,7 @@ Children who develop this capacity early carry a profound advantage through scho
 
 If you would like to see what structured concentration training through abacus education looks like, we invite you to book a free demo class at Speedy Scholars.
 
-Our lead instructor Nidhi Khariwal — with 20+ years of experience and a track record of transforming students' academic lives — will work with your child in a live, interactive 45-minute session. You will see firsthand how engaging and effective this approach is.
+Our lead instructor Nidhi Khariwal — with 20+ years of experience and a track record of transforming students' academic lives — will work with your child in a live, interactive 30-minute session. You will see firsthand how engaging and effective this approach is.
 
 **[Book your FREE demo class today](/)** — no commitment, no pressure, just an opportunity to discover what your child is truly capable of.
 
@@ -826,7 +826,7 @@ If you would like to see the difference structured abacus training makes, we inv
 
 At Speedy Scholars, our lead instructor Nidhi Khariwal has spent 20+ years helping children aged 5-14 develop the mental capabilities that set them apart academically and personally. With over 2,000 students taught worldwide and 15+ industry awards, we offer world-class abacus education delivered through live online classes.
 
-**[Book your FREE 45-minute demo class](/)** and discover what becomes possible when your child's mind is truly developed — not just assisted.
+**[Book your FREE 30-minute demo class](/)** and discover what becomes possible when your child's mind is truly developed — not just assisted.
 
 ---
 

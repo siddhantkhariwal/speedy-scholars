@@ -37,7 +37,7 @@ ${gsc.quickWins.map((q: {query: string; impressions: number; position: number}) 
 Business context:
 - Online abacus tutoring, founder Nidhi Khariwal, 20+ years experience
 - Target markets: USA, UK, Australia, NZ, Indian diaspora
-- Free 45-min demo booking via Calendly is the main CTA
+- Free 30-min demo booking via Cal.com is the main CTA
 - Site: speedyscholars.com (Next.js, deployed on Vercel)
 - No paid ads running currently
 - Only 1 blog post is getting meaningful search impressions

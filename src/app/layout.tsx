@@ -148,12 +148,9 @@ export default function RootLayout({
         <HomePageStructuredData />
 
         {/* Preconnect to external domains for better performance */}
-        <link rel="preconnect" href="https://calendly.com" />
-        <link rel="preconnect" href="https://assets.calendly.com" />
-        <link rel="dns-prefetch" href="https://calendly.com" />
-
-        {/* Calendly Widget */}
-        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <link rel="preconnect" href="https://cal.com" />
+        <link rel="preconnect" href="https://app.cal.com" />
+        <link rel="dns-prefetch" href="https://cal.com" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
