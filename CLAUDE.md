@@ -62,7 +62,7 @@ Text grey (body):  #3A313F
 ### Pricing (multi-currency)
 | Tier | INR | USD | GBP | AUD |
 |------|-----|-----|-----|-----|
-| Free Demo (45 min) | FREE | FREE | FREE | FREE |
+| Free Demo (30 min) | FREE | FREE | FREE | FREE |
 | Pay-As-You-Go | ₹1,600 | $20 | £15 | A$30 |
 | 10-Class Pack | ₹12,500 | $150 | £120 | A$230 |
 
