@@ -12,7 +12,7 @@ Built with Next.js 14 App Router, deployed on Vercel, auto-deploys on push to `m
 - **Styling:** Tailwind CSS — no separate CSS files, inline styles only for brand colours
 - **Animations:** Framer Motion (only on "use client" pages)
 - **Icons:** Lucide React
-- **Booking:** Calendly embed (iframe modal)
+- **Booking:** Cal.com embed (iframe modal, prewarmed on idle) — `nidhi-khariwal/free-demo-30-min`, free plan. Migrated off Calendly Aug 2026. Reminder workflows (24h + 1h) live in Cal.com; bookings forward to Siddhant via a Gmail `@cal.com` filter.
 - **Analytics:** Google Analytics 4 — ID: G-KYY9RC30T9
 - **Currency:** Custom CurrencyContext with auto-detection via ipapi.co
 - **Deployment:** Vercel (GitHub auto-deploy on push to main)
@@ -156,7 +156,7 @@ Then update `src/app/sitemap.ts` — it auto-pulls slugs from blog.ts so no chan
 ---
 
 ## GA4 Event Tracking
-Book Demo button clicks are tracked via `openCalendly(location)` in page.tsx.
+Book Demo button clicks are tracked via `openCalendly(location)` in page.tsx (function name kept from the Calendly era for GA4 label continuity — it now opens the Cal.com modal).
 Location labels in use: `navbar`, `mobile_menu`, `hero`, `instructor_section`,
 `pricing_free_demo`, `pricing_10class`, `pricing_payg`, `cta_section`
 
