@@ -227,16 +227,22 @@ git push origin main  # Triggers Vercel auto-deploy
 
 ---
 
-## Platforms We're On (Tutoring Marketplaces)
+## Platforms We're On (Tutoring Marketplaces) — DEPRIORITISED (Aug 2026)
+**Marketplaces are no longer a growth priority.** We are listed on Superprof, Preply,
+TutorOcean and Fiverr and they send almost no traffic — marketplace discovery has fallen
+off since AI search took over. By contrast **our own website has converted 2 paying
+clients**. Own-site SEO/AEO/GEO is the growth focus; do not propose new marketplace
+listings as a growth lever.
+
 | Platform | Status | Notes |
 |----------|--------|-------|
-| Superprof | ✅ Listed | Already active |
-| Preply | 🔲 Todo | Top priority — USA/UK/AU reach |
-| TutorOcean | 🔲 Todo | Has abacus category |
-| Classgap | 🔲 Todo | UK/Europe |
-| TeacherOn | 🔲 Todo | Global, free |
-| UrbanPro | 🔲 Todo | Indian diaspora |
-| Fiverr | 🔲 Todo | Low competition niche |
+| Superprof | ✅ Listed | Live, negligible traffic |
+| Preply | ✅ Listed | Live, negligible traffic |
+| TutorOcean | ✅ Listed | Live, negligible traffic |
+| Fiverr | ✅ Listed | Live, negligible traffic |
+| Classgap | ➖ Not pursuing | Deprioritised with all marketplaces |
+| TeacherOn | ➖ Not pursuing | Deprioritised with all marketplaces |
+| UrbanPro | ➖ Not pursuing | Deprioritised with all marketplaces |
 | Wyzant | ❌ Ineligible | US residency + SSN required |
 | Tutor.com | ❌ Ineligible | US only |
 | Varsity Tutors | ❌ Ineligible | US only |
