@@ -245,6 +245,44 @@ export function SiteWideStructuredData() {
   return <LocalBusinessSchema />;
 }
 
+/**
+ * Author/instructor entity for Nidhi Khariwal. Rendered on /about, which is
+ * the URL every BlogPosting's author field points at, so search and answer
+ * engines can resolve the person behind the content (E-E-A-T).
+ */
+export function PersonSchema() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://www.speedyscholars.com/about#nidhi-khariwal",
+    name: "Nidhi Khariwal",
+    url: "https://www.speedyscholars.com/about",
+    jobTitle: "Founder and Lead Instructor",
+    description:
+      "Abacus and mental arithmetic educator with over 20 years of teaching experience. Has taught more than 2,000 students worldwide and coached 50+ competition winners.",
+    knowsAbout: [
+      "Abacus",
+      "Mental arithmetic",
+      "Mental math for children",
+      "Soroban technique",
+      "Early years numeracy",
+    ],
+    knowsLanguage: ["English", "Hindi"],
+    worksFor: {
+      "@type": "EducationalOrganization",
+      name: "Speedy Scholars",
+      url: "https://www.speedyscholars.com",
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  );
+}
+
 interface BlogPostingSchemaProps {
   title: string;
   description: string;

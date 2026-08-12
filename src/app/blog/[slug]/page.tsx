@@ -290,7 +290,12 @@ export default function BlogPostPage({ params }: Props) {
               className="rounded-full object-cover"
             />
             <div>
-              <p className="font-semibold text-stone-800">{post.author}</p>
+              <Link
+                href="/about"
+                className="font-semibold text-stone-800 hover:text-[#5A2A72] transition-colors"
+              >
+                {post.author}
+              </Link>
               <p className="text-stone-500 text-sm">{post.authorTitle}</p>
             </div>
             <div className="ml-auto text-right text-sm text-stone-500">

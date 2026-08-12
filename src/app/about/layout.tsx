@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { PersonSchema } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: { absolute: "About Speedy Scholars | Nidhi Khariwal - Expert Abacus Educator" },
@@ -33,5 +34,10 @@ export const metadata: Metadata = {
 };
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <PersonSchema />
+      {children}
+    </>
+  );
 }
