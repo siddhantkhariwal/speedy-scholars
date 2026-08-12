@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Free Resources for Parents | Mental Math Tips & Abacus Guide | Speedy Scholars",
+  title: { absolute: "Free Resources for Parents | Mental Math Tips & Abacus Guide | Speedy Scholars" },
   description:
     "Free educational resources for parents: 10 mental math tricks for kids, how to choose the right abacus, and practice tips to support your child at home.",
   keywords: [

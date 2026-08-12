@@ -4,7 +4,7 @@ import Image from "next/image";
 import { blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Abacus & Mental Math Blog | Expert Tips for Parents | Speedy Scholars",
+  title: { absolute: "Abacus & Mental Math Blog | Expert Tips for Parents | Speedy Scholars" },
   description:
     "Explore expert articles on abacus training, mental math tips, brain development, and how to support your child's mathematical journey. Written by award-winning educator Nidhi Khariwal.",
   keywords: [

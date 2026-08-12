@@ -17,7 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
 
   return {
-    title: post.metaTitle,
+    // absolute bypasses the root layout's "%s | Speedy Scholars" template —
+    // metaTitle already ends in the brand, so this prevents a doubled suffix.
+    title: { absolute: post.metaTitle },
     description: post.metaDescription,
     keywords: post.tags,
     authors: [{ name: post.author }],

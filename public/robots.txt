@@ -1,5 +1,5 @@
 # Robots.txt for Speedy Scholars
-# https://speedyscholars.com
+# https://www.speedyscholars.com
 
 User-agent: *
 Allow: /
@@ -10,7 +10,7 @@ Disallow: /_next/
 Disallow: /private/
 
 # Sitemap location
-Sitemap: https://speedyscholars.com/sitemap.xml
+Sitemap: https://www.speedyscholars.com/sitemap.xml
 
 # Crawl delay (optional - be nice to servers)
 Crawl-delay: 1

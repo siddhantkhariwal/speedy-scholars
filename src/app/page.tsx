@@ -13,19 +13,26 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
   const [isLoading, setIsLoading] = useState(true);
   const [shouldMount, setShouldMount] = useState(false);
 
-  // Prewarm the iframe during idle time after the page loads.
+  // Prewarm the Cal.com iframe on the first sign of user engagement (or after a
+  // 5s fallback), rather than immediately on load. This keeps ~0.7MB of Cal.com
+  // JS off the critical initial render — better LCP/TBT — while still having the
+  // calendar ready before almost anyone clicks Book Demo.
   useEffect(() => {
-    const warm = () => setShouldMount(true);
-    const w = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
+    let warmed = false;
+    const events = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'mousemove'];
+    const warm = () => {
+      if (warmed) return;
+      warmed = true;
+      events.forEach((e) => window.removeEventListener(e, warm));
+      clearTimeout(timer);
+      setShouldMount(true);
     };
-    if (typeof w.requestIdleCallback === 'function') {
-      const id = w.requestIdleCallback(warm, { timeout: 3000 });
-      return () => w.cancelIdleCallback?.(id);
-    }
-    const t = setTimeout(warm, 2000);
-    return () => clearTimeout(t);
+    events.forEach((e) => window.addEventListener(e, warm, { passive: true }));
+    const timer = setTimeout(warm, 5000);
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, warm));
+      clearTimeout(timer);
+    };
   }, []);
 
   // If the user clicks before the idle prewarm fired, mount immediately.
@@ -470,6 +477,8 @@ export default function SpeedyScholarsLanding() {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
               className={`md:hidden p-2 rounded-lg ${isScrolled ? 'text-gray-700' : 'text-white'}`}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -525,6 +534,8 @@ export default function SpeedyScholarsLanding() {
           loop
           muted
           playsInline
+          preload="metadata"
+          poster="/images/abacus-hero-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/images/abacusVideo.mp4" type="video/mp4" />
@@ -939,7 +950,7 @@ export default function SpeedyScholarsLanding() {
             </div>
           </div>
 
-          <div className="border-t border-[#E5DCEC] pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-[#8A8294]">
+          <div className="border-t border-[#E5DCEC] pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-[#635B70]">
             <p>&copy; 2026 Speedy Scholars. All rights reserved.</p>
             <div className="flex gap-6 mt-4 md:mt-0">
               <Link href="/privacy" className="hover:text-[#5A2A72] transition-colors">Privacy Policy</Link>
