@@ -1,4 +1,4 @@
-# Speedy Scholars — Claude Code Instructions
+# Speedy Scholars: Claude Code Instructions
 
 ## What This Project Is
 Online abacus tutoring business website. LIVE at https://www.speedyscholars.com
@@ -9,41 +9,42 @@ Built with Next.js 14 App Router, deployed on Vercel, auto-deploys on push to `m
 
 ## Tech Stack
 - **Framework:** Next.js 14.2.13 (App Router, TypeScript)
-- **Styling:** Tailwind CSS — no separate CSS files, inline styles only for brand colours
+- **Styling:** Tailwind CSS, no separate CSS files, inline styles only for brand colours
 - **Animations:** Framer Motion (only on "use client" pages)
 - **Icons:** Lucide React
-- **Booking:** Cal.com embed (iframe modal, prewarmed on idle) — `nidhi-khariwal/free-demo-30-min`, free plan. Migrated off Calendly Aug 2026. Reminder workflows (24h + 1h) live in Cal.com; bookings forward to Siddhant via a Gmail `@cal.com` filter.
-- **Analytics:** Google Analytics 4 — ID: G-KYY9RC30T9
+- **Booking:** Cal.com embed (iframe modal, prewarmed on idle), `nidhi-khariwal/free-demo-30-min`, free plan. Migrated off Calendly Aug 2026. Reminder workflows (24h + 1h) live in Cal.com; bookings forward to Siddhant via a Gmail `@cal.com` filter.
+- **Analytics:** Google Analytics 4, ID: G-KYY9RC30T9
 - **Currency:** Custom CurrencyContext with auto-detection via ipapi.co
 - **Deployment:** Vercel (GitHub auto-deploy on push to main)
 
 ---
 
-## Brand Guidelines — Never Deviate From These
+## Brand Guidelines (Never Deviate From These)
 
-### Colours (Owl Rebrand — purple + gold, June 2026)
+### Colours (Owl Rebrand: purple + gold, June 2026)
 ```
-Purple (primary):  #5A2A72   — headings, buttons, nav, primary brand
-Purple dark:       #3F1D50   — button hover/active, dark sections
-Purple darker:     #32173F   — emphasis/heading text, text on gold
-Purple hover:      #6B3486   — lighter purple hover accent
-Gold (accent):     #F9AE27   — highlights, accents, gold buttons (with DARK text)
-Gold dark:         #CA8406   — gold TEXT on white, gold-button hover
-Navy (deep):       #42465D   — secondary dark / from the logo cap
-Cream bg:          #F8F5F9   — soft section + footer background
-Light purple tint: #EFE7F3   — gradient ends, subtle tints
+Purple (primary):  #5A2A72   headings, buttons, nav, primary brand
+Purple dark:       #3F1D50   button hover/active, dark sections
+Purple darker:     #32173F   emphasis/heading text, text on gold
+Purple hover:      #6B3486   lighter purple hover accent
+Gold (accent):     #F9AE27   highlights, accents, gold buttons (with DARK text)
+Gold dark:         #CA8406   gold TEXT on white, gold-button hover
+Navy (deep):       #42465D   secondary dark / from the logo cap
+Cream bg:          #F8F5F9   soft section + footer background
+Light purple tint: #EFE7F3   gradient ends, subtle tints
 Text grey (body):  #3A313F
 ```
 
-### Colour Rules — CRITICAL
+### Colour Rules (CRITICAL)
 - **Gold #F9AE27 is UNREADABLE as text on white** (WCAG fail, 1.89:1). For gold-coloured text use Gold dark #CA8406. Gold #F9AE27 is for accents/highlights and as a BUTTON BACKGROUND with dark text (#32173F), never `text-white` on gold.
 - **The logo needs a LIGHT background.** Purple "Scholars" disappears on dark/purple. Dark navs wrap the logo in a white/cream rounded band; the footer is cream so the logo sits directly.
 - No green (old #556B2F olive is fully gone). No brown (#8B6F47 family fully replaced June 2026).
 
 ### Rules
 - **No emojis** anywhere in website pages (docs/markdown files are fine)
+- **No em dashes anywhere**, in site copy, docs or commit messages. Use commas, colons or two sentences. Em dashes read as AI-written.
 - Font: Arial / Geist Sans (system default via Next.js)
-- Tone: Professional, warm, trustworthy, educational — never salesy or gimmicky
+- Tone: Professional, warm, trustworthy, educational, never salesy or gimmicky
 
 ---
 
@@ -69,8 +70,8 @@ Text grey (body):  #3A313F
 ---
 
 ## Important Business Context
-- We run a **UCMAS franchise in Jaipur** — Speedy Scholars must remain a **separate online-only brand**. Never reference Jaipur location on the website or suggest Google Business Profile with a physical address.
-- The UCMAS franchise has its own Google Business Profile — Speedy Scholars should NOT be connected to it.
+- We run a **UCMAS franchise in Jaipur**, Speedy Scholars must remain a **separate online-only brand**. Never reference Jaipur location on the website or suggest Google Business Profile with a physical address.
+- The UCMAS franchise has its own Google Business Profile, Speedy Scholars should NOT be connected to it.
 - Speedy Scholars is online-only, global, and must not reveal the Jaipur connection publicly.
 
 ---
@@ -79,11 +80,11 @@ Text grey (body):  #3A313F
 ```
 src/
 ├── app/
-│   ├── page.tsx              # Home page ("use client") — main landing page
-│   ├── layout.tsx            # Root layout — metadata, GA4, fonts
-│   ├── sitemap.ts            # Dynamic sitemap — update when adding pages
+│   ├── page.tsx              # Home page ("use client"), main landing page
+│   ├── layout.tsx            # Root layout, metadata, GA4, fonts
+│   ├── sitemap.ts            # Dynamic sitemap, update when adding pages
 │   ├── analytics/
-│   │   └── page.tsx          # Analytics dashboard ("use client") — password-protected
+│   │   └── page.tsx          # Analytics dashboard ("use client"), password-protected
 │   ├── api/
 │   │   ├── analytics-brief/  # GA4 + GSC data API (reads from env vars)
 │   │   ├── action-items/     # Claude AI action items from analytics data
@@ -99,17 +100,23 @@ src/
 │   │   └── [slug]/page.tsx   # Individual posts (server component)
 │   ├── resources/
 │   │   └── page.tsx          # Resources page (server component)
-│   ├── privacy/page.tsx
-│   └── terms/page.tsx
+│   ├── online-abacus-classes/
+│   │   └── page.tsx          # Main commercial landing page + Course schema
+│   ├── online-abacus-classes-cost/
+│   │   └── page.tsx          # Pricing guide + FAQPage schema (top AEO target)
+│   ├── faq/
+│   │   └── page.tsx          # FAQ hub + FAQPage schema
+│   ├── privacy/page.tsx      # + layout.tsx for metadata
+│   └── terms/page.tsx        # + layout.tsx for metadata
 ├── components/
-│   ├── StructuredData.tsx    # All JSON-LD schemas — add new ones here
+│   ├── StructuredData.tsx    # All JSON-LD schemas, add new ones here
 │   ├── GoogleAnalytics.tsx   # GA4 script injection
 │   ├── Providers.tsx         # CurrencyProvider wrapper
 │   └── ui/                   # Shadcn components
 ├── contexts/
 │   └── CurrencyContext.tsx   # Multi-currency support + selector
 └── lib/
-    ├── blog.ts               # ALL blog data lives here — add new posts here
+    ├── blog.ts               # ALL blog data lives here, add new posts here
     └── utils.ts              # cn() helper
 
 scripts/
@@ -119,7 +126,7 @@ scripts/
 │   │   ├── illustrations.py       # Drawing primitives (mascots, fruits, abacus, hands)
 │   │   └── BOOK_DESIGN_GUIDE.md   # Universal rules for ALL books
 │   └── kg1_book_a/
-│       ├── generate.py            # KG-1 Book A generator — `python3 scripts/books/kg1_book_a/generate.py`
+│       ├── generate.py            # KG-1 Book A generator, `python3 scripts/books/kg1_book_a/generate.py`
 │       └── NOTES.md               # Book-specific decisions (curriculum, problem data, page quirks)
 └── morning_brief.py               # Terminal analytics brief (GA4 + GSC)
 ```
@@ -127,7 +134,7 @@ scripts/
 ---
 
 ## Adding a New Blog Post
-Only edit `src/lib/blog.ts` — add a new entry to the `blogPosts` array:
+Only edit `src/lib/blog.ts`, add a new entry to the `blogPosts` array:
 ```typescript
 {
   title: "...",
@@ -144,24 +151,24 @@ Only edit `src/lib/blog.ts` — add a new entry to the `blogPosts` array:
   content: `...`,                  // markdown-like, rendered by renderContent()
 }
 ```
-Then update `src/app/sitemap.ts` — it auto-pulls slugs from blog.ts so no change needed there.
+Then update `src/app/sitemap.ts`, it auto-pulls slugs from blog.ts so no change needed there.
 
 ---
 
 ## "use client" vs Server Components
 - Pages with `useState`, `useEffect`, `onClick`, Framer Motion = **must have "use client"**
-- Pages with "use client" **cannot export `generateMetadata`** — create a `layout.tsx` sibling instead (see about/layout.tsx and contact/layout.tsx as examples)
-- Blog and resources pages are server components — no "use client", no event handlers in JSX
+- Pages with "use client" **cannot export `generateMetadata`**, create a `layout.tsx` sibling instead (see about/layout.tsx and contact/layout.tsx as examples)
+- Blog and resources pages are server components, no "use client", no event handlers in JSX
 
 ---
 
 ## GA4 Event Tracking
-Book Demo button clicks are tracked via `openCalendly(location)` in page.tsx (function name kept from the Calendly era for GA4 label continuity — it now opens the Cal.com modal).
+Book Demo button clicks are tracked via `openCalendly(location)` in page.tsx (function name kept from the Calendly era for GA4 label continuity, it now opens the Cal.com modal).
 Location labels in use: `navbar`, `mobile_menu`, `hero`, `instructor_section`,
 `pricing_free_demo`, `pricing_10class`, `pricing_payg`, `cta_section`
 
 GA4 Property ID: `521738025`
-Service account credentials: `speedy-scholars-114b292fc6d8.json` (gitignored — never commit)
+Service account credentials: `speedy-scholars-114b292fc6d8.json` (gitignored, never commit)
 
 ---
 
@@ -169,19 +176,19 @@ Service account credentials: `speedy-scholars-114b292fc6d8.json` (gitignored —
 
 Password-protected page with live GA4 + GSC data, Claude AI action items, and a chat interface.
 
-### Credentials (all in .env.local — never commit)
-- `GA_SERVICE_ACCOUNT_JSON` — full service account JSON as single-line string
-- `GSC_TOKEN_JSON` — OAuth token JSON from `gsc-oauth-credentials_token.json`
-- `ANTHROPIC_API_KEY` — for action items + chat
-- `NEXT_PUBLIC_ANALYTICS_PASSWORD` — local access password (set to `speedy123` in .env.local, NOT set on Vercel = blocked publicly)
+### Credentials (all in .env.local, never commit)
+- `GA_SERVICE_ACCOUNT_JSON`, full service account JSON as single-line string
+- `GSC_TOKEN_JSON`, OAuth token JSON from `gsc-oauth-credentials_token.json`
+- `ANTHROPIC_API_KEY`, for action items + chat
+- `NEXT_PUBLIC_ANALYTICS_PASSWORD`, local access password (set to `speedy123` in .env.local, NOT set on Vercel = blocked publicly)
 
 ### GSC OAuth files (gitignored)
-- `gsc-oauth-credentials.json` — OAuth client credentials
-- `gsc-oauth-credentials_token.json` — saved OAuth token (refresh token inside, auto-refreshes)
+- `gsc-oauth-credentials.json`, OAuth client credentials
+- `gsc-oauth-credentials_token.json`, saved OAuth token (refresh token inside, auto-refreshes)
 
 ### MCP servers (registered in Claude Code)
-- `google-analytics` — `npx mcp-google-analytics` with GA_SERVICE_ACCOUNT_JSON + GA_PROPERTY_ID
-- `gsc` — `npx mcp-gsc@latest` with GOOGLE_GSC_CREDENTIALS_PATH
+- `google-analytics`, `npx mcp-google-analytics` with GA_SERVICE_ACCOUNT_JSON + GA_PROPERTY_ID
+- `gsc`, `npx mcp-gsc@latest` with GOOGLE_GSC_CREDENTIALS_PATH
 
 ---
 
@@ -189,29 +196,29 @@ Password-protected page with live GA4 + GSC data, Claude AI action items, and a 
 
 KG-1 Book A: 35-page landscape A4 PDF. Generator: `scripts/books/kg1_book_a/generate.py`.
 Universal design rules: `scripts/books/_shared/BOOK_DESIGN_GUIDE.md`. Book-specific
-decisions: `scripts/books/kg1_book_a/NOTES.md`. One Python script per book — never
+decisions: `scripts/books/kg1_book_a/NOTES.md`. One Python script per book, never
 share a script between books.
 Output: `public/Speedy-Scholars-KG1-Book-A.pdf`
 
 ### Key rules (never break these)
 - Upper abacus beads: **hexagonal** (6-sided polygon)
 - Mascot: graduation-hat bead bird on **every page** via `draw_footer()`
-- Logo: `public/images/logo-owl.png` (owl rebrand). NOTE: book generators still use the OLD brown palette + mascot — book colour rebrand to purple/gold is a separate pending task.
-- Use **"Level"** not "Class" — abacus terminology
+- Logo: `public/images/logo-owl.png` (owl rebrand). NOTE: book generators still use the OLD brown palette + mascot, book colour rebrand to purple/gold is a separate pending task.
+- Use **"Level"** not "Class", abacus terminology
 - Object padding from card borders: **20px minimum**
 - Every calc page must have **unique problem data**
 - Bottom strip shows **both groups** (a objects + operator + b objects)
 
 ### Future books planned
-KG-1 Book B, KG-2 Book A/B, Level 1 Book A/B — reuse `illustrations.py`
+KG-1 Book B, KG-2 Book A/B, Level 1 Book A/B, reuse `illustrations.py`
 
 ---
 
 ## ESLint Rules That Bite
-- No `any` type — use `eslint-disable-next-line` with a comment explaining why if unavoidable
-- No unused variables — remove them or prefix with `_` (but `_` alone is also flagged, use `catch { }` not `catch (_) { }`)
-- No unescaped JSX text — use `&apos;` for `'` and `&quot;` for `"`
-- No `Function` type — type it properly
+- No `any` type, use `eslint-disable-next-line` with a comment explaining why if unavoidable
+- No unused variables, remove them or prefix with `_` (but `_` alone is also flagged, use `catch { }` not `catch (_) { }`)
+- No unescaped JSX text, use `&apos;` for `'` and `&quot;` for `"`
+- No `Function` type, type it properly
 
 Always run `npm run build` before committing. Build must pass clean.
 
@@ -220,16 +227,16 @@ Always run `npm run build` before committing. Build must pass clean.
 ## Common Commands
 ```bash
 npm run dev      # Local dev server at localhost:3000
-npm run build    # Production build — must pass before pushing
+npm run build    # Production build, must pass before pushing
 npm run lint     # ESLint check
 git push origin main  # Triggers Vercel auto-deploy
 ```
 
 ---
 
-## Platforms We're On (Tutoring Marketplaces) — DEPRIORITISED (Aug 2026)
+## Platforms We're On (Tutoring Marketplaces), DEPRIORITISED (Aug 2026)
 **Marketplaces are no longer a growth priority.** We are listed on Superprof, Preply,
-TutorOcean and Fiverr and they send almost no traffic — marketplace discovery has fallen
+TutorOcean and Fiverr and they send almost no traffic, marketplace discovery has fallen
 off since AI search took over. By contrast **our own website has converted 2 paying
 clients**. Own-site SEO/AEO/GEO is the growth focus; do not propose new marketplace
 listings as a growth lever.
@@ -249,22 +256,22 @@ listings as a growth lever.
 
 ---
 
-## Logo (Owl Rebrand — June 2026)
-- All pages use `public/images/logo-owl.png` (owl mascot, purple+gold, transparent). Wide wordmark (~2:1) — size with `w-auto` + fixed height, never square.
-- `public/images/logo-owl-greybg.png` — grey-bg version for OG/share image (transparent OG renders black on some platforms).
-- `public/images/mascot-owl.png` — standalone owl, square, used to generate favicons.
+## Logo (Owl Rebrand, June 2026)
+- All pages use `public/images/logo-owl.png` (owl mascot, purple+gold, transparent). Wide wordmark (~2:1), size with `w-auto` + fixed height, never square.
+- `public/images/logo-owl-greybg.png`, grey-bg version for OG/share image (transparent OG renders black on some platforms).
+- `public/images/mascot-owl.png`, standalone owl, square, used to generate favicons.
 - Favicons regenerated from the owl mascot: `icon-192.png`, `icon-512.png`, `favicon.ico` (both public/ and src/app/). manifest theme_color is #5A2A72.
 - Logo needs a LIGHT background (purple "Scholars" vanishes on dark). Dark navs use a white rounded band; footer is cream so logo sits directly.
-- Old logo: `public/images/logo3_transparent.png` (superseded). NO SVG (shaded illustration — PNG is correct).
+- Old logo: `public/images/logo3_transparent.png` (superseded). NO SVG (shaded illustration, PNG is correct).
 
 ---
 
 ## What NOT to Do
 - Do not modify `src/contexts/CurrencyContext.tsx` without understanding the full auto-detection logic
 - Do not add new pages without updating `src/app/sitemap.ts`
-- Do not use green colours (`#556B2F` or similar) — replaced with brown palette
+- Do not use green colours (`#556B2F` or similar), replaced with brown palette
 - Do not commit `*.json` credential files (gitignored)
 - Do not push without a passing `npm run build`
-- Do not use `href="#"` for footer/nav links — always use real routes
+- Do not use `href="#"` for footer/nav links, always use real routes
 - Do not add emojis to website pages
 - Do not reference Jaipur or UCMAS on the public website
