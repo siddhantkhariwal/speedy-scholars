@@ -8,9 +8,9 @@ export function LocalBusinessSchema() {
     name: "Speedy Scholars",
     description:
       "Online abacus classes for kids. Transform your child's math skills with expert instruction. 20+ years experience, 2000+ students worldwide.",
-    url: "https://speedyscholars.com",
-    logo: "https://speedyscholars.com/images/logo-owl.png",
-    image: "https://speedyscholars.com/images/og-image.jpg",
+    url: "https://www.speedyscholars.com",
+    logo: "https://www.speedyscholars.com/images/logo-owl.png",
+    image: "https://www.speedyscholars.com/images/og-image.jpg",
     telephone: "+919352646671",
     email: "nidhikhariwal2012@gmail.com",
     founder: {
@@ -40,13 +40,6 @@ export function LocalBusinessSchema() {
       // "https://instagram.com/speedyscholars",
       // "https://youtube.com/@speedyscholars",
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "150",
-      bestRating: "5",
-      worstRating: "1",
-    },
   };
 
   return (
@@ -67,7 +60,7 @@ export function CourseSchema() {
     provider: {
       "@type": "Organization",
       name: "Speedy Scholars",
-      url: "https://speedyscholars.com",
+      url: "https://www.speedyscholars.com",
     },
     instructor: {
       "@type": "Person",
@@ -187,13 +180,9 @@ export function ReviewSchema() {
       "@type": "Brand",
       name: "Speedy Scholars",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "150",
-      bestRating: "5",
-      worstRating: "1",
-    },
+    // No aggregateRating: we do not yet collect reviews on a platform that
+    // could back an aggregate score. Add one only when real, verifiable
+    // reviews exist and are displayed on the page.
     review: [
       {
         "@type": "Review",
@@ -235,15 +224,25 @@ export function ReviewSchema() {
 }
 
 // Combined component for the homepage
+/**
+ * Homepage-only schema. Course, FAQ and Review markup must live on the page
+ * that actually displays that content, so these are rendered from page.tsx
+ * rather than the root layout. Organization identity is site-wide and lives
+ * in SiteWideStructuredData below.
+ */
 export function HomePageStructuredData() {
   return (
     <>
-      <LocalBusinessSchema />
       <CourseSchema />
       <FAQSchema />
       <ReviewSchema />
     </>
   );
+}
+
+/** Safe on every page: who the organisation is. */
+export function SiteWideStructuredData() {
+  return <LocalBusinessSchema />;
 }
 
 interface BlogPostingSchemaProps {

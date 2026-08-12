@@ -5,6 +5,7 @@ import { CheckCircle, Phone, Mail, MapPin, Star, Users, Menu, X, Globe, Award, G
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCurrency, CurrencySelector } from '@/contexts/CurrencyContext';
+import { HomePageStructuredData } from '@/components/StructuredData';
 
 // Cal.com booking modal. The iframe is prewarmed in the background shortly
 // after the page goes idle, so clicking "Book Demo" reveals an already-loaded
@@ -416,6 +417,10 @@ export default function SpeedyScholarsLanding() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
+      {/* Course, FAQ and Review schema live here rather than the root layout,
+          because this is the page that actually displays that content. */}
+      <HomePageStructuredData />
+
       {/* Premium Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled

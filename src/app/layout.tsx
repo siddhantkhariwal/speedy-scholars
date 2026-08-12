@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "flag-icons/css/flag-icons.min.css";
 import { Providers } from "@/components/Providers";
-import { HomePageStructuredData } from "@/components/StructuredData";
+import { SiteWideStructuredData } from "@/components/StructuredData";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const geistSans = localFont({
@@ -144,8 +144,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Structured Data for SEO */}
-        <HomePageStructuredData />
+        {/* Site-wide organisation identity. Page-specific schema (Course, FAQ,
+            Review) is rendered by the page that displays that content. */}
+        <SiteWideStructuredData />
 
         {/* Preload the hero poster — it's the full-viewport LCP element */}
         <link rel="preload" as="image" href="/images/abacus-hero-poster.jpg" />
