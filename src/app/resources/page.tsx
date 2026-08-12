@@ -83,7 +83,7 @@ const mentalMathTricks = [
     title: "Estimate First, Then Refine",
     description:
       "Before calculating, estimate the answer. 47 × 6 is roughly 50 × 6 = 300. The real answer (282) is close. Estimation builds number sense and checks for errors.",
-    example: "47 × 6 ≈ 50 × 6 = 300 (actual: 282 — in the right range)",
+    example: "47 × 6 ≈ 50 × 6 = 300 (actual: 282, in the right range)",
   },
   {
     number: "8",
@@ -118,13 +118,13 @@ const abacusGuide = [
   {
     title: "Number of Rods",
     description:
-      "A 17-rod abacus covers all numbers up to 99,999,999 — more than sufficient for children. For competitions, 23 rods are sometimes preferred.",
+      "A 17-rod abacus covers all numbers up to 99,999,999, more than sufficient for children. For competitions, 23 rods are sometimes preferred.",
     recommendation: "17 rods is ideal for beginners",
   },
   {
     title: "Bead Material",
     description:
-      "Plastic beads move smoothly and are durable. Wooden beads feel pleasant but can warp. Avoid metal beads — they are heavy and loud.",
+      "Plastic beads move smoothly and are durable. Wooden beads feel pleasant but can warp. Avoid metal beads: they are heavy and loud.",
     recommendation: "Smooth plastic beads are best",
   },
   {
@@ -142,7 +142,7 @@ const abacusGuide = [
   {
     title: "Where to Buy",
     description:
-      "Look for educational abacuses from reputable brands on Amazon or educational supply stores. Avoid toy-store versions — they often have imprecise bead movement.",
+      "Look for educational abacuses from reputable brands on Amazon or educational supply stores. Avoid toy-store versions: they often have imprecise bead movement.",
     recommendation: "Look for educational grade abacuses",
   },
 ];
@@ -166,7 +166,7 @@ const practiceTips = [
   {
     title: "Praise Effort, Not Just Results",
     description:
-      "When your child makes progress — even small progress — acknowledge the hard work that made it happen. \"I can see how much concentration you used\" is more powerful than \"Well done.\"",
+      "When your child makes progress, even small progress, acknowledge the hard work that made it happen. \"I can see how much concentration you used\" is more powerful than \"Well done.\"",
   },
   {
     title: "Play Calculation Games",
@@ -313,7 +313,7 @@ export default function ResourcesPage() {
             </h2>
             <p className="text-stone-600 text-lg max-w-2xl mx-auto">
               Practical techniques you can teach at home. These are the building blocks that abacus
-              training makes automatic — start introducing them today.
+              training makes automatic, start introducing them today.
             </p>
           </div>
           <div className="space-y-6">
@@ -404,7 +404,7 @@ export default function ResourcesPage() {
             <p className="text-stone-700 leading-relaxed mb-4">
               <strong>No.</strong> During your free demo class, we will guide you on exactly what to
               purchase based on your child&apos;s age and level. We recommend waiting until after the
-              first class so you buy exactly the right tool — nothing more, nothing less.
+              first class so you buy exactly the right tool, nothing more, nothing less.
             </p>
             <Link
               href="/#pricing"
@@ -426,7 +426,7 @@ export default function ResourcesPage() {
               Practice Tips for Parents
             </h2>
             <p className="text-stone-600 text-lg max-w-2xl mx-auto">
-              How to support your child&apos;s abacus learning between classes — the small habits
+              How to support your child&apos;s abacus learning between classes, the small habits
               that make the biggest difference.
             </p>
           </div>

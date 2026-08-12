@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-// Simple access guard — set NEXT_PUBLIC_ANALYTICS_PASSWORD in .env.local
+// Simple access guard, set NEXT_PUBLIC_ANALYTICS_PASSWORD in .env.local
 // Leave it unset in Vercel production to block public access
 const ACCESS_PASSWORD = process.env.NEXT_PUBLIC_ANALYTICS_PASSWORD ?? "";
 
@@ -320,7 +320,7 @@ export default function AnalyticsDashboard() {
 
           {/* Traffic Overview */}
           <h2 style={{ color: "#32173F", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, margin: "0 0 16px" }}>
-            Traffic — Last 7 Days (GA4)
+            Traffic, Last 7 Days (GA4)
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 16, marginBottom: 32 }}>
             <StatCard label="Sessions" value={data.ga4.totalSessions} accent />
@@ -383,7 +383,7 @@ export default function AnalyticsDashboard() {
 
           {/* GSC Section */}
           <h2 style={{ color: "#32173F", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, margin: "0 0 16px" }}>
-            Search Console — Last 28 Days
+            Search Console, Last 28 Days
           </h2>
 
           {data.gsc.topQuery && (
@@ -428,7 +428,7 @@ export default function AnalyticsDashboard() {
 
             <div style={{ background: "#FFFFFF", border: "1.5px solid #CA8406", borderRadius: 12, padding: 24 }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: "#5A2A72", textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>Quick Wins</div>
-              <div style={{ fontSize: 11, color: "#5A2A72", marginBottom: 16 }}>Pos 4-15 with 5+ impressions — one tweak from page 1</div>
+              <div style={{ fontSize: 11, color: "#5A2A72", marginBottom: 16 }}>Pos 4-15 with 5+ impressions, one tweak from page 1</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {data.gsc.quickWins.map((q) => (
                   <div key={q.query} style={{ borderLeft: "3px solid #F9AE27", paddingLeft: 12 }}>
@@ -463,7 +463,7 @@ export default function AnalyticsDashboard() {
                 Claude&rsquo;s Action Items
               </h2>
               <div style={{ color: "#5A2A72", fontSize: 12, marginTop: 4 }}>
-                AI analysis of your data — what to do next, ranked by impact
+                AI analysis of your data, what to do next, ranked by impact
               </div>
             </div>
             <button
@@ -664,9 +664,9 @@ export default function AnalyticsDashboard() {
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 40 }}>
             {[
-              { label: "Now — Live", items: ["GA4 traffic brief", "Search Console queries", "AI action items", "Daily refresh"] },
-              { label: "Next — WhatsApp & Ads", items: ["WhatsApp morning brief delivery", "Meta Ads MCP (Instagram campaigns)", "Auto-fix blog title & meta tags", "Lead alerts from Gmail"] },
-              { label: "Next — Claude takes action", items: ["Claude opens the PR to fix SEO", "Ad performance briefs when campaigns run", "More MCP integrations as we grow"] },
+              { label: "Now, Live", items: ["GA4 traffic brief", "Search Console queries", "AI action items", "Daily refresh"] },
+              { label: "Next, WhatsApp & Ads", items: ["WhatsApp morning brief delivery", "Meta Ads MCP (Instagram campaigns)", "Auto-fix blog title & meta tags", "Lead alerts from Gmail"] },
+              { label: "Next, Claude takes action", items: ["Claude opens the PR to fix SEO", "Ad performance briefs when campaigns run", "More MCP integrations as we grow"] },
             ].map((col) => (
               <div key={col.label} style={{ background: "#FFFFFF", border: "1.5px solid #CA8406", borderRadius: 12, padding: 20 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: "#F9AE27", textTransform: "uppercase", letterSpacing: 1, marginBottom: 12 }}>{col.label}</div>

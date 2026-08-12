@@ -9,9 +9,9 @@ export async function POST(req: Request) {
     const { ga4, gsc } = data;
 
     const briefText = `
-SPEEDY SCHOLARS — ANALYTICS DATA (as of today)
+SPEEDY SCHOLARS, ANALYTICS DATA (as of today)
 
-GA4 — Last 7 Days:
+GA4, Last 7 Days:
 - Sessions: ${ga4.totalSessions}
 - Users: ${ga4.totalUsers}
 - Engaged sessions: ${ga4.engaged}
@@ -20,18 +20,18 @@ GA4 — Last 7 Days:
 - Traffic sources: ${ga4.sources.map((s: {name: string; sessions: number}) => `${s.name}: ${s.sessions}`).join(", ")}
 - Key events: book_demo_click=${ga4.events["book_demo_click"] ?? 0}, form_start=${ga4.events["form_start"] ?? 0}, user_engagement=${ga4.events["user_engagement"] ?? 0}
 
-Google Search Console — Last 28 Days:
-- Top page: /blog/abacus-vs-calculator — ${gsc.pages[0]?.impressions ?? 0} impressions, ${gsc.pages[0]?.clicks ?? 0} clicks, position ${gsc.pages[0]?.position?.toFixed(1)}
-- Homepage: / — ${gsc.pages.find((p: {page: string}) => p.page === "/")?.impressions ?? 0} impressions, ${gsc.pages.find((p: {page: string}) => p.page === "/")?.clicks ?? 0} clicks
+Google Search Console, Last 28 Days:
+- Top page: /blog/abacus-vs-calculator, ${gsc.pages[0]?.impressions ?? 0} impressions, ${gsc.pages[0]?.clicks ?? 0} clicks, position ${gsc.pages[0]?.position?.toFixed(1)}
+- Homepage: /, ${gsc.pages.find((p: {page: string}) => p.page === "/")?.impressions ?? 0} impressions, ${gsc.pages.find((p: {page: string}) => p.page === "/")?.clicks ?? 0} clicks
 
 Top search queries:
 ${gsc.queries.slice(0, 8).map((q: {query: string; impressions: number; clicks: number; position: number}) =>
-  `  "${q.query}" — ${q.impressions} impressions, pos ${q.position.toFixed(1)}, ${q.clicks} clicks`
+  `  "${q.query}", ${q.impressions} impressions, pos ${q.position.toFixed(1)}, ${q.clicks} clicks`
 ).join("\n")}
 
 Quick wins (pos 4-15 with 5+ impressions):
 ${gsc.quickWins.map((q: {query: string; impressions: number; position: number}) =>
-  `  "${q.query}" — pos ${q.position.toFixed(1)}, ${q.impressions} impressions`
+  `  "${q.query}", pos ${q.position.toFixed(1)}, ${q.impressions} impressions`
 ).join("\n")}
 
 Business context:

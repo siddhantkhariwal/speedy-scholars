@@ -4,7 +4,7 @@ import { PersonSchema } from "@/components/StructuredData";
 export const metadata: Metadata = {
   title: { absolute: "About Speedy Scholars | Nidhi Khariwal - Expert Abacus Educator" },
   description:
-    "Meet Nidhi Khariwal, founder of Speedy Scholars — 20+ years of abacus teaching experience, 2,000+ students worldwide, and 15+ awards. Discover our story, mission, and teaching philosophy.",
+    "Meet Nidhi Khariwal, founder of Speedy Scholars, 20+ years of abacus teaching experience, 2,000+ students worldwide, and 15+ awards. Discover our story, mission, and teaching philosophy.",
   keywords: [
     "about speedy scholars",
     "Nidhi Khariwal abacus teacher",

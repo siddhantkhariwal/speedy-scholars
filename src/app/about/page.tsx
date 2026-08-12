@@ -34,7 +34,7 @@ const methodology = [
     step: "02",
     title: "Foundation Building",
     description:
-      "Mastery of the physical abacus — place value, bead manipulation, and basic operations — forms the solid base.",
+      "Mastery of the physical abacus, place value, bead manipulation, and basic operations, forms the solid base.",
   },
   {
     step: "03",
@@ -61,13 +61,13 @@ const differentiators = [
     icon: "🎓",
     title: "20+ Years of Expertise",
     description:
-      "Mrs. Nidhi Khariwal brings over two decades of dedicated abacus teaching — a depth of experience that is exceptionally rare in online education.",
+      "Mrs. Nidhi Khariwal brings over two decades of dedicated abacus teaching, a depth of experience that is exceptionally rare in online education.",
   },
   {
     icon: "👤",
     title: "Truly Personalised Instruction",
     description:
-      "Every child learns differently. Our curriculum adapts to each student's pace, style, and goals — no one-size-fits-all approach.",
+      "Every child learns differently. Our curriculum adapts to each student's pace, style, and goals, no one-size-fits-all approach.",
   },
   {
     icon: "🌍",
@@ -79,7 +79,7 @@ const differentiators = [
     icon: "🏆",
     title: "Proven Competition Results",
     description:
-      "50+ students have won state, national, and international abacus competitions under our coaching — a testament to the quality of instruction.",
+      "50+ students have won state, national, and international abacus competitions under our coaching, a testament to the quality of instruction.",
   },
   {
     icon: "📊",
@@ -91,7 +91,7 @@ const differentiators = [
     icon: "💯",
     title: "Results-First Philosophy",
     description:
-      "We measure our success by your child's progress — in calculation speed, concentration, academic confidence, and overall mathematical ability.",
+      "We measure our success by your child's progress, in calculation speed, concentration, academic confidence, and overall mathematical ability.",
   },
 ];
 
@@ -354,7 +354,7 @@ export default function AboutPage() {
               Our Teaching Methodology
             </h2>
             <p className="text-stone-600 text-lg max-w-2xl mx-auto">
-              A structured, research-backed pathway from beginner to mental math mastery — designed
+              A structured, research-backed pathway from beginner to mental math mastery, designed
               for each child&apos;s individual pace.
             </p>
           </motion.div>
@@ -448,7 +448,7 @@ export default function AboutPage() {
                 <p className="text-[#FBD78B] leading-relaxed mb-8">
                   Her innovative teaching approach combines the time-tested abacus technique with
                   modern understanding of child psychology and learning science. Students do not just
-                  learn to calculate — they develop the cognitive confidence to excel in all areas of
+                  learn to calculate. They develop the cognitive confidence to excel in all areas of
                   their academic lives.
                 </p>
                 <ul className="space-y-3">
@@ -473,7 +473,7 @@ export default function AboutPage() {
               <div className="relative h-80 lg:h-auto">
                 <Image
                   src="/images/founder.jpeg"
-                  alt="Nidhi Khariwal teaching abacus online — founder of Speedy Scholars with 20+ years experience"
+                  alt="Nidhi Khariwal teaching abacus online, founder of Speedy Scholars with 20+ years experience"
                   fill
                   className="object-cover"
                 />

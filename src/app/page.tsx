@@ -16,7 +16,7 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
   // Prewarm the Cal.com iframe on the first sign of user engagement (or after a
   // 5s fallback), rather than immediately on load. This keeps ~0.7MB of Cal.com
-  // JS off the critical initial render — better LCP/TBT — while still having the
+  // JS off the critical initial render, better LCP/TBT, while still having the
   // calendar ready before almost anyone clicks Book Demo.
   useEffect(() => {
     let warmed = false;
@@ -400,7 +400,7 @@ export default function SpeedyScholarsLanding() {
     },
     {
       name: "Tara S.",
-      text: "My daughter went from counting on her fingers to doing two-digit sums in her head. Her concentration in school has improved too — her teacher noticed the change.",
+      text: "My daughter went from counting on her fingers to doing two-digit sums in her head. Her concentration in school has improved too, her teacher noticed the change.",
       location: "Parent, UK"
     },
     {

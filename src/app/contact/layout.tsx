@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: { absolute: "Contact Speedy Scholars | Book a Free Demo Class Today" },
   description:
-    "Get in touch with Speedy Scholars to book your child's FREE 30-minute demo abacus class. Call, WhatsApp, or email us — flexible scheduling available worldwide.",
+    "Get in touch with Speedy Scholars to book your child's FREE 30-minute demo abacus class. Call, WhatsApp, or email us, flexible scheduling available worldwide.",
   keywords: [
     "contact speedy scholars",
     "book abacus class",

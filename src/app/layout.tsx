@@ -148,7 +148,7 @@ export default function RootLayout({
             Review) is rendered by the page that displays that content. */}
         <SiteWideStructuredData />
 
-        {/* Preload the hero poster — it's the full-viewport LCP element */}
+        {/* Preload the hero poster, it's the full-viewport LCP element */}
         <link rel="preload" as="image" href="/images/abacus-hero-poster.jpg" />
 
         {/* Preconnect to external domains for better performance */}
