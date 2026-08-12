@@ -147,6 +147,9 @@ export default function RootLayout({
         {/* Structured Data for SEO */}
         <HomePageStructuredData />
 
+        {/* Preload the hero poster — it's the full-viewport LCP element */}
+        <link rel="preload" as="image" href="/images/abacus-hero-poster.jpg" />
+
         {/* Preconnect to external domains for better performance */}
         <link rel="preconnect" href="https://cal.com" />
         <link rel="preconnect" href="https://app.cal.com" />
