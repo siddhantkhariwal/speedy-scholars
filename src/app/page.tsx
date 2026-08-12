@@ -929,6 +929,9 @@ export default function SpeedyScholarsLanding() {
                 <li><a href="#instructor" className="hover:text-[#5A2A72] transition-colors">Our Instructor</a></li>
                 <li><a href="#pricing" className="hover:text-[#5A2A72] transition-colors">Pricing</a></li>
                 <li><a href="#testimonials" className="hover:text-[#5A2A72] transition-colors">Reviews</a></li>
+                <li><Link href="/online-abacus-classes" className="hover:text-[#5A2A72] transition-colors">Online Abacus Classes</Link></li>
+                <li><Link href="/online-abacus-classes-cost" className="hover:text-[#5A2A72] transition-colors">Class Pricing</Link></li>
+                <li><Link href="/faq" className="hover:text-[#5A2A72] transition-colors">FAQ</Link></li>
                 <li><Link href="/about" className="hover:text-[#5A2A72] transition-colors">About Us</Link></li>
                 <li><Link href="/blog" className="hover:text-[#5A2A72] transition-colors">Blog</Link></li>
                 <li><Link href="/resources" className="hover:text-[#5A2A72] transition-colors">Resources</Link></li>
