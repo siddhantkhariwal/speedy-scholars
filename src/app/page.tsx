@@ -808,6 +808,15 @@ export default function SpeedyScholarsLanding() {
               formatPrice={formatPrice}
             />
           </div>
+
+          <div className="text-center mt-12">
+            <Link
+              href="/online-abacus-classes-cost"
+              className="text-[#5A2A72] font-semibold hover:underline"
+            >
+              See full pricing details and what is included
+            </Link>
+          </div>
         </div>
       </section>
 

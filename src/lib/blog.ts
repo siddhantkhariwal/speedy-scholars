@@ -151,7 +151,7 @@ At Speedy Scholars, our award-winning instructor Nidhi Khariwal has guided over 
 
 ---
 
-*Also read: [What Age Should Kids Start Learning Abacus?](/blog/best-age-to-start-abacus) | [How Abacus Improves Concentration and Focus](/blog/abacus-improves-concentration)*
+*Also read: [What Age Should Kids Start Learning Abacus?](/blog/best-age-to-start-abacus) | [How Abacus Improves Concentration and Focus](/blog/abacus-improves-concentration) | [How our online abacus classes work](/online-abacus-classes)*
     `,
   },
   {
@@ -320,7 +320,7 @@ During the demo, our lead instructor Nidhi Khariwal will assess your child's cur
 
 ---
 
-*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [Mental Math Tips: 7 Easy Tricks Every Parent Should Know](/blog/mental-math-tips-for-kids)*
+*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [Mental Math Tips: 7 Easy Tricks Every Parent Should Know](/blog/mental-math-tips-for-kids) | [How long does abacus take to learn?](/blog/how-long-to-learn-abacus)*
     `,
   },
   {
@@ -515,7 +515,7 @@ At Speedy Scholars, our expert instructor Nidhi Khariwal teaches these strategie
 
 ---
 
-*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [How Abacus Improves Concentration and Focus](/blog/abacus-improves-concentration)*
+*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [How Abacus Improves Concentration and Focus](/blog/abacus-improves-concentration) | [What online abacus classes cost](/online-abacus-classes-cost)*
     `,
   },
   {
@@ -679,7 +679,7 @@ Our lead instructor Nidhi Khariwal, with 20+ years of experience and a track rec
 
 ---
 
-*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [Abacus vs Calculator: Why Traditional Methods Still Matter](/blog/abacus-vs-calculator)*
+*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [Abacus vs Calculator: Why Traditional Methods Still Matter](/blog/abacus-vs-calculator) | [Common questions about online abacus classes](/faq)*
     `,
   },
   {
@@ -830,7 +830,7 @@ At Speedy Scholars, our lead instructor Nidhi Khariwal has spent 20+ years helpi
 
 ---
 
-*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [What Age Should Kids Start Learning Abacus?](/blog/best-age-to-start-abacus)*
+*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [What Age Should Kids Start Learning Abacus?](/blog/best-age-to-start-abacus) | [Is abacus training actually worth it?](/blog/is-abacus-training-worth-it)*
     `,
   },
   {
