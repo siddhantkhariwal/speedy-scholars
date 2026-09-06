@@ -56,7 +56,7 @@ export function CourseSchema() {
     "@type": "Course",
     name: "Abacus Mental Math Course",
     description:
-      "Learn mental arithmetic and abacus techniques. Improve concentration, memory, and calculation speed. Suitable for children ages 5-14.",
+      "Learn mental arithmetic and abacus techniques. Improve concentration, memory, and calculation speed. Suitable for children aged 4 to 14.",
     provider: {
       "@type": "Organization",
       name: "Speedy Scholars",
@@ -124,7 +124,7 @@ export function FAQSchema() {
         name: "What age is best to start learning abacus?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Children can start learning abacus from age 5-6. The ideal age range is 5-14 years, when the brain is most receptive to developing mental calculation skills.",
+          text: "Children can start from around age 4, and the strongest window is roughly 7 to 10 years old. Older children still benefit, they simply move through the early levels faster.",
         },
       },
       {
@@ -132,7 +132,7 @@ export function FAQSchema() {
         name: "How long does it take to learn abacus?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Most children see significant improvement within 3-6 months of regular practice. Complete mastery typically takes 2-3 years, depending on the level of proficiency desired.",
+          text: "Most parents notice better concentration and faster basic calculation within 8 to 12 weeks of consistent classes and short daily practice. Full mental calculation usually develops over one to two years.",
         },
       },
       {
@@ -170,72 +170,26 @@ export function FAQSchema() {
   );
 }
 
-export function ReviewSchema() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "Speedy Scholars Abacus Classes",
-    description: "Online abacus and mental math classes for children",
-    brand: {
-      "@type": "Brand",
-      name: "Speedy Scholars",
-    },
-    // No aggregateRating: we do not yet collect reviews on a platform that
-    // could back an aggregate score. Add one only when real, verifiable
-    // reviews exist and are displayed on the page.
-    review: [
-      {
-        "@type": "Review",
-        author: { "@type": "Person", name: "Hanna M." },
-        reviewRating: { "@type": "Rating", ratingValue: "5" },
-        reviewBody:
-          "Mrs. Nidhi is an excellent abacus teacher! My child's confidence in math has grown tremendously.",
-      },
-      {
-        "@type": "Review",
-        author: { "@type": "Person", name: "Tara S." },
-        reviewRating: { "@type": "Rating", ratingValue: "5" },
-        reviewBody:
-          "The abacus classes are fantastic. My daughter improved her math skills and concentration.",
-      },
-      {
-        "@type": "Review",
-        author: { "@type": "Person", name: "Jordan H." },
-        reviewRating: { "@type": "Rating", ratingValue: "5" },
-        reviewBody:
-          "Speedy Scholars has been a game-changer for my son. His mental calculation skills improved so much!",
-      },
-      {
-        "@type": "Review",
-        author: { "@type": "Person", name: "Joel G." },
-        reviewRating: { "@type": "Rating", ratingValue: "5" },
-        reviewBody:
-          "Mrs. Nidhi brings out the best in every student. My son looks forward to class every week.",
-      },
-    ],
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    />
-  );
-}
-
-// Combined component for the homepage
 /**
- * Homepage-only schema. Course, FAQ and Review markup must live on the page
- * that actually displays that content, so these are rendered from page.tsx
- * rather than the root layout. Organization identity is site-wide and lives
- * in SiteWideStructuredData below.
+ * Product/Review schema was removed deliberately (Sept 2026).
+ *
+ * Two reasons, do not re-add without addressing both:
+ * 1. Policy: Google does not grant review rich results for "self-serving"
+ *    reviews, meaning testimonials a business publishes about itself on its
+ *    own site. It was reporting 4 invalid review items in Search Console.
+ * 2. Typing: these are classes, not a Product. Course schema already covers
+ *    the offering correctly.
+ *
+ * The testimonials still render on the homepage for human visitors. If real
+ * third-party reviews are ever collected on an external platform, link to
+ * that instead of marking up our own testimonials.
  */
+
 export function HomePageStructuredData() {
   return (
     <>
       <CourseSchema />
       <FAQSchema />
-      <ReviewSchema />
     </>
   );
 }
