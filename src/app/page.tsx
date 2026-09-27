@@ -6,8 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCurrency, CurrencySelector } from '@/contexts/CurrencyContext';
 import { HomePageStructuredData } from '@/components/StructuredData';
+import { CalInline } from '@/components/CalBooking';
 
-// Cal.com booking modal. The iframe is prewarmed in the background shortly
+// Cal.com booking modal, rendered with the official embed so completed
+// bookings can be tracked (see CalBooking.tsx). It is prewarmed in the background shortly
 // after the page goes idle, so clicking "Book Demo" reveals an already-loaded
 // calendar instantly instead of paying a 4-5s cold load on every click.
 function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -89,17 +91,7 @@ function CalendlyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               </div>
             </div>
           )}
-          {shouldMount && (
-            <iframe
-              src="https://cal.com/nidhi-khariwal/free-demo-30-min?theme=light"
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              title="Schedule a demo class"
-              className="w-full h-full"
-              onLoad={() => setIsLoading(false)}
-            />
-          )}
+          {shouldMount && <CalInline onReady={() => setIsLoading(false)} />}
         </div>
       </div>
     </div>

@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-
-const CAL_URL = "https://cal.com/nidhi-khariwal/free-demo-30-min";
+import { calPopupAttrs, useCalBooking } from "@/components/CalBooking";
 
 /**
  * Booking CTA for pages outside the homepage (the homepage has its own modal).
- * Opens the Cal.com booking page and fires the same GA4 event shape as
- * openCalendly() on the homepage, so all Book Demo clicks stay in one funnel.
+ * Opens the Cal.com booking popup on the same page, so the visitor stays on
+ * the site and a completed booking fires `book_demo_complete`. The click fires
+ * the same GA4 event shape as openCalendly() on the homepage, so all Book Demo
+ * clicks stay in one funnel.
  */
 export function BookDemoLink({
   location,
@@ -20,6 +21,8 @@ export function BookDemoLink({
   variant?: "primary" | "gold";
   className?: string;
 }) {
+  useCalBooking();
+
   const base =
     "inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-xl";
   const styles =
@@ -43,14 +46,13 @@ export function BookDemoLink({
   };
 
   return (
-    <a
-      href={CAL_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+    <button
+      type="button"
+      {...calPopupAttrs}
       onClick={handleClick}
       className={`${base} ${styles} ${className}`}
     >
       {children}
-    </a>
+    </button>
   );
 }
