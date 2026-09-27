@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Disallow admin/private paths (add as needed).
-# Never disallow /_next/ — it holds the CSS/JS Google needs to render pages.
+# Never disallow /_next/, it holds the CSS/JS Google needs to render pages.
 Disallow: /api/
 Disallow: /analytics
 Disallow: /private/
