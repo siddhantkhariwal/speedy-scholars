@@ -29,6 +29,11 @@ export default function ContactPage() {
     const whatsappUrl = `https://wa.me/919352646671?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 
+    // Second conversion path after a booked demo, so it gets its own event.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const w = window as any;
+    if (w.gtag) w.gtag('event', 'generate_lead', { method: 'whatsapp_contact_form' });
+
     setIsSubmitting(false);
     setIsSubmitted(true);
 
