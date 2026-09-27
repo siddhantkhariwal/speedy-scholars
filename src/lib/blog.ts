@@ -316,11 +316,11 @@ The best way to know if abacus training is right for your child is to experience
 
 During the demo, our lead instructor Nidhi Khariwal will assess your child's current level, demonstrate how abacus learning works, and give you a clear picture of what to expect. There is no commitment and no pressure.
 
-**[Book your FREE demo class today](/)** and take the first step toward transforming your child's relationship with mathematics.
+**[Book a free 30-minute demo of our online abacus classes](/online-abacus-classes)** and take the first step toward transforming your child's relationship with mathematics.
 
 ---
 
-*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [Mental Math Tips: 7 Easy Tricks Every Parent Should Know](/blog/mental-math-tips-for-kids) | [How long does abacus take to learn?](/blog/how-long-to-learn-abacus)*
+*Also read: [How our online abacus classes work](/online-abacus-classes) | [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [Mental Math Tips: 7 Easy Tricks Every Parent Should Know](/blog/mental-math-tips-for-kids) | [How long does abacus take to learn?](/blog/how-long-to-learn-abacus)*
     `,
   },
   {
@@ -675,11 +675,11 @@ If you would like to see what structured concentration training through abacus e
 
 Our lead instructor Nidhi Khariwal, with 20+ years of experience and a track record of transforming students' academic lives, will work with your child in a live, interactive 30-minute session. You will see firsthand how engaging and effective this approach is.
 
-**[Book your FREE demo class today](/)**, no commitment, no pressure, just an opportunity to discover what your child is truly capable of.
+**[Book a free demo of our online abacus classes](/online-abacus-classes)**, no commitment, no pressure, just an opportunity to discover what your child is truly capable of.
 
 ---
 
-*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [Abacus vs Calculator: Why Traditional Methods Still Matter](/blog/abacus-vs-calculator) | [Common questions about online abacus classes](/faq)*
+*Also read: [How our online abacus classes work](/online-abacus-classes) | [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [Abacus vs Calculator: Why Traditional Methods Still Matter](/blog/abacus-vs-calculator) | [Common questions about online abacus classes](/faq)*
     `,
   },
   {
@@ -826,11 +826,11 @@ If you would like to see the difference structured abacus training makes, we inv
 
 At Speedy Scholars, our lead instructor Nidhi Khariwal has spent 20+ years helping children aged 5-14 develop the mental capabilities that set them apart academically and personally. With over 2,000 students taught worldwide and 15+ industry awards, we offer world-class abacus education delivered through live online classes.
 
-**[Book your FREE 30-minute demo class](/)** and discover what becomes possible when your child's mind is truly developed, not just assisted.
+**[Book a free 30-minute demo of our online abacus classes](/online-abacus-classes)** and discover what becomes possible when your child's mind is truly developed, not just assisted.
 
 ---
 
-*Also read: [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [What Age Should Kids Start Learning Abacus?](/blog/best-age-to-start-abacus) | [Is abacus training actually worth it?](/blog/is-abacus-training-worth-it)*
+*Also read: [How our online abacus classes work](/online-abacus-classes) | [10 Amazing Benefits of Abacus Training for Children](/blog/benefits-of-abacus-training) | [What Age Should Kids Start Learning Abacus?](/blog/best-age-to-start-abacus) | [Is abacus training actually worth it?](/blog/is-abacus-training-worth-it)*
     `,
   },
   {

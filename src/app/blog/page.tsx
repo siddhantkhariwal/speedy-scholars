@@ -114,6 +114,12 @@ export default function BlogPage() {
               Resources
             </Link>
             <Link
+              href="/online-abacus-classes"
+              className="text-[#F9AE27] hover:text-white text-sm transition-colors"
+            >
+              Online Classes
+            </Link>
+            <Link
               href="/#pricing"
               className="bg-[#F9AE27] hover:bg-[#CA8406] text-[#32173F] text-sm px-4 py-2 rounded-full font-semibold transition-colors"
             >

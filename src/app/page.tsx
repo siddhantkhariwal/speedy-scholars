@@ -357,6 +357,7 @@ export default function SpeedyScholarsLanding() {
     { href: "#instructor", label: "Instructor" },
     { href: "#pricing", label: "Pricing" },
     { href: "#testimonials", label: "Reviews" },
+    { href: "/online-abacus-classes", label: "Online Classes" },
   ];
 
   const features = [
