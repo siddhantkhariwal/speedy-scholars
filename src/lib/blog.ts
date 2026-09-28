@@ -2,6 +2,8 @@ export interface BlogPost {
   title: string;
   slug: string;
   date: string;
+  /** Set when the content changes after publishing; feeds the sitemap lastmod. */
+  updated?: string;
   excerpt: string;
   content: string;
   author: string;
@@ -948,6 +950,7 @@ The best way to know is to try one live class and watch your own child, not the 
     title: "Is Abacus Training Actually Worth It? An Honest Look at the Evidence",
     slug: "is-abacus-training-worth-it",
     date: "2026-08-12",
+    updated: "2026-09-28",
     excerpt:
       "A balanced assessment of what abacus training does and does not deliver, including what the research supports, what it does not, and which children benefit least.",
     author: "Nidhi Khariwal",
@@ -970,6 +973,13 @@ Here is what abacus training reliably does, what it probably does, what it does 
 ## The short answer
 
 Abacus training reliably produces fast, accurate mental calculation and improved sustained attention in children who practise consistently for at least a year. The evidence for broad transfer to general intelligence or to all school subjects is much weaker than marketing suggests. It is worth it if you value those specific outcomes and your child will practise. It is not worth it as a general "makes my child smarter" purchase.
+
+
+---
+
+## Is abacus good or bad for children?
+
+For most children abacus is good, as long as they practise willingly and consistently. The downsides are not harm to the child. They are wasted time and money when practice does not happen, and pressure on a child who does not enjoy it. It suits children who like steady practice, and it is a poor fit for those who strongly resist it.
 
 ---
 
@@ -999,9 +1009,9 @@ I would rather you hear this from me than discover it later.
 
 ---
 
-## The honest cost side
+## Disadvantages of abacus training
 
-Abacus is not a passive purchase. It requires:
+The main disadvantages are the time it demands, slow progress without daily practice, and weak evidence that it raises general intelligence. Abacus is not a passive purchase. It requires:
 
 - One or two classes a week, sustained over years, not months
 - 10 to 15 minutes of home practice on most days
@@ -1178,6 +1188,7 @@ If option 1 sounds like you, the simplest next step is to watch one real class. 
     title: "How Long Does It Take to Learn Abacus? A Realistic Timeline",
     slug: "how-long-to-learn-abacus",
     date: "2026-08-12",
+    updated: "2026-09-28",
     excerpt:
       "A stage by stage timeline of abacus learning, from first bead movements to full mental calculation, with the practice levels each stage actually requires.",
     author: "Nidhi Khariwal",
@@ -1205,6 +1216,10 @@ Here is the timeline I actually observe, based on children who take one or two c
 - **2 to 3 years:** fluent mental calculation including multiplication and division, competition level for those who want it
 
 Complete mastery is open ended, in the same way that a musical instrument is. Most children reach a genuinely useful level in about two years.
+
+These timelines come from my 20 years of teaching abacus to more than 2,000 children at Speedy Scholars.
+
+**Want to know where your child would start?** The free 30-minute demo includes a level check. **[Book a free demo of our online abacus classes](/online-abacus-classes)**
 
 ---
 
